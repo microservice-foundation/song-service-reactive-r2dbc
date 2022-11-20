@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="03f7690e-f4d6-45ac-ac17-90abf0d95bd8" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/aws.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gradle.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gradlew" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gradlew.bat" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/settings.gradle" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/epam/training/microservicefoundation/songservice/SongServiceApplication.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/epam/training/microservicefoundation/songservice/api/SongController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/epam/training/microservicefoundation/songservice/api/SongExceptionHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/epam/training/microservicefoundation/songservice/domain/APIError.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/epam/training/microservicefoundation/songservice/domain/Song.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/epam/training/microservicefoundation/songservice/domain/SongNotFoundException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/epam/training/microservicefoundation/songservice/domain/SongRecord.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/epam/training/microservicefoundation/songservice/domain/SongRecordId.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/epam/training/microservicefoundation/songservice/repository/BaseJpaRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/epam/training/microservicefoundation/songservice/repository/BaseRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/epam/training/microservicefoundation/songservice/repository/SongRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/epam/training/microservicefoundation/songservice/repository/implementation/BaseRepositoryImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/epam/training/microservicefoundation/songservice/service/IdParameterValidator.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/epam/training/microservicefoundation/songservice/service/Mapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/epam/training/microservicefoundation/songservice/service/SongMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/epam/training/microservicefoundation/songservice/service/SongRecordValidator.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/epam/training/microservicefoundation/songservice/service/SongService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/epam/training/microservicefoundation/songservice/service/SongServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/epam/training/microservicefoundation/songservice/service/Validator.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/logback.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/com/epam/training/microservicefoundation/songservice/SongServiceApplicationTests.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/com/epam/training/microservicefoundation/songservice/api/SongControllerTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/com/epam/training/microservicefoundation/songservice/repository/PostgresExtension.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/com/epam/training/microservicefoundation/songservice/repository/SongRepositoryTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/com/epam/training/microservicefoundation/songservice/service/SongServiceTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/com/epam/training/microservicefoundation/songservice/service/validator/SongRecordValidatorTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/application.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/sql/data.sql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/sql/drop-schema.sql" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CodeStyleSettingsInfer">
+    <option name="done" value="true" />
+  </component>
+  <component name="ExternalProjectsData">
+    <projectState path="$PROJECT_DIR$">
+      <ProjectState />
+    </projectState>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectCodeStyleSettingsMigration">
+    <option name="version" value="2" />
+  </component>
+  <component name="ProjectId" id="2HYsJEaNFrxArO6WA7DWOXNidB7" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;last_opened_file_path&quot;: &quot;/Users/Yusuf_Murodov/Local/epam/traning/microservices/song-service/src/test/resources&quot;
+  }
+}</component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/test/resources" />
+      <recent name="$PROJECT_DIR$/src/test/java" />
+      <recent name="$PROJECT_DIR$/src/main/resources" />
+      <recent name="$PROJECT_DIR$/src/main/java/com/epam/training/microservicefoundation/songservice" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Application.com.epam.training.microservicefoundation.songservice.SongServiceApplication">
+    <configuration name="SongServiceApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.epam.training.microservicefoundation.songservice.songservice.SongServiceApplication" />
+      <module name="song-service.main" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.epam.training.microservicefoundation.songservice.songservice.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="com.epam.training.microservicefoundation.songservice.SongServiceApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.epam.training.microservicefoundation.songservice.SongServiceApplication" />
+      <module name="song-service.main" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.epam.training.microservicefoundation.songservice.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.com.epam.training.microservicefoundation.songservice.SongServiceApplication" />
+        <item itemvalue="Application.SongServiceApplication" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="03f7690e-f4d6-45ac-ac17-90abf0d95bd8" name="Changes" comment="" />
+      <created>1668473280132</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1668473280132</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/epam/training/microservicefoundation/songservice/api/SongController.java</url>
+          <line>32</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+</project>
