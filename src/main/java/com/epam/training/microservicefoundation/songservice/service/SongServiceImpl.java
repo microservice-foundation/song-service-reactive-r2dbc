@@ -20,14 +20,15 @@ import java.util.stream.Collectors;
 public class SongServiceImpl implements SongService {
     private static final Logger log = LoggerFactory.getLogger(SongServiceImpl.class);
     private final SongRepository repository;
-    private final SongMapper mapper;
-    private final SongRecordValidator songRecordValidator;
-    private final IdParameterValidator idParameterValidator;
+    private final Mapper<Song, SongRecord> songMapper;
+    private final Validator<SongRecord> songRecordValidator;
+    private final Validator<long[]> idParameterValidator;
 
-    public SongServiceImpl(SongRepository repository, SongMapper mapper, SongRecordValidator songRecordValidator,
-                           IdParameterValidator idParameterValidator) {
+    public SongServiceImpl(SongRepository repository, Mapper<Song, SongRecord> songMapper,
+                           Validator<SongRecord> songRecordValidator,
+                           Validator<long[]> idParameterValidator) {
         this.repository = repository;
-        this.mapper = mapper;
+        this.songMapper = songMapper;
         this.songRecordValidator = songRecordValidator;
         this.idParameterValidator = idParameterValidator;
     }
@@ -45,7 +46,7 @@ public class SongServiceImpl implements SongService {
             throw illegalArgumentException;
         }
         try {
-            Song song = repository.persist(mapper.mapToEntity(songRecord));
+            Song song = repository.persist(songMapper.mapToEntity(songRecord));
             return new SongRecordId(song.getId());
         } catch (DataIntegrityViolationException ex) {
             IllegalArgumentException illegalArgumentException = new IllegalArgumentException(
@@ -70,8 +71,8 @@ public class SongServiceImpl implements SongService {
         }
 
         try {
-            Song song = repository.update(mapper.mapToEntity(songRecord));
-            return mapper.mapToRecord(song);
+            Song song = repository.update(songMapper.mapToEntity(songRecord));
+            return songMapper.mapToRecord(song);
         } catch (DataIntegrityViolationException ex) {
             IllegalArgumentException illegalArgumentException = new IllegalArgumentException(
                     String.format("Updating a song record with invalid parameters length or duplicate value '%s'",
@@ -105,6 +106,6 @@ public class SongServiceImpl implements SongService {
         Song song = repository.findById(id).orElseThrow(() -> new SongNotFoundException(String.format("Song was not " +
                 "found with id '%d'", id)));
 
-        return mapper.mapToRecord(song);
+        return songMapper.mapToRecord(song);
     }
 }

@@ -5,52 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="03f7690e-f4d6-45ac-ac17-90abf0d95bd8" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/aws.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gradle.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gradlew" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gradlew.bat" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/settings.gradle" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/epam/training/microservicefoundation/songservice/SongServiceApplication.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/epam/training/microservicefoundation/songservice/api/SongController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/epam/training/microservicefoundation/songservice/api/SongExceptionHandler.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/epam/training/microservicefoundation/songservice/domain/APIError.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/epam/training/microservicefoundation/songservice/domain/Song.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/epam/training/microservicefoundation/songservice/domain/SongNotFoundException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/epam/training/microservicefoundation/songservice/domain/SongRecord.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/epam/training/microservicefoundation/songservice/domain/SongRecordId.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/epam/training/microservicefoundation/songservice/repository/BaseJpaRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/epam/training/microservicefoundation/songservice/repository/BaseRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/epam/training/microservicefoundation/songservice/repository/SongRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/epam/training/microservicefoundation/songservice/repository/implementation/BaseRepositoryImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/epam/training/microservicefoundation/songservice/service/IdParameterValidator.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/epam/training/microservicefoundation/songservice/service/Mapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/epam/training/microservicefoundation/songservice/service/SongMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/epam/training/microservicefoundation/songservice/service/SongRecordValidator.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/epam/training/microservicefoundation/songservice/service/SongService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/epam/training/microservicefoundation/songservice/service/SongServiceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/epam/training/microservicefoundation/songservice/service/Validator.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/logback.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/com/epam/training/microservicefoundation/songservice/SongServiceApplicationTests.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/com/epam/training/microservicefoundation/songservice/api/SongControllerTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/com/epam/training/microservicefoundation/songservice/repository/PostgresExtension.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/com/epam/training/microservicefoundation/songservice/repository/SongRepositoryTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/com/epam/training/microservicefoundation/songservice/service/SongServiceTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/com/epam/training/microservicefoundation/songservice/service/validator/SongRecordValidatorTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/resources/application.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/resources/sql/data.sql" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/resources/sql/drop-schema.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
