@@ -12963,7 +12963,7 @@ content-length: 112
 2022-11-18 21:44:11 [http-nio-8091-exec-1] DEBUG : Read "application/json;charset=UTF-8" to [SongRecord{resourceId=37, name='2022-11-18T21:44:08.709727.mp3', artist='Me', album='Me', length='0: (truncated)...]
 2022-11-18 21:44:11 [http-nio-8091-exec-1] INFO  : Saving a song metadata 'SongRecord{resourceId=37, name='2022-11-18T21:44:08.709727.mp3', artist='Me', album='Me', length='0:12', year=2006}'
 2022-11-18 21:44:11 [http-nio-8091-exec-1] DEBUG : Found thread-bound EntityManager [SessionImpl(1875283043<open>)] for JPA transaction
-2022-11-18 21:44:11 [http-nio-8091-exec-1] DEBUG : Creating new transaction with name [com.epam.training.microservicefoundation.songservice.service.SongServiceImpl.save]: PROPAGATION_REQUIRED,ISOLATION_DEFAULT
+2022-11-18 21:44:11 [http-nio-8091-exec-1] DEBUG : Creating new transaction with name [com.epam.training.microservicefoundation.songservice.service.implementation.SongServiceImpl.save]: PROPAGATION_REQUIRED,ISOLATION_DEFAULT
 2022-11-18 21:44:11 [http-nio-8091-exec-1] DEBUG :   setAutoCommit = false
 2022-11-18 21:44:11 [http-nio-8091-exec-1] DEBUG : Exposing JPA transaction as JDBC [org.springframework.orm.jpa.vendor.HibernateJpaDialect$HibernateConnectionHandle@190a3ffd]
 2022-11-18 21:44:11 [http-nio-8091-exec-1] INFO  : Saving a song record 'SongRecord{resourceId=37, name='2022-11-18T21:44:08.709727.mp3', artist='Me', album='Me', length='0:12', year=2006}'
@@ -12991,7 +12991,7 @@ org.springframework.dao.DataIntegrityViolationException: could not execute state
 	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186)
 	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:763)
 	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:708)
-	at com.epam.training.microservicefoundation.songservice.service.SongServiceImpl$$EnhancerBySpringCGLIB$$327a525a.save(<generated>)
+	at com.epam.training.microservicefoundation.songservice.service.implementation.SongServiceImpl$$EnhancerBySpringCGLIB$$327a525a.save(<generated>)
 	at com.epam.training.microservicefoundation.songservice.api.SongController.save(SongController.java:33)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
@@ -13128,7 +13128,7 @@ org.postgresql.util.PSQLException: ERROR: value too long for type character vary
 	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186)
 	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:763)
 	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:708)
-	at com.epam.training.microservicefoundation.songservice.service.SongServiceImpl$$EnhancerBySpringCGLIB$$327a525a.save(<generated>)
+	at com.epam.training.microservicefoundation.songservice.service.implementation.SongServiceImpl$$EnhancerBySpringCGLIB$$327a525a.save(<generated>)
 	at com.epam.training.microservicefoundation.songservice.api.SongController.save(SongController.java:33)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
@@ -13218,7 +13218,7 @@ content-length: 112
 2022-11-18 21:44:18 [http-nio-8091-exec-2] DEBUG : Read "application/json;charset=UTF-8" to [SongRecord{resourceId=37, name='2022-11-18T21:44:11.601726.mp3', artist='Me', album='Me', length='0: (truncated)...]
 2022-11-18 21:44:18 [http-nio-8091-exec-2] INFO  : Saving a song metadata 'SongRecord{resourceId=37, name='2022-11-18T21:44:11.601726.mp3', artist='Me', album='Me', length='0:12', year=2006}'
 2022-11-18 21:44:18 [http-nio-8091-exec-2] DEBUG : Found thread-bound EntityManager [SessionImpl(2037796776<open>)] for JPA transaction
-2022-11-18 21:44:18 [http-nio-8091-exec-2] DEBUG : Creating new transaction with name [com.epam.training.microservicefoundation.songservice.service.SongServiceImpl.save]: PROPAGATION_REQUIRED,ISOLATION_DEFAULT
+2022-11-18 21:44:18 [http-nio-8091-exec-2] DEBUG : Creating new transaction with name [com.epam.training.microservicefoundation.songservice.service.implementation.SongServiceImpl.save]: PROPAGATION_REQUIRED,ISOLATION_DEFAULT
 2022-11-18 21:44:18 [http-nio-8091-exec-2] DEBUG :   setAutoCommit = false
 2022-11-18 21:44:18 [http-nio-8091-exec-2] DEBUG : Exposing JPA transaction as JDBC [org.springframework.orm.jpa.vendor.HibernateJpaDialect$HibernateConnectionHandle@7d49c45e]
 2022-11-18 21:44:18 [http-nio-8091-exec-2] INFO  : Saving a song record 'SongRecord{resourceId=37, name='2022-11-18T21:44:11.601726.mp3', artist='Me', album='Me', length='0:12', year=2006}'
@@ -13246,7 +13246,7 @@ org.springframework.dao.DataIntegrityViolationException: could not execute state
 	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186)
 	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:763)
 	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:708)
-	at com.epam.training.microservicefoundation.songservice.service.SongServiceImpl$$EnhancerBySpringCGLIB$$327a525a.save(<generated>)
+	at com.epam.training.microservicefoundation.songservice.service.implementation.SongServiceImpl$$EnhancerBySpringCGLIB$$327a525a.save(<generated>)
 	at com.epam.training.microservicefoundation.songservice.api.SongController.save(SongController.java:33)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
@@ -13383,7 +13383,7 @@ org.postgresql.util.PSQLException: ERROR: value too long for type character vary
 	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186)
 	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:763)
 	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:708)
-	at com.epam.training.microservicefoundation.songservice.service.SongServiceImpl$$EnhancerBySpringCGLIB$$327a525a.save(<generated>)
+	at com.epam.training.microservicefoundation.songservice.service.implementation.SongServiceImpl$$EnhancerBySpringCGLIB$$327a525a.save(<generated>)
 	at com.epam.training.microservicefoundation.songservice.api.SongController.save(SongController.java:33)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
@@ -13473,7 +13473,7 @@ content-length: 112
 2022-11-18 21:44:19 [http-nio-8091-exec-3] DEBUG : Read "application/json;charset=UTF-8" to [SongRecord{resourceId=37, name='2022-11-18T21:44:18.313713.mp3', artist='Me', album='Me', length='0: (truncated)...]
 2022-11-18 21:44:19 [http-nio-8091-exec-3] INFO  : Saving a song metadata 'SongRecord{resourceId=37, name='2022-11-18T21:44:18.313713.mp3', artist='Me', album='Me', length='0:12', year=2006}'
 2022-11-18 21:44:19 [http-nio-8091-exec-3] DEBUG : Found thread-bound EntityManager [SessionImpl(1505859056<open>)] for JPA transaction
-2022-11-18 21:44:19 [http-nio-8091-exec-3] DEBUG : Creating new transaction with name [com.epam.training.microservicefoundation.songservice.service.SongServiceImpl.save]: PROPAGATION_REQUIRED,ISOLATION_DEFAULT
+2022-11-18 21:44:19 [http-nio-8091-exec-3] DEBUG : Creating new transaction with name [com.epam.training.microservicefoundation.songservice.service.implementation.SongServiceImpl.save]: PROPAGATION_REQUIRED,ISOLATION_DEFAULT
 2022-11-18 21:44:19 [http-nio-8091-exec-3] DEBUG :   setAutoCommit = false
 2022-11-18 21:44:19 [http-nio-8091-exec-3] DEBUG : Exposing JPA transaction as JDBC [org.springframework.orm.jpa.vendor.HibernateJpaDialect$HibernateConnectionHandle@6852eabe]
 2022-11-18 21:44:19 [http-nio-8091-exec-3] INFO  : Saving a song record 'SongRecord{resourceId=37, name='2022-11-18T21:44:18.313713.mp3', artist='Me', album='Me', length='0:12', year=2006}'
@@ -13500,7 +13500,7 @@ org.springframework.dao.DataIntegrityViolationException: could not execute state
 	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186)
 	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:763)
 	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:708)
-	at com.epam.training.microservicefoundation.songservice.service.SongServiceImpl$$EnhancerBySpringCGLIB$$327a525a.save(<generated>)
+	at com.epam.training.microservicefoundation.songservice.service.implementation.SongServiceImpl$$EnhancerBySpringCGLIB$$327a525a.save(<generated>)
 	at com.epam.training.microservicefoundation.songservice.api.SongController.save(SongController.java:33)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
@@ -13637,7 +13637,7 @@ org.postgresql.util.PSQLException: ERROR: value too long for type character vary
 	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186)
 	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:763)
 	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:708)
-	at com.epam.training.microservicefoundation.songservice.service.SongServiceImpl$$EnhancerBySpringCGLIB$$327a525a.save(<generated>)
+	at com.epam.training.microservicefoundation.songservice.service.implementation.SongServiceImpl$$EnhancerBySpringCGLIB$$327a525a.save(<generated>)
 	at com.epam.training.microservicefoundation.songservice.api.SongController.save(SongController.java:33)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
@@ -13727,7 +13727,7 @@ content-length: 112
 2022-11-18 21:44:20 [http-nio-8091-exec-4] DEBUG : Read "application/json;charset=UTF-8" to [SongRecord{resourceId=37, name='2022-11-18T21:44:19.785410.mp3', artist='Me', album='Me', length='0: (truncated)...]
 2022-11-18 21:44:20 [http-nio-8091-exec-4] INFO  : Saving a song metadata 'SongRecord{resourceId=37, name='2022-11-18T21:44:19.785410.mp3', artist='Me', album='Me', length='0:12', year=2006}'
 2022-11-18 21:44:20 [http-nio-8091-exec-4] DEBUG : Found thread-bound EntityManager [SessionImpl(1113198138<open>)] for JPA transaction
-2022-11-18 21:44:20 [http-nio-8091-exec-4] DEBUG : Creating new transaction with name [com.epam.training.microservicefoundation.songservice.service.SongServiceImpl.save]: PROPAGATION_REQUIRED,ISOLATION_DEFAULT
+2022-11-18 21:44:20 [http-nio-8091-exec-4] DEBUG : Creating new transaction with name [com.epam.training.microservicefoundation.songservice.service.implementation.SongServiceImpl.save]: PROPAGATION_REQUIRED,ISOLATION_DEFAULT
 2022-11-18 21:44:20 [http-nio-8091-exec-4] DEBUG :   setAutoCommit = false
 2022-11-18 21:44:20 [http-nio-8091-exec-4] DEBUG : Exposing JPA transaction as JDBC [org.springframework.orm.jpa.vendor.HibernateJpaDialect$HibernateConnectionHandle@466592a9]
 2022-11-18 21:44:20 [http-nio-8091-exec-4] INFO  : Saving a song record 'SongRecord{resourceId=37, name='2022-11-18T21:44:19.785410.mp3', artist='Me', album='Me', length='0:12', year=2006}'
@@ -13754,7 +13754,7 @@ org.springframework.dao.DataIntegrityViolationException: could not execute state
 	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186)
 	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:763)
 	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:708)
-	at com.epam.training.microservicefoundation.songservice.service.SongServiceImpl$$EnhancerBySpringCGLIB$$327a525a.save(<generated>)
+	at com.epam.training.microservicefoundation.songservice.service.implementation.SongServiceImpl$$EnhancerBySpringCGLIB$$327a525a.save(<generated>)
 	at com.epam.training.microservicefoundation.songservice.api.SongController.save(SongController.java:33)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
@@ -13891,7 +13891,7 @@ org.postgresql.util.PSQLException: ERROR: value too long for type character vary
 	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186)
 	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:763)
 	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:708)
-	at com.epam.training.microservicefoundation.songservice.service.SongServiceImpl$$EnhancerBySpringCGLIB$$327a525a.save(<generated>)
+	at com.epam.training.microservicefoundation.songservice.service.implementation.SongServiceImpl$$EnhancerBySpringCGLIB$$327a525a.save(<generated>)
 	at com.epam.training.microservicefoundation.songservice.api.SongController.save(SongController.java:33)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
@@ -13981,7 +13981,7 @@ content-length: 112
 2022-11-18 21:44:20 [http-nio-8091-exec-5] DEBUG : Read "application/json;charset=UTF-8" to [SongRecord{resourceId=37, name='2022-11-18T21:44:20.291686.mp3', artist='Me', album='Me', length='0: (truncated)...]
 2022-11-18 21:44:20 [http-nio-8091-exec-5] INFO  : Saving a song metadata 'SongRecord{resourceId=37, name='2022-11-18T21:44:20.291686.mp3', artist='Me', album='Me', length='0:12', year=2006}'
 2022-11-18 21:44:20 [http-nio-8091-exec-5] DEBUG : Found thread-bound EntityManager [SessionImpl(2120165516<open>)] for JPA transaction
-2022-11-18 21:44:20 [http-nio-8091-exec-5] DEBUG : Creating new transaction with name [com.epam.training.microservicefoundation.songservice.service.SongServiceImpl.save]: PROPAGATION_REQUIRED,ISOLATION_DEFAULT
+2022-11-18 21:44:20 [http-nio-8091-exec-5] DEBUG : Creating new transaction with name [com.epam.training.microservicefoundation.songservice.service.implementation.SongServiceImpl.save]: PROPAGATION_REQUIRED,ISOLATION_DEFAULT
 2022-11-18 21:44:20 [http-nio-8091-exec-5] DEBUG :   setAutoCommit = false
 2022-11-18 21:44:20 [http-nio-8091-exec-5] DEBUG : Exposing JPA transaction as JDBC [org.springframework.orm.jpa.vendor.HibernateJpaDialect$HibernateConnectionHandle@7a60a39f]
 2022-11-18 21:44:20 [http-nio-8091-exec-5] INFO  : Saving a song record 'SongRecord{resourceId=37, name='2022-11-18T21:44:20.291686.mp3', artist='Me', album='Me', length='0:12', year=2006}'
@@ -14008,7 +14008,7 @@ org.springframework.dao.DataIntegrityViolationException: could not execute state
 	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186)
 	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:763)
 	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:708)
-	at com.epam.training.microservicefoundation.songservice.service.SongServiceImpl$$EnhancerBySpringCGLIB$$327a525a.save(<generated>)
+	at com.epam.training.microservicefoundation.songservice.service.implementation.SongServiceImpl$$EnhancerBySpringCGLIB$$327a525a.save(<generated>)
 	at com.epam.training.microservicefoundation.songservice.api.SongController.save(SongController.java:33)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
@@ -14145,7 +14145,7 @@ org.postgresql.util.PSQLException: ERROR: value too long for type character vary
 	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186)
 	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:763)
 	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:708)
-	at com.epam.training.microservicefoundation.songservice.service.SongServiceImpl$$EnhancerBySpringCGLIB$$327a525a.save(<generated>)
+	at com.epam.training.microservicefoundation.songservice.service.implementation.SongServiceImpl$$EnhancerBySpringCGLIB$$327a525a.save(<generated>)
 	at com.epam.training.microservicefoundation.songservice.api.SongController.save(SongController.java:33)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
@@ -14235,7 +14235,7 @@ content-length: 112
 2022-11-18 21:44:21 [http-nio-8091-exec-6] DEBUG : Read "application/json;charset=UTF-8" to [SongRecord{resourceId=37, name='2022-11-18T21:44:20.794867.mp3', artist='Me', album='Me', length='0: (truncated)...]
 2022-11-18 21:44:21 [http-nio-8091-exec-6] INFO  : Saving a song metadata 'SongRecord{resourceId=37, name='2022-11-18T21:44:20.794867.mp3', artist='Me', album='Me', length='0:12', year=2006}'
 2022-11-18 21:44:21 [http-nio-8091-exec-6] DEBUG : Found thread-bound EntityManager [SessionImpl(1582438101<open>)] for JPA transaction
-2022-11-18 21:44:21 [http-nio-8091-exec-6] DEBUG : Creating new transaction with name [com.epam.training.microservicefoundation.songservice.service.SongServiceImpl.save]: PROPAGATION_REQUIRED,ISOLATION_DEFAULT
+2022-11-18 21:44:21 [http-nio-8091-exec-6] DEBUG : Creating new transaction with name [com.epam.training.microservicefoundation.songservice.service.implementation.SongServiceImpl.save]: PROPAGATION_REQUIRED,ISOLATION_DEFAULT
 2022-11-18 21:44:21 [http-nio-8091-exec-6] DEBUG :   setAutoCommit = false
 2022-11-18 21:44:21 [http-nio-8091-exec-6] DEBUG : Exposing JPA transaction as JDBC [org.springframework.orm.jpa.vendor.HibernateJpaDialect$HibernateConnectionHandle@8a9180c]
 2022-11-18 21:44:21 [http-nio-8091-exec-6] INFO  : Saving a song record 'SongRecord{resourceId=37, name='2022-11-18T21:44:20.794867.mp3', artist='Me', album='Me', length='0:12', year=2006}'
@@ -14262,7 +14262,7 @@ org.springframework.dao.DataIntegrityViolationException: could not execute state
 	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186)
 	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:763)
 	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:708)
-	at com.epam.training.microservicefoundation.songservice.service.SongServiceImpl$$EnhancerBySpringCGLIB$$327a525a.save(<generated>)
+	at com.epam.training.microservicefoundation.songservice.service.implementation.SongServiceImpl$$EnhancerBySpringCGLIB$$327a525a.save(<generated>)
 	at com.epam.training.microservicefoundation.songservice.api.SongController.save(SongController.java:33)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
@@ -14399,7 +14399,7 @@ org.postgresql.util.PSQLException: ERROR: value too long for type character vary
 	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186)
 	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:763)
 	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:708)
-	at com.epam.training.microservicefoundation.songservice.service.SongServiceImpl$$EnhancerBySpringCGLIB$$327a525a.save(<generated>)
+	at com.epam.training.microservicefoundation.songservice.service.implementation.SongServiceImpl$$EnhancerBySpringCGLIB$$327a525a.save(<generated>)
 	at com.epam.training.microservicefoundation.songservice.api.SongController.save(SongController.java:33)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
@@ -14489,7 +14489,7 @@ content-length: 112
 2022-11-18 21:44:21 [http-nio-8091-exec-7] DEBUG : Read "application/json;charset=UTF-8" to [SongRecord{resourceId=37, name='2022-11-18T21:44:21.298349.mp3', artist='Me', album='Me', length='0: (truncated)...]
 2022-11-18 21:44:21 [http-nio-8091-exec-7] INFO  : Saving a song metadata 'SongRecord{resourceId=37, name='2022-11-18T21:44:21.298349.mp3', artist='Me', album='Me', length='0:12', year=2006}'
 2022-11-18 21:44:21 [http-nio-8091-exec-7] DEBUG : Found thread-bound EntityManager [SessionImpl(1464353278<open>)] for JPA transaction
-2022-11-18 21:44:21 [http-nio-8091-exec-7] DEBUG : Creating new transaction with name [com.epam.training.microservicefoundation.songservice.service.SongServiceImpl.save]: PROPAGATION_REQUIRED,ISOLATION_DEFAULT
+2022-11-18 21:44:21 [http-nio-8091-exec-7] DEBUG : Creating new transaction with name [com.epam.training.microservicefoundation.songservice.service.implementation.SongServiceImpl.save]: PROPAGATION_REQUIRED,ISOLATION_DEFAULT
 2022-11-18 21:44:21 [http-nio-8091-exec-7] DEBUG :   setAutoCommit = false
 2022-11-18 21:44:21 [http-nio-8091-exec-7] DEBUG : Exposing JPA transaction as JDBC [org.springframework.orm.jpa.vendor.HibernateJpaDialect$HibernateConnectionHandle@5ac2720a]
 2022-11-18 21:44:21 [http-nio-8091-exec-7] INFO  : Saving a song record 'SongRecord{resourceId=37, name='2022-11-18T21:44:21.298349.mp3', artist='Me', album='Me', length='0:12', year=2006}'
@@ -14517,7 +14517,7 @@ org.springframework.dao.DataIntegrityViolationException: could not execute state
 	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186)
 	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:763)
 	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:708)
-	at com.epam.training.microservicefoundation.songservice.service.SongServiceImpl$$EnhancerBySpringCGLIB$$327a525a.save(<generated>)
+	at com.epam.training.microservicefoundation.songservice.service.implementation.SongServiceImpl$$EnhancerBySpringCGLIB$$327a525a.save(<generated>)
 	at com.epam.training.microservicefoundation.songservice.api.SongController.save(SongController.java:33)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
@@ -14654,7 +14654,7 @@ org.postgresql.util.PSQLException: ERROR: value too long for type character vary
 	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186)
 	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:763)
 	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:708)
-	at com.epam.training.microservicefoundation.songservice.service.SongServiceImpl$$EnhancerBySpringCGLIB$$327a525a.save(<generated>)
+	at com.epam.training.microservicefoundation.songservice.service.implementation.SongServiceImpl$$EnhancerBySpringCGLIB$$327a525a.save(<generated>)
 	at com.epam.training.microservicefoundation.songservice.api.SongController.save(SongController.java:33)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
@@ -14744,7 +14744,7 @@ content-length: 112
 2022-11-18 21:44:22 [http-nio-8091-exec-8] DEBUG : Read "application/json;charset=UTF-8" to [SongRecord{resourceId=37, name='2022-11-18T21:44:21.802762.mp3', artist='Me', album='Me', length='0: (truncated)...]
 2022-11-18 21:44:22 [http-nio-8091-exec-8] INFO  : Saving a song metadata 'SongRecord{resourceId=37, name='2022-11-18T21:44:21.802762.mp3', artist='Me', album='Me', length='0:12', year=2006}'
 2022-11-18 21:44:22 [http-nio-8091-exec-8] DEBUG : Found thread-bound EntityManager [SessionImpl(1781315785<open>)] for JPA transaction
-2022-11-18 21:44:22 [http-nio-8091-exec-8] DEBUG : Creating new transaction with name [com.epam.training.microservicefoundation.songservice.service.SongServiceImpl.save]: PROPAGATION_REQUIRED,ISOLATION_DEFAULT
+2022-11-18 21:44:22 [http-nio-8091-exec-8] DEBUG : Creating new transaction with name [com.epam.training.microservicefoundation.songservice.service.implementation.SongServiceImpl.save]: PROPAGATION_REQUIRED,ISOLATION_DEFAULT
 2022-11-18 21:44:22 [http-nio-8091-exec-8] DEBUG :   setAutoCommit = false
 2022-11-18 21:44:22 [http-nio-8091-exec-8] DEBUG : Exposing JPA transaction as JDBC [org.springframework.orm.jpa.vendor.HibernateJpaDialect$HibernateConnectionHandle@1595f7ce]
 2022-11-18 21:44:22 [http-nio-8091-exec-8] INFO  : Saving a song record 'SongRecord{resourceId=37, name='2022-11-18T21:44:21.802762.mp3', artist='Me', album='Me', length='0:12', year=2006}'
@@ -14771,7 +14771,7 @@ org.springframework.dao.DataIntegrityViolationException: could not execute state
 	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186)
 	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:763)
 	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:708)
-	at com.epam.training.microservicefoundation.songservice.service.SongServiceImpl$$EnhancerBySpringCGLIB$$327a525a.save(<generated>)
+	at com.epam.training.microservicefoundation.songservice.service.implementation.SongServiceImpl$$EnhancerBySpringCGLIB$$327a525a.save(<generated>)
 	at com.epam.training.microservicefoundation.songservice.api.SongController.save(SongController.java:33)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
@@ -14908,7 +14908,7 @@ org.postgresql.util.PSQLException: ERROR: value too long for type character vary
 	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186)
 	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:763)
 	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:708)
-	at com.epam.training.microservicefoundation.songservice.service.SongServiceImpl$$EnhancerBySpringCGLIB$$327a525a.save(<generated>)
+	at com.epam.training.microservicefoundation.songservice.service.implementation.SongServiceImpl$$EnhancerBySpringCGLIB$$327a525a.save(<generated>)
 	at com.epam.training.microservicefoundation.songservice.api.SongController.save(SongController.java:33)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
@@ -14998,7 +14998,7 @@ content-length: 112
 2022-11-18 21:44:22 [http-nio-8091-exec-9] DEBUG : Read "application/json;charset=UTF-8" to [SongRecord{resourceId=37, name='2022-11-18T21:44:22.309641.mp3', artist='Me', album='Me', length='0: (truncated)...]
 2022-11-18 21:44:22 [http-nio-8091-exec-9] INFO  : Saving a song metadata 'SongRecord{resourceId=37, name='2022-11-18T21:44:22.309641.mp3', artist='Me', album='Me', length='0:12', year=2006}'
 2022-11-18 21:44:22 [http-nio-8091-exec-9] DEBUG : Found thread-bound EntityManager [SessionImpl(1388273395<open>)] for JPA transaction
-2022-11-18 21:44:22 [http-nio-8091-exec-9] DEBUG : Creating new transaction with name [com.epam.training.microservicefoundation.songservice.service.SongServiceImpl.save]: PROPAGATION_REQUIRED,ISOLATION_DEFAULT
+2022-11-18 21:44:22 [http-nio-8091-exec-9] DEBUG : Creating new transaction with name [com.epam.training.microservicefoundation.songservice.service.implementation.SongServiceImpl.save]: PROPAGATION_REQUIRED,ISOLATION_DEFAULT
 2022-11-18 21:44:22 [http-nio-8091-exec-9] DEBUG :   setAutoCommit = false
 2022-11-18 21:44:22 [http-nio-8091-exec-9] DEBUG : Exposing JPA transaction as JDBC [org.springframework.orm.jpa.vendor.HibernateJpaDialect$HibernateConnectionHandle@5680c07c]
 2022-11-18 21:44:22 [http-nio-8091-exec-9] INFO  : Saving a song record 'SongRecord{resourceId=37, name='2022-11-18T21:44:22.309641.mp3', artist='Me', album='Me', length='0:12', year=2006}'
@@ -15025,7 +15025,7 @@ org.springframework.dao.DataIntegrityViolationException: could not execute state
 	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186)
 	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:763)
 	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:708)
-	at com.epam.training.microservicefoundation.songservice.service.SongServiceImpl$$EnhancerBySpringCGLIB$$327a525a.save(<generated>)
+	at com.epam.training.microservicefoundation.songservice.service.implementation.SongServiceImpl$$EnhancerBySpringCGLIB$$327a525a.save(<generated>)
 	at com.epam.training.microservicefoundation.songservice.api.SongController.save(SongController.java:33)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
@@ -15162,7 +15162,7 @@ org.postgresql.util.PSQLException: ERROR: value too long for type character vary
 	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186)
 	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:763)
 	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:708)
-	at com.epam.training.microservicefoundation.songservice.service.SongServiceImpl$$EnhancerBySpringCGLIB$$327a525a.save(<generated>)
+	at com.epam.training.microservicefoundation.songservice.service.implementation.SongServiceImpl$$EnhancerBySpringCGLIB$$327a525a.save(<generated>)
 	at com.epam.training.microservicefoundation.songservice.api.SongController.save(SongController.java:33)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
@@ -15252,7 +15252,7 @@ content-length: 112
 2022-11-18 21:44:23 [http-nio-8091-exec-10] DEBUG : Read "application/json;charset=UTF-8" to [SongRecord{resourceId=37, name='2022-11-18T21:44:22.812247.mp3', artist='Me', album='Me', length='0: (truncated)...]
 2022-11-18 21:44:23 [http-nio-8091-exec-10] INFO  : Saving a song metadata 'SongRecord{resourceId=37, name='2022-11-18T21:44:22.812247.mp3', artist='Me', album='Me', length='0:12', year=2006}'
 2022-11-18 21:44:23 [http-nio-8091-exec-10] DEBUG : Found thread-bound EntityManager [SessionImpl(1036576881<open>)] for JPA transaction
-2022-11-18 21:44:23 [http-nio-8091-exec-10] DEBUG : Creating new transaction with name [com.epam.training.microservicefoundation.songservice.service.SongServiceImpl.save]: PROPAGATION_REQUIRED,ISOLATION_DEFAULT
+2022-11-18 21:44:23 [http-nio-8091-exec-10] DEBUG : Creating new transaction with name [com.epam.training.microservicefoundation.songservice.service.implementation.SongServiceImpl.save]: PROPAGATION_REQUIRED,ISOLATION_DEFAULT
 2022-11-18 21:44:23 [http-nio-8091-exec-10] DEBUG :   setAutoCommit = false
 2022-11-18 21:44:23 [http-nio-8091-exec-10] DEBUG : Exposing JPA transaction as JDBC [org.springframework.orm.jpa.vendor.HibernateJpaDialect$HibernateConnectionHandle@39f77b10]
 2022-11-18 21:44:23 [http-nio-8091-exec-10] INFO  : Saving a song record 'SongRecord{resourceId=37, name='2022-11-18T21:44:22.812247.mp3', artist='Me', album='Me', length='0:12', year=2006}'
@@ -15279,7 +15279,7 @@ org.springframework.dao.DataIntegrityViolationException: could not execute state
 	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186)
 	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:763)
 	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:708)
-	at com.epam.training.microservicefoundation.songservice.service.SongServiceImpl$$EnhancerBySpringCGLIB$$327a525a.save(<generated>)
+	at com.epam.training.microservicefoundation.songservice.service.implementation.SongServiceImpl$$EnhancerBySpringCGLIB$$327a525a.save(<generated>)
 	at com.epam.training.microservicefoundation.songservice.api.SongController.save(SongController.java:33)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
@@ -15416,7 +15416,7 @@ org.postgresql.util.PSQLException: ERROR: value too long for type character vary
 	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186)
 	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:763)
 	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:708)
-	at com.epam.training.microservicefoundation.songservice.service.SongServiceImpl$$EnhancerBySpringCGLIB$$327a525a.save(<generated>)
+	at com.epam.training.microservicefoundation.songservice.service.implementation.SongServiceImpl$$EnhancerBySpringCGLIB$$327a525a.save(<generated>)
 	at com.epam.training.microservicefoundation.songservice.api.SongController.save(SongController.java:33)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
@@ -17344,7 +17344,7 @@ content-length: 112
 2022-11-18 22:06:30 [http-nio-8091-exec-1] DEBUG : Read "application/json;charset=UTF-8" to [SongRecord{resourceId=38, name='2022-11-18T22:06:28.847931.mp3', artist='Me', album='Me', length='0: (truncated)...]
 2022-11-18 22:06:30 [http-nio-8091-exec-1] INFO  : Saving a song metadata 'SongRecord{resourceId=38, name='2022-11-18T22:06:28.847931.mp3', artist='Me', album='Me', length='0:12', year=2006}'
 2022-11-18 22:06:30 [http-nio-8091-exec-1] DEBUG : Found thread-bound EntityManager [SessionImpl(1375414998<open>)] for JPA transaction
-2022-11-18 22:06:30 [http-nio-8091-exec-1] DEBUG : Creating new transaction with name [com.epam.training.microservicefoundation.songservice.service.SongServiceImpl.save]: PROPAGATION_REQUIRED,ISOLATION_DEFAULT
+2022-11-18 22:06:30 [http-nio-8091-exec-1] DEBUG : Creating new transaction with name [com.epam.training.microservicefoundation.songservice.service.implementation.SongServiceImpl.save]: PROPAGATION_REQUIRED,ISOLATION_DEFAULT
 2022-11-18 22:06:30 [http-nio-8091-exec-1] DEBUG :   setAutoCommit = false
 2022-11-18 22:06:30 [http-nio-8091-exec-1] DEBUG : Exposing JPA transaction as JDBC [org.springframework.orm.jpa.vendor.HibernateJpaDialect$HibernateConnectionHandle@3932e726]
 2022-11-18 22:06:30 [http-nio-8091-exec-1] INFO  : Saving a song record 'SongRecord{resourceId=38, name='2022-11-18T22:06:28.847931.mp3', artist='Me', album='Me', length='0:12', year=2006}'
@@ -17392,7 +17392,7 @@ content-length: 112
 2022-11-18 22:06:30 [http-nio-8091-exec-2] DEBUG : Read "application/json;charset=UTF-8" to [SongRecord{resourceId=38, name='2022-11-18T22:06:30.384290.mp3', artist='Me', album='Me', length='0: (truncated)...]
 2022-11-18 22:06:30 [http-nio-8091-exec-2] INFO  : Saving a song metadata 'SongRecord{resourceId=38, name='2022-11-18T22:06:30.384290.mp3', artist='Me', album='Me', length='0:12', year=2006}'
 2022-11-18 22:06:30 [http-nio-8091-exec-2] DEBUG : Found thread-bound EntityManager [SessionImpl(742573993<open>)] for JPA transaction
-2022-11-18 22:06:30 [http-nio-8091-exec-2] DEBUG : Creating new transaction with name [com.epam.training.microservicefoundation.songservice.service.SongServiceImpl.save]: PROPAGATION_REQUIRED,ISOLATION_DEFAULT
+2022-11-18 22:06:30 [http-nio-8091-exec-2] DEBUG : Creating new transaction with name [com.epam.training.microservicefoundation.songservice.service.implementation.SongServiceImpl.save]: PROPAGATION_REQUIRED,ISOLATION_DEFAULT
 2022-11-18 22:06:30 [http-nio-8091-exec-2] DEBUG :   setAutoCommit = false
 2022-11-18 22:06:30 [http-nio-8091-exec-2] DEBUG : Exposing JPA transaction as JDBC [org.springframework.orm.jpa.vendor.HibernateJpaDialect$HibernateConnectionHandle@22852c51]
 2022-11-18 22:06:30 [http-nio-8091-exec-2] INFO  : Saving a song record 'SongRecord{resourceId=38, name='2022-11-18T22:06:30.384290.mp3', artist='Me', album='Me', length='0:12', year=2006}'
@@ -17421,7 +17421,7 @@ org.springframework.dao.DataIntegrityViolationException: could not execute state
 	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186)
 	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:763)
 	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:708)
-	at com.epam.training.microservicefoundation.songservice.service.SongServiceImpl$$EnhancerBySpringCGLIB$$4ae931ed.save(<generated>)
+	at com.epam.training.microservicefoundation.songservice.service.implementation.SongServiceImpl$$EnhancerBySpringCGLIB$$4ae931ed.save(<generated>)
 	at com.epam.training.microservicefoundation.songservice.api.SongController.save(SongController.java:33)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
@@ -17560,7 +17560,7 @@ org.postgresql.util.PSQLException: ERROR: duplicate key value violates unique co
 	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186)
 	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:763)
 	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:708)
-	at com.epam.training.microservicefoundation.songservice.service.SongServiceImpl$$EnhancerBySpringCGLIB$$4ae931ed.save(<generated>)
+	at com.epam.training.microservicefoundation.songservice.service.implementation.SongServiceImpl$$EnhancerBySpringCGLIB$$4ae931ed.save(<generated>)
 	at com.epam.training.microservicefoundation.songservice.api.SongController.save(SongController.java:33)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
@@ -17656,7 +17656,7 @@ content-length: 112
 2022-11-18 22:07:34 [http-nio-8091-exec-3] DEBUG : Read "application/json;charset=UTF-8" to [SongRecord{resourceId=39, name='2022-11-18T22:07:34.116991.mp3', artist='Me', album='Me', length='0: (truncated)...]
 2022-11-18 22:07:34 [http-nio-8091-exec-3] INFO  : Saving a song metadata 'SongRecord{resourceId=39, name='2022-11-18T22:07:34.116991.mp3', artist='Me', album='Me', length='0:12', year=2006}'
 2022-11-18 22:07:34 [http-nio-8091-exec-3] DEBUG : Found thread-bound EntityManager [SessionImpl(564282590<open>)] for JPA transaction
-2022-11-18 22:07:34 [http-nio-8091-exec-3] DEBUG : Creating new transaction with name [com.epam.training.microservicefoundation.songservice.service.SongServiceImpl.save]: PROPAGATION_REQUIRED,ISOLATION_DEFAULT
+2022-11-18 22:07:34 [http-nio-8091-exec-3] DEBUG : Creating new transaction with name [com.epam.training.microservicefoundation.songservice.service.implementation.SongServiceImpl.save]: PROPAGATION_REQUIRED,ISOLATION_DEFAULT
 2022-11-18 22:07:34 [http-nio-8091-exec-3] DEBUG :   setAutoCommit = false
 2022-11-18 22:07:34 [http-nio-8091-exec-3] DEBUG : Exposing JPA transaction as JDBC [org.springframework.orm.jpa.vendor.HibernateJpaDialect$HibernateConnectionHandle@259dc432]
 2022-11-18 22:07:34 [http-nio-8091-exec-3] INFO  : Saving a song record 'SongRecord{resourceId=39, name='2022-11-18T22:07:34.116991.mp3', artist='Me', album='Me', length='0:12', year=2006}'
@@ -17703,7 +17703,7 @@ content-length: 112
 2022-11-18 22:07:35 [http-nio-8091-exec-4] DEBUG : Read "application/json;charset=UTF-8" to [SongRecord{resourceId=39, name='2022-11-18T22:07:34.928058.mp3', artist='Me', album='Me', length='0: (truncated)...]
 2022-11-18 22:07:35 [http-nio-8091-exec-4] INFO  : Saving a song metadata 'SongRecord{resourceId=39, name='2022-11-18T22:07:34.928058.mp3', artist='Me', album='Me', length='0:12', year=2006}'
 2022-11-18 22:07:35 [http-nio-8091-exec-4] DEBUG : Found thread-bound EntityManager [SessionImpl(488437824<open>)] for JPA transaction
-2022-11-18 22:07:35 [http-nio-8091-exec-4] DEBUG : Creating new transaction with name [com.epam.training.microservicefoundation.songservice.service.SongServiceImpl.save]: PROPAGATION_REQUIRED,ISOLATION_DEFAULT
+2022-11-18 22:07:35 [http-nio-8091-exec-4] DEBUG : Creating new transaction with name [com.epam.training.microservicefoundation.songservice.service.implementation.SongServiceImpl.save]: PROPAGATION_REQUIRED,ISOLATION_DEFAULT
 2022-11-18 22:07:35 [http-nio-8091-exec-4] DEBUG :   setAutoCommit = false
 2022-11-18 22:07:35 [http-nio-8091-exec-4] DEBUG : Exposing JPA transaction as JDBC [org.springframework.orm.jpa.vendor.HibernateJpaDialect$HibernateConnectionHandle@581e6587]
 2022-11-18 22:07:35 [http-nio-8091-exec-4] INFO  : Saving a song record 'SongRecord{resourceId=39, name='2022-11-18T22:07:34.928058.mp3', artist='Me', album='Me', length='0:12', year=2006}'
@@ -17731,7 +17731,7 @@ org.springframework.dao.DataIntegrityViolationException: could not execute state
 	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186)
 	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:763)
 	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:708)
-	at com.epam.training.microservicefoundation.songservice.service.SongServiceImpl$$EnhancerBySpringCGLIB$$4ae931ed.save(<generated>)
+	at com.epam.training.microservicefoundation.songservice.service.implementation.SongServiceImpl$$EnhancerBySpringCGLIB$$4ae931ed.save(<generated>)
 	at com.epam.training.microservicefoundation.songservice.api.SongController.save(SongController.java:33)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
@@ -17870,7 +17870,7 @@ org.postgresql.util.PSQLException: ERROR: duplicate key value violates unique co
 	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186)
 	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:763)
 	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:708)
-	at com.epam.training.microservicefoundation.songservice.service.SongServiceImpl$$EnhancerBySpringCGLIB$$4ae931ed.save(<generated>)
+	at com.epam.training.microservicefoundation.songservice.service.implementation.SongServiceImpl$$EnhancerBySpringCGLIB$$4ae931ed.save(<generated>)
 	at com.epam.training.microservicefoundation.songservice.api.SongController.save(SongController.java:33)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
@@ -19804,7 +19804,7 @@ content-length: 112
 2022-11-18 22:16:27 [http-nio-8091-exec-1] DEBUG : Read "application/json;charset=UTF-8" to [SongRecord{resourceId=38, name='2022-11-18T22:16:16.896304.mp3', artist='Me', album='Me', length='0: (truncated)...]
 2022-11-18 22:16:27 [http-nio-8091-exec-1] INFO  : Saving a song metadata 'SongRecord{resourceId=38, name='2022-11-18T22:16:16.896304.mp3', artist='Me', album='Me', length='0:12', year=2006}'
 2022-11-18 22:16:27 [http-nio-8091-exec-1] DEBUG : Found thread-bound EntityManager [SessionImpl(1318609853<open>)] for JPA transaction
-2022-11-18 22:16:27 [http-nio-8091-exec-1] DEBUG : Creating new transaction with name [com.epam.training.microservicefoundation.songservice.service.SongServiceImpl.save]: PROPAGATION_REQUIRED,ISOLATION_DEFAULT
+2022-11-18 22:16:27 [http-nio-8091-exec-1] DEBUG : Creating new transaction with name [com.epam.training.microservicefoundation.songservice.service.implementation.SongServiceImpl.save]: PROPAGATION_REQUIRED,ISOLATION_DEFAULT
 2022-11-18 22:16:27 [http-nio-8091-exec-1] DEBUG :   setAutoCommit = false
 2022-11-18 22:16:27 [http-nio-8091-exec-1] DEBUG : Exposing JPA transaction as JDBC [org.springframework.orm.jpa.vendor.HibernateJpaDialect$HibernateConnectionHandle@3f9957d]
 2022-11-18 22:16:27 [http-nio-8091-exec-1] INFO  : Saving a song record 'SongRecord{resourceId=38, name='2022-11-18T22:16:16.896304.mp3', artist='Me', album='Me', length='0:12', year=2006}'
@@ -19852,7 +19852,7 @@ content-length: 112
 2022-11-18 22:16:28 [http-nio-8091-exec-2] DEBUG : Read "application/json;charset=UTF-8" to [SongRecord{resourceId=38, name='2022-11-18T22:16:27.517157.mp3', artist='Me', album='Me', length='0: (truncated)...]
 2022-11-18 22:16:28 [http-nio-8091-exec-2] INFO  : Saving a song metadata 'SongRecord{resourceId=38, name='2022-11-18T22:16:27.517157.mp3', artist='Me', album='Me', length='0:12', year=2006}'
 2022-11-18 22:16:28 [http-nio-8091-exec-2] DEBUG : Found thread-bound EntityManager [SessionImpl(2131484637<open>)] for JPA transaction
-2022-11-18 22:16:28 [http-nio-8091-exec-2] DEBUG : Creating new transaction with name [com.epam.training.microservicefoundation.songservice.service.SongServiceImpl.save]: PROPAGATION_REQUIRED,ISOLATION_DEFAULT
+2022-11-18 22:16:28 [http-nio-8091-exec-2] DEBUG : Creating new transaction with name [com.epam.training.microservicefoundation.songservice.service.implementation.SongServiceImpl.save]: PROPAGATION_REQUIRED,ISOLATION_DEFAULT
 2022-11-18 22:16:28 [http-nio-8091-exec-2] DEBUG :   setAutoCommit = false
 2022-11-18 22:16:28 [http-nio-8091-exec-2] DEBUG : Exposing JPA transaction as JDBC [org.springframework.orm.jpa.vendor.HibernateJpaDialect$HibernateConnectionHandle@71cc3e4c]
 2022-11-18 22:16:28 [http-nio-8091-exec-2] INFO  : Saving a song record 'SongRecord{resourceId=38, name='2022-11-18T22:16:27.517157.mp3', artist='Me', album='Me', length='0:12', year=2006}'
@@ -19881,7 +19881,7 @@ org.springframework.dao.DataIntegrityViolationException: could not execute state
 	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186)
 	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:763)
 	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:708)
-	at com.epam.training.microservicefoundation.songservice.service.SongServiceImpl$$EnhancerBySpringCGLIB$$e4a33451.save(<generated>)
+	at com.epam.training.microservicefoundation.songservice.service.implementation.SongServiceImpl$$EnhancerBySpringCGLIB$$e4a33451.save(<generated>)
 	at com.epam.training.microservicefoundation.songservice.api.SongController.save(SongController.java:33)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
@@ -20020,7 +20020,7 @@ org.postgresql.util.PSQLException: ERROR: duplicate key value violates unique co
 	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186)
 	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:763)
 	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:708)
-	at com.epam.training.microservicefoundation.songservice.service.SongServiceImpl$$EnhancerBySpringCGLIB$$e4a33451.save(<generated>)
+	at com.epam.training.microservicefoundation.songservice.service.implementation.SongServiceImpl$$EnhancerBySpringCGLIB$$e4a33451.save(<generated>)
 	at com.epam.training.microservicefoundation.songservice.api.SongController.save(SongController.java:33)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
@@ -20110,7 +20110,7 @@ content-length: 112
 2022-11-18 22:16:29 [http-nio-8091-exec-3] DEBUG : Read "application/json;charset=UTF-8" to [SongRecord{resourceId=39, name='2022-11-18T22:16:28.934204.mp3', artist='Me', album='Me', length='0: (truncated)...]
 2022-11-18 22:16:29 [http-nio-8091-exec-3] INFO  : Saving a song metadata 'SongRecord{resourceId=39, name='2022-11-18T22:16:28.934204.mp3', artist='Me', album='Me', length='0:12', year=2006}'
 2022-11-18 22:16:29 [http-nio-8091-exec-3] DEBUG : Found thread-bound EntityManager [SessionImpl(1043891638<open>)] for JPA transaction
-2022-11-18 22:16:29 [http-nio-8091-exec-3] DEBUG : Creating new transaction with name [com.epam.training.microservicefoundation.songservice.service.SongServiceImpl.save]: PROPAGATION_REQUIRED,ISOLATION_DEFAULT
+2022-11-18 22:16:29 [http-nio-8091-exec-3] DEBUG : Creating new transaction with name [com.epam.training.microservicefoundation.songservice.service.implementation.SongServiceImpl.save]: PROPAGATION_REQUIRED,ISOLATION_DEFAULT
 2022-11-18 22:16:29 [http-nio-8091-exec-3] DEBUG :   setAutoCommit = false
 2022-11-18 22:16:29 [http-nio-8091-exec-3] DEBUG : Exposing JPA transaction as JDBC [org.springframework.orm.jpa.vendor.HibernateJpaDialect$HibernateConnectionHandle@3a0716a9]
 2022-11-18 22:16:29 [http-nio-8091-exec-3] INFO  : Saving a song record 'SongRecord{resourceId=39, name='2022-11-18T22:16:28.934204.mp3', artist='Me', album='Me', length='0:12', year=2006}'
@@ -20157,7 +20157,7 @@ content-length: 112
 2022-11-18 22:16:29 [http-nio-8091-exec-4] DEBUG : Read "application/json;charset=UTF-8" to [SongRecord{resourceId=39, name='2022-11-18T22:16:29.401875.mp3', artist='Me', album='Me', length='0: (truncated)...]
 2022-11-18 22:16:29 [http-nio-8091-exec-4] INFO  : Saving a song metadata 'SongRecord{resourceId=39, name='2022-11-18T22:16:29.401875.mp3', artist='Me', album='Me', length='0:12', year=2006}'
 2022-11-18 22:16:29 [http-nio-8091-exec-4] DEBUG : Found thread-bound EntityManager [SessionImpl(275694786<open>)] for JPA transaction
-2022-11-18 22:16:29 [http-nio-8091-exec-4] DEBUG : Creating new transaction with name [com.epam.training.microservicefoundation.songservice.service.SongServiceImpl.save]: PROPAGATION_REQUIRED,ISOLATION_DEFAULT
+2022-11-18 22:16:29 [http-nio-8091-exec-4] DEBUG : Creating new transaction with name [com.epam.training.microservicefoundation.songservice.service.implementation.SongServiceImpl.save]: PROPAGATION_REQUIRED,ISOLATION_DEFAULT
 2022-11-18 22:16:29 [http-nio-8091-exec-4] DEBUG :   setAutoCommit = false
 2022-11-18 22:16:29 [http-nio-8091-exec-4] DEBUG : Exposing JPA transaction as JDBC [org.springframework.orm.jpa.vendor.HibernateJpaDialect$HibernateConnectionHandle@556c58ab]
 2022-11-18 22:16:29 [http-nio-8091-exec-4] INFO  : Saving a song record 'SongRecord{resourceId=39, name='2022-11-18T22:16:29.401875.mp3', artist='Me', album='Me', length='0:12', year=2006}'
@@ -20185,7 +20185,7 @@ org.springframework.dao.DataIntegrityViolationException: could not execute state
 	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186)
 	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:763)
 	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:708)
-	at com.epam.training.microservicefoundation.songservice.service.SongServiceImpl$$EnhancerBySpringCGLIB$$e4a33451.save(<generated>)
+	at com.epam.training.microservicefoundation.songservice.service.implementation.SongServiceImpl$$EnhancerBySpringCGLIB$$e4a33451.save(<generated>)
 	at com.epam.training.microservicefoundation.songservice.api.SongController.save(SongController.java:33)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
@@ -20324,7 +20324,7 @@ org.postgresql.util.PSQLException: ERROR: duplicate key value violates unique co
 	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186)
 	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:763)
 	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:708)
-	at com.epam.training.microservicefoundation.songservice.service.SongServiceImpl$$EnhancerBySpringCGLIB$$e4a33451.save(<generated>)
+	at com.epam.training.microservicefoundation.songservice.service.implementation.SongServiceImpl$$EnhancerBySpringCGLIB$$e4a33451.save(<generated>)
 	at com.epam.training.microservicefoundation.songservice.api.SongController.save(SongController.java:33)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
@@ -20432,7 +20432,7 @@ content-length: 112
 2022-11-18 22:19:11 [http-nio-8091-exec-5] DEBUG : Read "application/json;charset=UTF-8" to [SongRecord{resourceId=38, name='2022-11-18T22:19:09.261109.mp3', artist='Me', album='Me', length='0: (truncated)...]
 2022-11-18 22:19:11 [http-nio-8091-exec-5] INFO  : Saving a song metadata 'SongRecord{resourceId=38, name='2022-11-18T22:19:09.261109.mp3', artist='Me', album='Me', length='0:12', year=2006}'
 2022-11-18 22:19:11 [http-nio-8091-exec-5] DEBUG : Found thread-bound EntityManager [SessionImpl(1532575780<open>)] for JPA transaction
-2022-11-18 22:19:11 [http-nio-8091-exec-5] DEBUG : Creating new transaction with name [com.epam.training.microservicefoundation.songservice.service.SongServiceImpl.save]: PROPAGATION_REQUIRED,ISOLATION_DEFAULT
+2022-11-18 22:19:11 [http-nio-8091-exec-5] DEBUG : Creating new transaction with name [com.epam.training.microservicefoundation.songservice.service.implementation.SongServiceImpl.save]: PROPAGATION_REQUIRED,ISOLATION_DEFAULT
 2022-11-18 22:19:11 [http-nio-8091-exec-5] DEBUG :   setAutoCommit = false
 2022-11-18 22:19:11 [http-nio-8091-exec-5] DEBUG : Exposing JPA transaction as JDBC [org.springframework.orm.jpa.vendor.HibernateJpaDialect$HibernateConnectionHandle@5f66df97]
 2022-11-18 22:19:11 [http-nio-8091-exec-5] INFO  : Saving a song record 'SongRecord{resourceId=38, name='2022-11-18T22:19:09.261109.mp3', artist='Me', album='Me', length='0:12', year=2006}'
@@ -20479,7 +20479,7 @@ content-length: 112
 2022-11-18 22:19:12 [http-nio-8091-exec-6] DEBUG : Read "application/json;charset=UTF-8" to [SongRecord{resourceId=38, name='2022-11-18T22:19:11.648417.mp3', artist='Me', album='Me', length='0: (truncated)...]
 2022-11-18 22:19:12 [http-nio-8091-exec-6] INFO  : Saving a song metadata 'SongRecord{resourceId=38, name='2022-11-18T22:19:11.648417.mp3', artist='Me', album='Me', length='0:12', year=2006}'
 2022-11-18 22:19:12 [http-nio-8091-exec-6] DEBUG : Found thread-bound EntityManager [SessionImpl(952990039<open>)] for JPA transaction
-2022-11-18 22:19:12 [http-nio-8091-exec-6] DEBUG : Creating new transaction with name [com.epam.training.microservicefoundation.songservice.service.SongServiceImpl.save]: PROPAGATION_REQUIRED,ISOLATION_DEFAULT
+2022-11-18 22:19:12 [http-nio-8091-exec-6] DEBUG : Creating new transaction with name [com.epam.training.microservicefoundation.songservice.service.implementation.SongServiceImpl.save]: PROPAGATION_REQUIRED,ISOLATION_DEFAULT
 2022-11-18 22:19:12 [http-nio-8091-exec-6] DEBUG :   setAutoCommit = false
 2022-11-18 22:19:12 [http-nio-8091-exec-6] DEBUG : Exposing JPA transaction as JDBC [org.springframework.orm.jpa.vendor.HibernateJpaDialect$HibernateConnectionHandle@360a803e]
 2022-11-18 22:19:12 [http-nio-8091-exec-6] INFO  : Saving a song record 'SongRecord{resourceId=38, name='2022-11-18T22:19:11.648417.mp3', artist='Me', album='Me', length='0:12', year=2006}'
@@ -20507,7 +20507,7 @@ org.springframework.dao.DataIntegrityViolationException: could not execute state
 	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186)
 	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:763)
 	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:708)
-	at com.epam.training.microservicefoundation.songservice.service.SongServiceImpl$$EnhancerBySpringCGLIB$$e4a33451.save(<generated>)
+	at com.epam.training.microservicefoundation.songservice.service.implementation.SongServiceImpl$$EnhancerBySpringCGLIB$$e4a33451.save(<generated>)
 	at com.epam.training.microservicefoundation.songservice.api.SongController.save(SongController.java:33)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
@@ -20646,7 +20646,7 @@ org.postgresql.util.PSQLException: ERROR: duplicate key value violates unique co
 	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186)
 	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:763)
 	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:708)
-	at com.epam.training.microservicefoundation.songservice.service.SongServiceImpl$$EnhancerBySpringCGLIB$$e4a33451.save(<generated>)
+	at com.epam.training.microservicefoundation.songservice.service.implementation.SongServiceImpl$$EnhancerBySpringCGLIB$$e4a33451.save(<generated>)
 	at com.epam.training.microservicefoundation.songservice.api.SongController.save(SongController.java:33)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
@@ -20736,7 +20736,7 @@ content-length: 112
 2022-11-18 22:19:12 [http-nio-8091-exec-7] DEBUG : Read "application/json;charset=UTF-8" to [SongRecord{resourceId=39, name='2022-11-18T22:19:12.065985.mp3', artist='Me', album='Me', length='0: (truncated)...]
 2022-11-18 22:19:12 [http-nio-8091-exec-7] INFO  : Saving a song metadata 'SongRecord{resourceId=39, name='2022-11-18T22:19:12.065985.mp3', artist='Me', album='Me', length='0:12', year=2006}'
 2022-11-18 22:19:12 [http-nio-8091-exec-7] DEBUG : Found thread-bound EntityManager [SessionImpl(487927318<open>)] for JPA transaction
-2022-11-18 22:19:12 [http-nio-8091-exec-7] DEBUG : Creating new transaction with name [com.epam.training.microservicefoundation.songservice.service.SongServiceImpl.save]: PROPAGATION_REQUIRED,ISOLATION_DEFAULT
+2022-11-18 22:19:12 [http-nio-8091-exec-7] DEBUG : Creating new transaction with name [com.epam.training.microservicefoundation.songservice.service.implementation.SongServiceImpl.save]: PROPAGATION_REQUIRED,ISOLATION_DEFAULT
 2022-11-18 22:19:12 [http-nio-8091-exec-7] DEBUG :   setAutoCommit = false
 2022-11-18 22:19:12 [http-nio-8091-exec-7] DEBUG : Exposing JPA transaction as JDBC [org.springframework.orm.jpa.vendor.HibernateJpaDialect$HibernateConnectionHandle@192ab96c]
 2022-11-18 22:19:12 [http-nio-8091-exec-7] INFO  : Saving a song record 'SongRecord{resourceId=39, name='2022-11-18T22:19:12.065985.mp3', artist='Me', album='Me', length='0:12', year=2006}'
@@ -20784,7 +20784,7 @@ content-length: 112
 2022-11-18 22:19:12 [http-nio-8091-exec-8] DEBUG : Read "application/json;charset=UTF-8" to [SongRecord{resourceId=39, name='2022-11-18T22:19:12.429128.mp3', artist='Me', album='Me', length='0: (truncated)...]
 2022-11-18 22:19:12 [http-nio-8091-exec-8] INFO  : Saving a song metadata 'SongRecord{resourceId=39, name='2022-11-18T22:19:12.429128.mp3', artist='Me', album='Me', length='0:12', year=2006}'
 2022-11-18 22:19:12 [http-nio-8091-exec-8] DEBUG : Found thread-bound EntityManager [SessionImpl(1006267151<open>)] for JPA transaction
-2022-11-18 22:19:12 [http-nio-8091-exec-8] DEBUG : Creating new transaction with name [com.epam.training.microservicefoundation.songservice.service.SongServiceImpl.save]: PROPAGATION_REQUIRED,ISOLATION_DEFAULT
+2022-11-18 22:19:12 [http-nio-8091-exec-8] DEBUG : Creating new transaction with name [com.epam.training.microservicefoundation.songservice.service.implementation.SongServiceImpl.save]: PROPAGATION_REQUIRED,ISOLATION_DEFAULT
 2022-11-18 22:19:12 [http-nio-8091-exec-8] DEBUG :   setAutoCommit = false
 2022-11-18 22:19:12 [http-nio-8091-exec-8] DEBUG : Exposing JPA transaction as JDBC [org.springframework.orm.jpa.vendor.HibernateJpaDialect$HibernateConnectionHandle@4fcc1b18]
 2022-11-18 22:19:12 [http-nio-8091-exec-8] INFO  : Saving a song record 'SongRecord{resourceId=39, name='2022-11-18T22:19:12.429128.mp3', artist='Me', album='Me', length='0:12', year=2006}'
@@ -20812,7 +20812,7 @@ org.springframework.dao.DataIntegrityViolationException: could not execute state
 	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186)
 	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:763)
 	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:708)
-	at com.epam.training.microservicefoundation.songservice.service.SongServiceImpl$$EnhancerBySpringCGLIB$$e4a33451.save(<generated>)
+	at com.epam.training.microservicefoundation.songservice.service.implementation.SongServiceImpl$$EnhancerBySpringCGLIB$$e4a33451.save(<generated>)
 	at com.epam.training.microservicefoundation.songservice.api.SongController.save(SongController.java:33)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
@@ -20951,7 +20951,7 @@ org.postgresql.util.PSQLException: ERROR: duplicate key value violates unique co
 	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186)
 	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:763)
 	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:708)
-	at com.epam.training.microservicefoundation.songservice.service.SongServiceImpl$$EnhancerBySpringCGLIB$$e4a33451.save(<generated>)
+	at com.epam.training.microservicefoundation.songservice.service.implementation.SongServiceImpl$$EnhancerBySpringCGLIB$$e4a33451.save(<generated>)
 	at com.epam.training.microservicefoundation.songservice.api.SongController.save(SongController.java:33)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
@@ -21057,7 +21057,7 @@ content-length: 112
 2022-11-18 22:21:53 [http-nio-8091-exec-9] DEBUG : Read "application/json;charset=UTF-8" to [SongRecord{resourceId=38, name='2022-11-18T22:21:51.393373.mp3', artist='Me', album='Me', length='0: (truncated)...]
 2022-11-18 22:21:53 [http-nio-8091-exec-9] INFO  : Saving a song metadata 'SongRecord{resourceId=38, name='2022-11-18T22:21:51.393373.mp3', artist='Me', album='Me', length='0:12', year=2006}'
 2022-11-18 22:21:53 [http-nio-8091-exec-9] DEBUG : Found thread-bound EntityManager [SessionImpl(1156551685<open>)] for JPA transaction
-2022-11-18 22:21:53 [http-nio-8091-exec-9] DEBUG : Creating new transaction with name [com.epam.training.microservicefoundation.songservice.service.SongServiceImpl.save]: PROPAGATION_REQUIRED,ISOLATION_DEFAULT
+2022-11-18 22:21:53 [http-nio-8091-exec-9] DEBUG : Creating new transaction with name [com.epam.training.microservicefoundation.songservice.service.implementation.SongServiceImpl.save]: PROPAGATION_REQUIRED,ISOLATION_DEFAULT
 2022-11-18 22:21:53 [http-nio-8091-exec-9] DEBUG :   setAutoCommit = false
 2022-11-18 22:21:53 [http-nio-8091-exec-9] DEBUG : Exposing JPA transaction as JDBC [org.springframework.orm.jpa.vendor.HibernateJpaDialect$HibernateConnectionHandle@75e1507f]
 2022-11-18 22:21:53 [http-nio-8091-exec-9] INFO  : Saving a song record 'SongRecord{resourceId=38, name='2022-11-18T22:21:51.393373.mp3', artist='Me', album='Me', length='0:12', year=2006}'
@@ -21104,7 +21104,7 @@ content-length: 112
 2022-11-18 22:21:54 [http-nio-8091-exec-10] DEBUG : Read "application/json;charset=UTF-8" to [SongRecord{resourceId=39, name='2022-11-18T22:21:53.909868.mp3', artist='Me', album='Me', length='0: (truncated)...]
 2022-11-18 22:21:54 [http-nio-8091-exec-10] INFO  : Saving a song metadata 'SongRecord{resourceId=39, name='2022-11-18T22:21:53.909868.mp3', artist='Me', album='Me', length='0:12', year=2006}'
 2022-11-18 22:21:54 [http-nio-8091-exec-10] DEBUG : Found thread-bound EntityManager [SessionImpl(1069430147<open>)] for JPA transaction
-2022-11-18 22:21:54 [http-nio-8091-exec-10] DEBUG : Creating new transaction with name [com.epam.training.microservicefoundation.songservice.service.SongServiceImpl.save]: PROPAGATION_REQUIRED,ISOLATION_DEFAULT
+2022-11-18 22:21:54 [http-nio-8091-exec-10] DEBUG : Creating new transaction with name [com.epam.training.microservicefoundation.songservice.service.implementation.SongServiceImpl.save]: PROPAGATION_REQUIRED,ISOLATION_DEFAULT
 2022-11-18 22:21:54 [http-nio-8091-exec-10] DEBUG :   setAutoCommit = false
 2022-11-18 22:21:54 [http-nio-8091-exec-10] DEBUG : Exposing JPA transaction as JDBC [org.springframework.orm.jpa.vendor.HibernateJpaDialect$HibernateConnectionHandle@3179dc04]
 2022-11-18 22:21:54 [http-nio-8091-exec-10] INFO  : Saving a song record 'SongRecord{resourceId=39, name='2022-11-18T22:21:53.909868.mp3', artist='Me', album='Me', length='0:12', year=2006}'
@@ -21153,7 +21153,7 @@ content-length: 112
 2022-11-18 22:22:09 [http-nio-8091-exec-1] DEBUG : Read "application/json;charset=UTF-8" to [SongRecord{resourceId=41, name='2022-11-18T22:22:06.861173.mp3', artist='Me', album='Me', length='0: (truncated)...]
 2022-11-18 22:22:09 [http-nio-8091-exec-1] INFO  : Saving a song metadata 'SongRecord{resourceId=41, name='2022-11-18T22:22:06.861173.mp3', artist='Me', album='Me', length='0:12', year=2006}'
 2022-11-18 22:22:09 [http-nio-8091-exec-1] DEBUG : Found thread-bound EntityManager [SessionImpl(726895431<open>)] for JPA transaction
-2022-11-18 22:22:09 [http-nio-8091-exec-1] DEBUG : Creating new transaction with name [com.epam.training.microservicefoundation.songservice.service.SongServiceImpl.save]: PROPAGATION_REQUIRED,ISOLATION_DEFAULT
+2022-11-18 22:22:09 [http-nio-8091-exec-1] DEBUG : Creating new transaction with name [com.epam.training.microservicefoundation.songservice.service.implementation.SongServiceImpl.save]: PROPAGATION_REQUIRED,ISOLATION_DEFAULT
 2022-11-18 22:22:09 [http-nio-8091-exec-1] DEBUG :   setAutoCommit = false
 2022-11-18 22:22:09 [http-nio-8091-exec-1] DEBUG : Exposing JPA transaction as JDBC [org.springframework.orm.jpa.vendor.HibernateJpaDialect$HibernateConnectionHandle@1840654d]
 2022-11-18 22:22:09 [http-nio-8091-exec-1] INFO  : Saving a song record 'SongRecord{resourceId=41, name='2022-11-18T22:22:06.861173.mp3', artist='Me', album='Me', length='0:12', year=2006}'
@@ -23017,7 +23017,7 @@ content-length: 112
 2022-11-18 22:25:44 [HikariPool-1 housekeeper] DEBUG : HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
 2022-11-18 22:25:44 [HikariPool-1 housekeeper] DEBUG : HikariPool-1 - Fill pool skipped, pool is at sufficient level.
 2022-11-18 22:25:44 [http-nio-8091-exec-1] DEBUG : Found thread-bound EntityManager [SessionImpl(1442978583<open>)] for JPA transaction
-2022-11-18 22:25:44 [http-nio-8091-exec-1] DEBUG : Creating new transaction with name [com.epam.training.microservicefoundation.songservice.service.SongServiceImpl.save]: PROPAGATION_REQUIRED,ISOLATION_DEFAULT
+2022-11-18 22:25:44 [http-nio-8091-exec-1] DEBUG : Creating new transaction with name [com.epam.training.microservicefoundation.songservice.service.implementation.SongServiceImpl.save]: PROPAGATION_REQUIRED,ISOLATION_DEFAULT
 2022-11-18 22:25:44 [http-nio-8091-exec-1] DEBUG :   setAutoCommit = false
 2022-11-18 22:25:44 [http-nio-8091-exec-1] DEBUG : Exposing JPA transaction as JDBC [org.springframework.orm.jpa.vendor.HibernateJpaDialect$HibernateConnectionHandle@62b6f12a]
 2022-11-18 22:25:44 [http-nio-8091-exec-1] INFO  : Saving a song record 'SongRecord{resourceId=42, name='2022-11-18T22:25:40.101419.mp3', artist='Me', album='Me', length='0:12', year=2006}'
@@ -23139,7 +23139,7 @@ content-length: 112
 2022-11-18 22:31:18 [http-nio-8091-exec-3] DEBUG : Read "application/json;charset=UTF-8" to [SongRecord{resourceId=46, name='2022-11-18T22:31:16.523081.mp3', artist='Me', album='Me', length='0: (truncated)...]
 2022-11-18 22:31:18 [http-nio-8091-exec-3] INFO  : Saving a song metadata 'SongRecord{resourceId=46, name='2022-11-18T22:31:16.523081.mp3', artist='Me', album='Me', length='0:12', year=2006}'
 2022-11-18 22:31:20 [http-nio-8091-exec-3] DEBUG : Found thread-bound EntityManager [SessionImpl(587644623<open>)] for JPA transaction
-2022-11-18 22:31:20 [http-nio-8091-exec-3] DEBUG : Creating new transaction with name [com.epam.training.microservicefoundation.songservice.service.SongServiceImpl.save]: PROPAGATION_REQUIRED,ISOLATION_DEFAULT
+2022-11-18 22:31:20 [http-nio-8091-exec-3] DEBUG : Creating new transaction with name [com.epam.training.microservicefoundation.songservice.service.implementation.SongServiceImpl.save]: PROPAGATION_REQUIRED,ISOLATION_DEFAULT
 2022-11-18 22:31:20 [http-nio-8091-exec-3] DEBUG :   setAutoCommit = false
 2022-11-18 22:31:20 [http-nio-8091-exec-3] DEBUG : Exposing JPA transaction as JDBC [org.springframework.orm.jpa.vendor.HibernateJpaDialect$HibernateConnectionHandle@27393e77]
 2022-11-18 22:31:20 [http-nio-8091-exec-3] INFO  : Saving a song record 'SongRecord{resourceId=46, name='2022-11-18T22:31:16.523081.mp3', artist='Me', album='Me', length='0:12', year=2006}'

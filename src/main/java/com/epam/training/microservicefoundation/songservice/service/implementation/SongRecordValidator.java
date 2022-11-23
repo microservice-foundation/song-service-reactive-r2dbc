@@ -1,6 +1,7 @@
-package com.epam.training.microservicefoundation.songservice.service;
+package com.epam.training.microservicefoundation.songservice.service.implementation;
 
 import com.epam.training.microservicefoundation.songservice.domain.SongRecord;
+import com.epam.training.microservicefoundation.songservice.service.Validator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;

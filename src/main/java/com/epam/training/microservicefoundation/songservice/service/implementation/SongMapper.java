@@ -1,13 +1,14 @@
-package com.epam.training.microservicefoundation.songservice.service;
+package com.epam.training.microservicefoundation.songservice.service.implementation;
 
 import com.epam.training.microservicefoundation.songservice.domain.Song;
 import com.epam.training.microservicefoundation.songservice.domain.SongRecord;
+import com.epam.training.microservicefoundation.songservice.service.Mapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
 @Component
-public class SongMapper implements Mapper<Song, SongRecord>{
+public class SongMapper implements Mapper<Song, SongRecord> {
     private static final Logger log = LoggerFactory.getLogger(SongMapper.class);
     @Override
     public SongRecord mapToRecord(Song song) {
