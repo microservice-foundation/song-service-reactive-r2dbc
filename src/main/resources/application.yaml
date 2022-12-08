@@ -1,6 +1,4 @@
 # application configuration
-server:
-  port: 0
 logging:
   level:
     root: DEBUG
@@ -24,5 +22,3 @@ spring:
     hibernate:
       ddl-auto: create-drop
       database-platform: org.hibernate.dialect.PostgreSQLDialect
-
-configuration.type: local
