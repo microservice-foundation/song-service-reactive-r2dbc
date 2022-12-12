@@ -111,4 +111,18 @@ public class SongServiceImpl implements SongService {
 
         return songMapper.mapToRecord(song);
     }
+
+    @Transactional
+    @Override
+    public List<SongRecordId> deleteByResourceIds(long[] ids) {
+        log.info("Deleting Song(s) with resource id(s) '{}'", ids);
+        if(!idParameterValidator.validate(ids)) {
+            IllegalArgumentException ex = new IllegalArgumentException("Id param was not validated, check your ids");
+            log.error("Id param size '{}' should be less than 200 \nreason:", ids.length, ex);
+            throw ex;
+        }
+        Arrays.stream(ids).forEach(repository::deleteByResourceId);
+        log.debug("Songs with resource id(s) '{}' were deleted", ids);
+        return Arrays.stream(ids).mapToObj(SongRecordId::new).collect(Collectors.toList());
+    }
 }

@@ -46,4 +46,11 @@ public class SongController {
         log.info("Deleting song metadata(s) with id(s) '{}'", ids);
         return service.deleteByIds(ids);
     }
+
+    @DeleteMapping("delete-by-resource-id")
+    @ResponseStatus(value = HttpStatus.OK)
+    public List<SongRecordId> deleteByResourceId(@RequestParam(value = "id") long[] ids) {
+        log.info("Deleting song metadata(s) with resource id(s) '{}'", ids);
+        return service.deleteByResourceIds(ids);
+    }
 }
