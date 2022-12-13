@@ -10,4 +10,5 @@ public interface SongService {
     SongRecord update(SongRecord songRecord);
     List<SongRecordId> deleteByIds(long[] ids);
     SongRecord getById(long id);
+    List<SongRecordId> deleteByResourceIds(long[] ids);
 }

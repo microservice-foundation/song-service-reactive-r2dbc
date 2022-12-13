@@ -10,8 +10,10 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.jdbc.Sql;
 
+import java.util.Arrays;
 import java.util.Optional;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -177,5 +179,16 @@ class SongRepositoryTest {
 
         song.setLength(null);
         assertThrows(DataIntegrityViolationException.class, ()-> repository.updateAndFlush(song));
+    }
+
+    @Test
+    void shouldDeleteByResourceId() {
+        Song song = new Song.Builder(1818L, "DeleteByResourceId", "18:18").build();
+        repository.persist(song);
+
+        repository.deleteByResourceId(song.getResourceId());
+
+        Optional<Song> songOptional1 = repository.findById(song.getId());
+        assertTrue(songOptional1.isEmpty());
     }
 }

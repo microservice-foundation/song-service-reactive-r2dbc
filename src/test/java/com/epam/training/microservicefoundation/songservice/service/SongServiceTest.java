@@ -5,6 +5,10 @@ import com.epam.training.microservicefoundation.songservice.domain.SongNotFoundE
 import com.epam.training.microservicefoundation.songservice.domain.SongRecord;
 import com.epam.training.microservicefoundation.songservice.domain.SongRecordId;
 import com.epam.training.microservicefoundation.songservice.repository.SongRepository;
+import com.epam.training.microservicefoundation.songservice.service.implementation.IdParameterValidator;
+import com.epam.training.microservicefoundation.songservice.service.implementation.SongMapper;
+import com.epam.training.microservicefoundation.songservice.service.implementation.SongRecordValidator;
+import com.epam.training.microservicefoundation.songservice.service.implementation.SongServiceImpl;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;

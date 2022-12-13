@@ -1792,7 +1792,7 @@ content-length: 136
 2022-11-19 17:05:48 [http-nio-8091-exec-1] DEBUG : Read "application/json;charset=UTF-8" to [SongRecord{resourceId=51, name='src/main/resources/temp/2022-11-19T17:05:43.457706.mp3', artist='Me' (truncated)...]
 2022-11-19 17:05:48 [http-nio-8091-exec-1] INFO  : Saving a song metadata 'SongRecord{resourceId=51, name='src/main/resources/temp/2022-11-19T17:05:43.457706.mp3', artist='Me', album='Me', length='0:12', year=2006}'
 2022-11-19 17:05:48 [http-nio-8091-exec-1] DEBUG : Found thread-bound EntityManager [SessionImpl(989155621<open>)] for JPA transaction
-2022-11-19 17:05:48 [http-nio-8091-exec-1] DEBUG : Creating new transaction with name [com.epam.training.microservicefoundation.songservice.service.SongServiceImpl.save]: PROPAGATION_REQUIRED,ISOLATION_DEFAULT
+2022-11-19 17:05:48 [http-nio-8091-exec-1] DEBUG : Creating new transaction with name [com.epam.training.microservicefoundation.songservice.service.implementation.SongServiceImpl.save]: PROPAGATION_REQUIRED,ISOLATION_DEFAULT
 2022-11-19 17:05:48 [http-nio-8091-exec-1] DEBUG :   setAutoCommit = false
 2022-11-19 17:05:48 [http-nio-8091-exec-1] DEBUG : Exposing JPA transaction as JDBC [org.springframework.orm.jpa.vendor.HibernateJpaDialect$HibernateConnectionHandle@6f06eb52]
 2022-11-19 17:05:48 [http-nio-8091-exec-1] INFO  : Saving a song record 'SongRecord{resourceId=51, name='src/main/resources/temp/2022-11-19T17:05:43.457706.mp3', artist='Me', album='Me', length='0:12', year=2006}'

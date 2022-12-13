@@ -1,10 +1,13 @@
-package com.epam.training.microservicefoundation.songservice.service;
+package com.epam.training.microservicefoundation.songservice.service.implementation;
 
 import com.epam.training.microservicefoundation.songservice.domain.Song;
 import com.epam.training.microservicefoundation.songservice.domain.SongNotFoundException;
 import com.epam.training.microservicefoundation.songservice.domain.SongRecord;
 import com.epam.training.microservicefoundation.songservice.domain.SongRecordId;
 import com.epam.training.microservicefoundation.songservice.repository.SongRepository;
+import com.epam.training.microservicefoundation.songservice.service.Mapper;
+import com.epam.training.microservicefoundation.songservice.service.SongService;
+import com.epam.training.microservicefoundation.songservice.service.Validator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.dao.DataIntegrityViolationException;
@@ -107,5 +110,19 @@ public class SongServiceImpl implements SongService {
                 "found with id '%d'", id)));
 
         return songMapper.mapToRecord(song);
+    }
+
+    @Transactional
+    @Override
+    public List<SongRecordId> deleteByResourceIds(long[] ids) {
+        log.info("Deleting Song(s) with resource id(s) '{}'", ids);
+        if(!idParameterValidator.validate(ids)) {
+            IllegalArgumentException ex = new IllegalArgumentException("Id param was not validated, check your ids");
+            log.error("Id param size '{}' should be less than 200 \nreason:", ids.length, ex);
+            throw ex;
+        }
+        Arrays.stream(ids).forEach(repository::deleteByResourceId);
+        log.debug("Songs with resource id(s) '{}' were deleted", ids);
+        return Arrays.stream(ids).mapToObj(SongRecordId::new).collect(Collectors.toList());
     }
 }
