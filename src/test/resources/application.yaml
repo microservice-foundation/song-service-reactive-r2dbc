@@ -1,0 +1,31 @@
+# application logging
+logging:
+  level:
+    root: DEBUG
+    org.hibernate: INFO
+    org:
+      hibernate:
+        SQL: DEBUG
+        cache: DEBUG
+        stat: DEBUG
+
+# datasource configuration
+spring:
+  datasource:
+    url: jdbc:postgresql://${POSTGRES_HOST:localhost}:5432/${DATABASE_NAME:song_service}
+    username: ${POSTGRES_USERNAME:microservice_foundation}
+    password: ${POSTGRES_PASSWORD:microservice_foundation}
+    driver-class-name: org.postgresql.Driver
+    maxIdle: 30
+    maxWait: 10000
+    maxActive: 100
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+
+#Disable discovery
+spring.cloud.discovery.enabled: false
+
+#Disable cloud config and config discovery
+spring.cloud.config.discovery.enabled: false
+spring.cloud.config.enabled: false

@@ -8,6 +8,7 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.test.annotation.DirtiesContext;
+import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.jdbc.Sql;
 
 import java.util.Arrays;
@@ -23,6 +24,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 @ExtendWith(PostgresExtension.class)
 @DirtiesContext
 @Sql(value = "/sql/data.sql")
+@TestPropertySource(locations = "classpath:application.yaml")
 class SongRepositoryTest {
     @Autowired
     private SongRepository repository;
