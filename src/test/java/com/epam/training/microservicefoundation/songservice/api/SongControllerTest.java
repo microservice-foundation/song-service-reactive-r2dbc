@@ -85,7 +85,7 @@ class SongControllerTest {
     @Test
     void shouldThrowValidationExceptionWhenSaveSongWithInvalidYearOne() throws Exception {
         SongRecord songRecord = new SongRecord.Builder(1L, "test", "5:21")
-                .album("Tech").artist("Arnold Kim").year(2023).build();
+                .album("Tech").artist("Arnold Kim").year(2099).build();
         ResultActions perform = mockMvc.perform(MockMvcRequestBuilders.post("/api/v1/songs")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(objectMapper.writeValueAsString(songRecord)));
