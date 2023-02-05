@@ -1,6 +1,6 @@
 package com.epam.training.microservicefoundation.songservice.api;
 
-import com.epam.training.microservicefoundation.songservice.domain.SongRecord;
+import com.epam.training.microservicefoundation.songservice.model.SongMetadata;
 import com.epam.training.microservicefoundation.songservice.repository.PostgresExtension;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -26,7 +26,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @SpringBootTest
 @ExtendWith(value = {PostgresExtension.class})
-@TestPropertySource(locations = "classpath:application.yaml")
+@TestPropertySource(locations = "classpath:application.properties")
 class SongControllerTest {
     private MockMvc mockMvc;
     private ObjectMapper objectMapper;
@@ -39,11 +39,11 @@ class SongControllerTest {
 
     @Test
     void shouldSaveSong() throws Exception {
-        SongRecord songRecord = new SongRecord.Builder(123L, "Hello World", "54:21")
+        SongMetadata songMetadata = new SongMetadata.Builder(123L, "Hello World", "54:21")
                 .album("Tech").artist("Arnold Kim").year(2009).build();
         ResultActions perform = mockMvc.perform(MockMvcRequestBuilders.post("/api/v1/songs")
                 .contentType(MediaType.APPLICATION_JSON)
-                .content(objectMapper.writeValueAsString(songRecord)));
+                .content(objectMapper.writeValueAsString(songMetadata)));
 
         perform.andExpect(status().isCreated());
         perform.andExpect(jsonPath("$.id", notNullValue()));
@@ -51,55 +51,55 @@ class SongControllerTest {
 
     @Test
     void shouldThrowValidationExceptionWhenSaveSongWithInvalidResourceId() throws Exception {
-        SongRecord songRecord = new SongRecord.Builder(-1L, "Hello World", "54:21")
+        SongMetadata songMetadata = new SongMetadata.Builder(-1L, "Hello World", "54:21")
                 .album("Tech").artist("Arnold Kim").year(2009).build();
         ResultActions perform = mockMvc.perform(MockMvcRequestBuilders.post("/api/v1/songs")
                 .contentType(MediaType.APPLICATION_JSON)
-                .content(objectMapper.writeValueAsString(songRecord)));
+                .content(objectMapper.writeValueAsString(songMetadata)));
 
         perform.andExpect(status().isBadRequest());
     }
 
     @Test
     void shouldThrowValidationExceptionWhenSaveSongWithInvalidName() throws Exception {
-        SongRecord songRecord = new SongRecord.Builder(1L, null, "54:21")
+        SongMetadata songMetadata = new SongMetadata.Builder(1L, null, "54:21")
                 .album("Tech").artist("Arnold Kim").year(2009).build();
         ResultActions perform = mockMvc.perform(MockMvcRequestBuilders.post("/api/v1/songs")
                 .contentType(MediaType.APPLICATION_JSON)
-                .content(objectMapper.writeValueAsString(songRecord)));
+                .content(objectMapper.writeValueAsString(songMetadata)));
 
         perform.andExpect(status().isBadRequest());
     }
 
     @Test
     void shouldThrowValidationExceptionWhenSaveSongWithInvalidLength() throws Exception {
-        SongRecord songRecord = new SongRecord.Builder(1L, null, "-54:21")
+        SongMetadata songMetadata = new SongMetadata.Builder(1L, null, "-54:21")
                 .album("Tech").artist("Arnold Kim").year(2009).build();
         ResultActions perform = mockMvc.perform(MockMvcRequestBuilders.post("/api/v1/songs")
                 .contentType(MediaType.APPLICATION_JSON)
-                .content(objectMapper.writeValueAsString(songRecord)));
+                .content(objectMapper.writeValueAsString(songMetadata)));
 
         perform.andExpect(status().isBadRequest());
     }
 
     @Test
     void shouldThrowValidationExceptionWhenSaveSongWithInvalidYearOne() throws Exception {
-        SongRecord songRecord = new SongRecord.Builder(1L, "test", "5:21")
+        SongMetadata songMetadata = new SongMetadata.Builder(1L, "test", "5:21")
                 .album("Tech").artist("Arnold Kim").year(2099).build();
         ResultActions perform = mockMvc.perform(MockMvcRequestBuilders.post("/api/v1/songs")
                 .contentType(MediaType.APPLICATION_JSON)
-                .content(objectMapper.writeValueAsString(songRecord)));
+                .content(objectMapper.writeValueAsString(songMetadata)));
 
         perform.andExpect(status().isBadRequest());
     }
 
     @Test
     void shouldThrowValidationExceptionWhenSaveSongWithInvalidYearTwo() throws Exception {
-        SongRecord songRecord = new SongRecord.Builder(1L, "test", "5:21")
+        SongMetadata songMetadata = new SongMetadata.Builder(1L, "test", "5:21")
                 .album("Tech").artist("Arnold Kim").year(1899).build();
         ResultActions perform = mockMvc.perform(MockMvcRequestBuilders.post("/api/v1/songs")
                 .contentType(MediaType.APPLICATION_JSON)
-                .content(objectMapper.writeValueAsString(songRecord)));
+                .content(objectMapper.writeValueAsString(songMetadata)));
 
         perform.andExpect(status().isBadRequest());
     }
@@ -107,20 +107,20 @@ class SongControllerTest {
     @Test
     void shouldGetSongMetadata() throws Exception {
         // save a song metadata
-        SongRecord songRecord = new SongRecord.Builder(129_888_999L, "test", "5:21")
+        SongMetadata songMetadata = new SongMetadata.Builder(129_888_999L, "test", "5:21")
                 .album("Tech").artist("Arnold Kim").build();
         MvcResult postResult = mockMvc.perform(MockMvcRequestBuilders.post("/api/v1/songs")
                 .contentType(MediaType.APPLICATION_JSON)
-                .content(objectMapper.writeValueAsString(songRecord))).andReturn();
+                .content(objectMapper.writeValueAsString(songMetadata))).andReturn();
 
         ResultActions getResult = mockMvc.perform(MockMvcRequestBuilders.get("/api/v1/songs/{id}", getValueOf("id", postResult
                 .getResponse().getContentAsString())));
         getResult.andExpect(status().isOk());
-        getResult.andExpect(jsonPath("$.resourceId", is((int) songRecord.getResourceId())));
-        getResult.andExpect(jsonPath("$.name", is(songRecord.getName())));
-        getResult.andExpect(jsonPath("$.length", is(songRecord.getLength())));
-        getResult.andExpect(jsonPath("$.album", is(songRecord.getAlbum())));
-        getResult.andExpect(jsonPath("$.artist", is(songRecord.getArtist())));
+        getResult.andExpect(jsonPath("$.resourceId", is((int) songMetadata.getResourceId())));
+        getResult.andExpect(jsonPath("$.name", is(songMetadata.getName())));
+        getResult.andExpect(jsonPath("$.length", is(songMetadata.getLength())));
+        getResult.andExpect(jsonPath("$.album", is(songMetadata.getAlbum())));
+        getResult.andExpect(jsonPath("$.artist", is(songMetadata.getArtist())));
     }
 
     @Test
@@ -131,17 +131,17 @@ class SongControllerTest {
 
     @Test
     void shouldDeleteSongMetadata() throws Exception {
-        SongRecord songRecord1 = new SongRecord.Builder(130_888_999L, "test", "5:21")
+        SongMetadata songMetadata1 = new SongMetadata.Builder(130_888_999L, "test", "5:21")
                 .album("Tech").artist("Arnold Kim").build();
         MvcResult postResult1 = mockMvc.perform(MockMvcRequestBuilders.post("/api/v1/songs")
                 .contentType(MediaType.APPLICATION_JSON)
-                .content(objectMapper.writeValueAsString(songRecord1))).andReturn();
+                .content(objectMapper.writeValueAsString(songMetadata1))).andReturn();
 
-        SongRecord songRecord2 = new SongRecord.Builder(131_888_999L, "test", "5:21")
+        SongMetadata songMetadata2 = new SongMetadata.Builder(131_888_999L, "test", "5:21")
                 .album("Tech").artist("Arnold Kim").build();
         MvcResult postResult2 = mockMvc.perform(MockMvcRequestBuilders.post("/api/v1/songs")
                 .contentType(MediaType.APPLICATION_JSON)
-                .content(objectMapper.writeValueAsString(songRecord2))).andReturn();
+                .content(objectMapper.writeValueAsString(songMetadata2))).andReturn();
 
         String songRecord1Id = getValueOf("id",
                 postResult1.getResponse().getContentAsString());

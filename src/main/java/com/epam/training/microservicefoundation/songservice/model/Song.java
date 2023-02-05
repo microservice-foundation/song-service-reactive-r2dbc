@@ -1,4 +1,4 @@
-package com.epam.training.microservicefoundation.songservice.domain;
+package com.epam.training.microservicefoundation.songservice.model;
 
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;

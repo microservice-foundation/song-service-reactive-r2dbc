@@ -1,6 +1,6 @@
 package com.epam.training.microservicefoundation.songservice.repository;
 
-import com.epam.training.microservicefoundation.songservice.domain.Song;
+import com.epam.training.microservicefoundation.songservice.model.Song;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +11,6 @@ import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.jdbc.Sql;
 
-import java.util.Arrays;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -24,7 +23,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 @ExtendWith(PostgresExtension.class)
 @DirtiesContext
 @Sql(value = "/sql/data.sql")
-@TestPropertySource(locations = "classpath:application.yaml")
+@TestPropertySource(locations = "classpath:application.properties")
 class SongRepositoryTest {
     @Autowired
     private SongRepository repository;

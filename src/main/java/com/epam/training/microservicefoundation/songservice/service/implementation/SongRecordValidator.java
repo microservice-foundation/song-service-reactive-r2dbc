@@ -1,6 +1,6 @@
 package com.epam.training.microservicefoundation.songservice.service.implementation;
 
-import com.epam.training.microservicefoundation.songservice.domain.SongRecord;
+import com.epam.training.microservicefoundation.songservice.model.SongMetadata;
 import com.epam.training.microservicefoundation.songservice.service.Validator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -9,11 +9,11 @@ import org.springframework.stereotype.Component;
 import java.time.Year;
 import java.util.Objects;
 @Component
-public class SongRecordValidator implements Validator<SongRecord> {
+public class SongRecordValidator implements Validator<SongMetadata> {
     Logger log = LoggerFactory.getLogger(SongRecordValidator.class);
     private static final String TIME_SPLITTER = ":";
     @Override
-    public boolean validate(SongRecord record) {
+    public boolean validate(SongMetadata record) {
         log.info("Validating song record '{}' ", record);
         if(record == null) {
             return false;

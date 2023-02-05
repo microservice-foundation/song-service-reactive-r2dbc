@@ -1,6 +1,6 @@
 package com.epam.training.microservicefoundation.songservice.service.validator;
 
-import com.epam.training.microservicefoundation.songservice.domain.SongRecord;
+import com.epam.training.microservicefoundation.songservice.model.SongMetadata;
 import com.epam.training.microservicefoundation.songservice.service.implementation.SongRecordValidator;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-class SongRecordValidatorTest {
+class SongMetadataValidatorTest {
     private SongRecordValidator validation;
 
     @BeforeEach
@@ -18,36 +18,36 @@ class SongRecordValidatorTest {
 
     @Test
     void shouldBeValidate() {
-        SongRecord songRecord = new SongRecord.Builder(1L, "ttest", "21:32").build();
-        boolean isValid = validation.validate(songRecord);
+        SongMetadata songMetadata = new SongMetadata.Builder(1L, "ttest", "21:32").build();
+        boolean isValid = validation.validate(songMetadata);
         assertTrue(isValid);
     }
 
     @Test
     void shouldBeInvalidateWithInvalidResourceId() {
-        SongRecord songRecord = new SongRecord.Builder(-1L, "ttest", "21:32").build();
-        boolean isValid = validation.validate(songRecord);
+        SongMetadata songMetadata = new SongMetadata.Builder(-1L, "ttest", "21:32").build();
+        boolean isValid = validation.validate(songMetadata);
         assertFalse(isValid);
     }
 
     @Test
     void shouldBeInvalidateWithInvalidName() {
-        SongRecord songRecord = new SongRecord.Builder(1L, null, "21:32").build();
-        boolean isValid = validation.validate(songRecord);
+        SongMetadata songMetadata = new SongMetadata.Builder(1L, null, "21:32").build();
+        boolean isValid = validation.validate(songMetadata);
         assertFalse(isValid);
     }
 
     @Test
     void shouldBeInvalidateWithInvalidLength() {
-        SongRecord songRecord = new SongRecord.Builder(1L, "test", null).build();
-        boolean isValid = validation.validate(songRecord);
+        SongMetadata songMetadata = new SongMetadata.Builder(1L, "test", null).build();
+        boolean isValid = validation.validate(songMetadata);
         assertFalse(isValid);
     }
 
     @Test
     void shouldBeInvalidateWithInvalidLengthContent() {
-        SongRecord songRecord = new SongRecord.Builder(1L, "test", "12:-08").build();
-        boolean isValid = validation.validate(songRecord);
+        SongMetadata songMetadata = new SongMetadata.Builder(1L, "test", "12:-08").build();
+        boolean isValid = validation.validate(songMetadata);
         assertFalse(isValid);
     }
 }

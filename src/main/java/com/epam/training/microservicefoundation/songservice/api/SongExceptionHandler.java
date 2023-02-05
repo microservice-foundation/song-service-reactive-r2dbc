@@ -1,7 +1,7 @@
 package com.epam.training.microservicefoundation.songservice.api;
 
-import com.epam.training.microservicefoundation.songservice.domain.APIError;
-import com.epam.training.microservicefoundation.songservice.domain.SongNotFoundException;
+import com.epam.training.microservicefoundation.songservice.model.APIError;
+import com.epam.training.microservicefoundation.songservice.model.SongNotFoundException;
 import org.springframework.core.Ordered;
 import org.springframework.core.annotation.Order;
 import org.springframework.http.HttpHeaders;

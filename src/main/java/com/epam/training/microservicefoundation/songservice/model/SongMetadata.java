@@ -1,8 +1,8 @@
-package com.epam.training.microservicefoundation.songservice.domain;
+package com.epam.training.microservicefoundation.songservice.model;
 
 import java.io.Serializable;
 
-public class SongRecord implements Serializable {
+public class SongMetadata implements Serializable {
     private static final long serialVersionUID = 2022_10_24_19_44L;
     private long resourceId;
     private String name;
@@ -11,8 +11,8 @@ public class SongRecord implements Serializable {
     private String length;
     private int year;
 
-    protected SongRecord() {}
-    private SongRecord(Builder builder) {
+    protected SongMetadata() {}
+    private SongMetadata(Builder builder) {
         this.resourceId = builder.resourceId;
         this.name = builder.name;
         this.artist = builder.artist;
@@ -49,8 +49,8 @@ public class SongRecord implements Serializable {
             return this;
         }
 
-        public SongRecord build() {
-            return new SongRecord(this);
+        public SongMetadata build() {
+            return new SongMetadata(this);
         }
     }
 
@@ -80,7 +80,7 @@ public class SongRecord implements Serializable {
 
     @Override
     public String toString() {
-        return "SongRecord{" +
+        return "SongMetadata{" +
                 "resourceId=" + resourceId +
                 ", name='" + name + '\'' +
                 ", artist='" + artist + '\'' +
