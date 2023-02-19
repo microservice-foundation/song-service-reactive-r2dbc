@@ -4,6 +4,7 @@ import java.io.Serializable;
 
 public class SongMetadata implements Serializable {
     private static final long serialVersionUID = 2022_10_24_19_44L;
+    private long id;
     private long resourceId;
     private String name;
     private String artist;
@@ -19,8 +20,10 @@ public class SongMetadata implements Serializable {
         this.album = builder.album;
         this.length = builder.length;
         this.year = builder.year;
+        this.id = builder.id;
     }
     public static class Builder {
+        private long id;
         private final long resourceId;
         private final String name;
         private String artist;
@@ -46,6 +49,11 @@ public class SongMetadata implements Serializable {
 
         public Builder year(int year) {
             this.year = year;
+            return this;
+        }
+
+        public Builder id(long id) {
+            this.id = id;
             return this;
         }
 
@@ -76,6 +84,10 @@ public class SongMetadata implements Serializable {
 
     public int getYear() {
         return year;
+    }
+
+    public long getId() {
+        return id;
     }
 
     @Override

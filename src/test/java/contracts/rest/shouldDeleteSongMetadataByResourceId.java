@@ -23,7 +23,9 @@ public class shouldDeleteSongMetadataByResourceId implements Supplier<Contract> 
             contract.response(response -> {
                 response.status(response.OK());
                 response.headers(headers -> headers.contentType(headers.applicationJson()));
-                response.body(Collections.singletonList(map().entry("id", 199L)));
+                response.body(Collections.singletonList(map()
+                        .entry("id", 199L)
+                        .entry("resourceId", 1L)));
             });
         });
     }

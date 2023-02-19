@@ -1,8 +1,8 @@
 package com.epam.training.microservicefoundation.songservice.service.implementation;
 
 import com.epam.training.microservicefoundation.songservice.model.Song;
-import com.epam.training.microservicefoundation.songservice.model.SongNotFoundException;
 import com.epam.training.microservicefoundation.songservice.model.SongMetadata;
+import com.epam.training.microservicefoundation.songservice.model.SongNotFoundException;
 import com.epam.training.microservicefoundation.songservice.model.SongRecord;
 import com.epam.training.microservicefoundation.songservice.repository.SongRepository;
 import com.epam.training.microservicefoundation.songservice.service.Mapper;
@@ -15,10 +15,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 @Service
 @Transactional(readOnly = true)
@@ -52,7 +50,7 @@ public class SongServiceImpl implements SongService {
         }
         try {
             Song song = repository.persist(songMapper.mapToEntity(songMetadata));
-            return new SongRecord(song.getId());
+            return new SongRecord(song.getId(), song.getResourceId());
         } catch (DataIntegrityViolationException ex) {
             IllegalArgumentException illegalArgumentException = new IllegalArgumentException(
                     String.format("Saving a song record with invalid parameters length or duplicate value '%s'",
@@ -98,9 +96,16 @@ public class SongServiceImpl implements SongService {
             log.error("Id param size '{}' should be less than 200 \nreason:", ids.length, ex);
             throw ex;
         }
-        Arrays.stream(ids).forEach(repository::deleteById);
-        log.debug("Songs with id(s) '{}' were deleted", ids);
-        return Arrays.stream(ids).mapToObj(SongRecord::new).collect(Collectors.toList());
+        List<SongRecord> deletedSongIds = new ArrayList<>();
+        for(long id: ids) {
+            Optional<Song> bySongId = repository.findById(id);
+            bySongId.ifPresent(song -> {
+                repository.delete(song);
+                deletedSongIds.add(new SongRecord(song.getId(), song.getResourceId()));
+            });
+        }
+        log.debug("Songs with id(s) '{}' were deleted", deletedSongIds);
+        return deletedSongIds;
     }
 
     @Override
@@ -126,7 +131,7 @@ public class SongServiceImpl implements SongService {
             Optional<Song> byResourceId = repository.findByResourceId(resourceId);
             byResourceId.ifPresent(song -> {
                 repository.delete(song);
-                deletedSongIds.add(new SongRecord(song.getId()));
+                deletedSongIds.add(new SongRecord(song.getId(), resourceId));
             });
         }
         log.debug("Songs with resource id(s) '{}' were deleted", deletedSongIds);

@@ -19,6 +19,7 @@ public class shouldGetSongMetadataById implements Supplier<Contract> {
             contract.response(response -> {
                 response.status(response.OK());
                 response.body(map()
+                        .entry("id", 199L)
                         .entry("resourceId", 1L)
                         .entry("name", "Saturday")
                         .entry("artist", "John Biden")

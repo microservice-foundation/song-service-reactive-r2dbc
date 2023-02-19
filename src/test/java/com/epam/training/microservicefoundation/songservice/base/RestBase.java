@@ -47,21 +47,21 @@ public abstract class RestBase {
     public void setup() {
         songRecordValidator = new SongRecordValidator();
         when(songService.getById(199L)).thenReturn(new SongMetadata.Builder(1L, "Saturday", "03:40")
-                .album("2023").artist("John Biden").year(1990).build());
+                .id(199L).album("2023").artist("John Biden").year(1990).build());
 
         when(songService.getById(1999L)).thenThrow(new SongNotFoundException("Song was not found with id '1999'"));
-        when(songService.deleteByIds(new long[]{199L})).thenReturn(Collections.singletonList(new SongRecord(199L)));
+        when(songService.deleteByIds(new long[]{199L})).thenReturn(Collections.singletonList(new SongRecord(199L, 1L)));
         when(songService.deleteByIds(new long[0])).thenThrow(new IllegalArgumentException("Id param was not " +
                 "validated, check your ids"));
 
         when(songService.deleteByResourceIds(new long[]{1L})).thenReturn(Collections
-                .singletonList(new SongRecord(199L)));
+                .singletonList(new SongRecord(199L, 1L)));
 
         when(songService.deleteByResourceIds(new long[0])).thenThrow(new IllegalArgumentException("Id param was " +
                 "not validated, check your ids"));
 
         when(songService.save(argThat(argument -> TRUE.equals(songRecordValidator.validate(argument)))))
-                .thenReturn(new SongRecord(199L));
+                .thenReturn(new SongRecord(199L, 1L));
 
         when(songService.save(argThat(argument -> FALSE.equals(songRecordValidator.validate(argument)))))
                 .thenThrow(new IllegalArgumentException("Saving invalid song record"));

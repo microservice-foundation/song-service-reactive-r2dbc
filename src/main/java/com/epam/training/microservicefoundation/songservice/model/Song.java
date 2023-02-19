@@ -48,6 +48,7 @@ public class Song implements Serializable {
         this.album = builder.album;
         this.length = builder.length;
         this.year = builder.year;
+        this.id = builder.id;
     }
 
     public static class Builder {
@@ -57,6 +58,7 @@ public class Song implements Serializable {
         private String artist;
         private String album;
         private int year;
+        private long id;
 
         public Builder(long resourceId, String name, String length) {
             this.resourceId = resourceId;
@@ -76,6 +78,11 @@ public class Song implements Serializable {
 
         public Builder year(int year) {
             this.year = year;
+            return this;
+        }
+
+        public Builder id(long id) {
+            this.id = id;
             return this;
         }
 
@@ -152,6 +159,9 @@ public class Song implements Serializable {
         if(name != null) {
             result += 31 * name.hashCode();
         }
+        if(length != null) {
+            result += 31 * length.hashCode();
+        }
         return result;
     }
 
@@ -166,6 +176,7 @@ public class Song implements Serializable {
         Song song = (Song) obj;
         return Objects.equals(this.id, song.id) &&
                 Objects.equals(this.resourceId, song.resourceId) &&
-                Objects.equals(this.name, song.name);
+                Objects.equals(this.name, song.name) &&
+                Objects.equals(this.length, song.length);
     }
 }

@@ -103,14 +103,19 @@ class SongServiceTest {
     @Test
     void shouldDeleteSongByIds() {
         when(idParameterValidator.validate(any())).thenReturn(Boolean.TRUE);
-        doNothing().when(repository).deleteById(any());
+        doNothing().when(repository).delete(any());
         long[] ids = {1, 2};
+        when(repository.findById(ids[0])).thenReturn(Optional.of(new Song.Builder(
+                199L, "test1", "12:33").id(ids[0]).build()));
+        when(repository.findById(ids[1])).thenReturn(Optional.of(new Song.Builder(
+                200L, "test2", "12:32").id(ids[1]).build()));
         List<SongRecord> songRecords = service.deleteByIds(ids);
         assertNotNull(songRecords);
         assertEquals(ids.length, songRecords.size());
 
         verify(idParameterValidator, times(1)).validate(any());
-        verify(repository, times(ids.length)).deleteById(any());
+        verify(repository, times(ids.length)).findById(any());
+        verify(repository, times(ids.length)).delete(any());
     }
 
     @Test

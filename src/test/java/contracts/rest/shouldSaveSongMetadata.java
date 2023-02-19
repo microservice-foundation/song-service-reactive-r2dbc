@@ -27,7 +27,9 @@ public class shouldSaveSongMetadata implements Supplier<Contract> {
             contract.response(response -> {
                 response.status(response.CREATED());
                 response.headers(headers -> headers.contentType(headers.applicationJson()));
-                response.body(map().entry("id", 199L));
+                response.body(map()
+                        .entry("id", 199L)
+                        .entry("resourceId", 1L));
             });
         });
     }
