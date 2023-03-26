@@ -8,133 +8,88 @@ import com.epam.training.microservicefoundation.songservice.repository.SongRepos
 import com.epam.training.microservicefoundation.songservice.service.Mapper;
 import com.epam.training.microservicefoundation.songservice.service.SongService;
 import com.epam.training.microservicefoundation.songservice.service.Validator;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
+import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
+import reactor.util.Logger;
+import reactor.util.Loggers;
 
 @Service
 @Transactional(readOnly = true)
 public class SongServiceImpl implements SongService {
-    private static final Logger log = LoggerFactory.getLogger(SongServiceImpl.class);
-    private final SongRepository repository;
-    private final Mapper<Song, SongMetadata> songMapper;
-    private final Validator<SongMetadata> songRecordValidator;
-    private final Validator<long[]> idParameterValidator;
+  private static final Logger log = Loggers.getLogger(SongServiceImpl.class);
+  private final SongRepository repository;
+  private final Mapper<Song, SongMetadata> songMapper;
+  private final Validator<SongMetadata> songRecordValidator;
 
-    public SongServiceImpl(SongRepository repository, Mapper<Song, SongMetadata> songMapper,
-                           Validator<SongMetadata> songRecordValidator,
-                           Validator<long[]> idParameterValidator) {
-        this.repository = repository;
-        this.songMapper = songMapper;
-        this.songRecordValidator = songRecordValidator;
-        this.idParameterValidator = idParameterValidator;
-    }
+  public SongServiceImpl(SongRepository repository, Mapper<Song, SongMetadata> songMapper, Validator<SongMetadata> songRecordValidator) {
+    this.repository = repository;
+    this.songMapper = songMapper;
+    this.songRecordValidator = songRecordValidator;
+  }
 
 
-    @Transactional
-    @Override
-    public SongRecord save(SongMetadata songMetadata) {
-        log.info("Saving a song record '{}'", songMetadata);
-        if(!songRecordValidator.validate(songMetadata)) {
-            IllegalArgumentException illegalArgumentException =
-                    new IllegalArgumentException("Saving invalid song record");
+  @Transactional
+  @Override
+  public Mono<SongRecord> save(Mono<SongMetadata> songMetadata) {
+    log.info("Saving a song record '{}'", songMetadata);
 
-            log.error("Saving a song record with invalid value", illegalArgumentException);
-            throw illegalArgumentException;
-        }
-        try {
-            Song song = repository.persist(songMapper.mapToEntity(songMetadata));
-            return new SongRecord(song.getId(), song.getResourceId());
-        } catch (DataIntegrityViolationException ex) {
-            IllegalArgumentException illegalArgumentException = new IllegalArgumentException(
-                    String.format("Saving a song record with invalid parameters length or duplicate value '%s'",
-                            ex.getLocalizedMessage()), ex);
+    return songMetadata
+        .filter(songRecordValidator::validate)
+        .switchIfEmpty(Mono.error(new IllegalArgumentException("Saving invalid song record")))
+        .log()
+        .flatMap(metadata -> repository.save(songMapper.mapToEntity(metadata))
+            .onErrorResume(error -> Mono.error(new IllegalArgumentException(String.format(
+                "Saving a song record with invalid parameters length or duplicate value '%s'", error.getLocalizedMessage()), error)))
+            .map(song -> new SongRecord(song.getId(), song.getResourceId())));
 
-            log.error("Saving a song record with invalid parameters length or duplicate value", illegalArgumentException);
-            throw illegalArgumentException;
-        }
-    }
+  }
 
-    @Transactional
-    @Override
-    public SongMetadata update(SongMetadata songMetadata) {
-        log.info("Updating a song record '{}'", songMetadata);
-        if(!songRecordValidator.validate(songMetadata)) {
-            IllegalArgumentException illegalArgumentException =
-                    new IllegalArgumentException(String.format("Updating an invalid song record '%s'", songMetadata));
+  @Transactional
+  @Override
+  public Mono<SongMetadata> update(Mono<SongMetadata> songMetadata) {
+    log.info("Updating a song record '{}'", songMetadata);
 
-            log.error("Updating a song record with invalid value", illegalArgumentException);
-            throw illegalArgumentException;
-        }
+    return songMetadata
+        .filter(songRecordValidator::validate)
+        .switchIfEmpty(Mono.error(new IllegalArgumentException(String.format("Updating an invalid song record '%s'", songMetadata))))
+        .log()
+        .flatMap(metadata -> repository.save(songMapper.mapToEntity(metadata))
+            .onErrorResume(error -> Mono.error(new IllegalArgumentException(String.format(
+                "Updating a song record with invalid parameters length or duplicate value '%s'", error.getLocalizedMessage()), error)))
+            .map(songMapper::mapToRecord));
 
-        try {
-            Song song = repository.update(songMapper.mapToEntity(songMetadata));
-            return songMapper.mapToRecord(song);
-        } catch (DataIntegrityViolationException ex) {
-            IllegalArgumentException illegalArgumentException = new IllegalArgumentException(
-                    String.format("Updating a song record with invalid parameters length or duplicate value '%s'",
-                            ex.getLocalizedMessage()), ex);
+  }
 
-            log.error("Updating a song record with invalid parameters length or duplicate value",
-                    illegalArgumentException);
-            throw illegalArgumentException;
-        }
-    }
+  @Transactional
+  @Override
+  public Flux<SongRecord> deleteByIds(Flux<Long> ids) {
+    log.info("Deleting Song(s) with id {}", ids);
+    return ids
+        .switchIfEmpty(Mono.error(new IllegalArgumentException("Id param is not validated, check your ids")))
+        .flatMap(repository::findById)
+        .flatMap(song -> repository.delete(song).thenReturn(new SongRecord(song.getId(), song.getResourceId())))
+        .log();
+  }
 
-    @Transactional
-    @Override
-    public List<SongRecord> deleteByIds(long[] ids) {
-        log.info("Deleting Song(s) with id {}", ids);
-        if(!idParameterValidator.validate(ids)) {
-            IllegalArgumentException ex = new IllegalArgumentException("Id param was not validated, check your ids");
-            log.error("Id param size '{}' should be less than 200 \nreason:", ids.length, ex);
-            throw ex;
-        }
-        List<SongRecord> deletedSongIds = new ArrayList<>();
-        for(long id: ids) {
-            Optional<Song> bySongId = repository.findById(id);
-            bySongId.ifPresent(song -> {
-                repository.delete(song);
-                deletedSongIds.add(new SongRecord(song.getId(), song.getResourceId()));
-            });
-        }
-        log.debug("Songs with id(s) '{}' were deleted", deletedSongIds);
-        return deletedSongIds;
-    }
+  @Override
+  public Mono<SongMetadata> getById(long id) {
+    log.info("Getting a song with id '{}'", id);
+    return repository
+        .findById(id).map(songMapper::mapToRecord)
+        .log()
+        .switchIfEmpty(Mono.error(new SongNotFoundException(String.format("Song is not found with id '%d'", id))));
+  }
 
-    @Override
-    public SongMetadata getById(long id) {
-        log.info("Getting a song with id '{}'", id);
-        Song song = repository.findById(id).orElseThrow(() -> new SongNotFoundException(String.format("Song was not " +
-                "found with id '%d'", id)));
-
-        return songMapper.mapToRecord(song);
-    }
-
-    @Transactional
-    @Override
-    public List<SongRecord> deleteByResourceIds(long[] ids) {
-        log.info("Deleting Song(s) with resource id(s) '{}'", ids);
-        if(!idParameterValidator.validate(ids)) {
-            IllegalArgumentException ex = new IllegalArgumentException("Id param was not validated, check your ids");
-            log.error("Id param size '{}' should be less than 200 \nreason:", ids.length, ex);
-            throw ex;
-        }
-        List<SongRecord> deletedSongIds = new ArrayList<>();
-        for(long resourceId: ids) {
-            Optional<Song> byResourceId = repository.findByResourceId(resourceId);
-            byResourceId.ifPresent(song -> {
-                repository.delete(song);
-                deletedSongIds.add(new SongRecord(song.getId(), resourceId));
-            });
-        }
-        log.debug("Songs with resource id(s) '{}' were deleted", deletedSongIds);
-        return deletedSongIds;
-    }
+  @Transactional
+  @Override
+  public Flux<SongRecord> deleteByResourceIds(Flux<Long> ids) {
+    log.info("Deleting Song(s) with resource id(s) '{}'", ids);
+    return ids
+        .switchIfEmpty(Mono.error(new IllegalArgumentException("Id param is not validated, check your ids")))
+        .flatMap(repository::findByResourceId)
+        .flatMap(song -> repository.delete(song).thenReturn(new SongRecord(song.getId(), song.getResourceId())))
+        .log();
+  }
 }

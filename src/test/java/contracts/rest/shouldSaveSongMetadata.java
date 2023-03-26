@@ -15,7 +15,7 @@ public class shouldSaveSongMetadata implements Supplier<Contract> {
                 request.method(request.POST());
                 request.url("/api/v1/songs");
                 request.body(map()
-                        .entry("resourceId", 1L)
+                        .entry("resourceId", 453L)
                         .entry("name", "New office")
                         .entry("artist", "John Kennedy")
                         .entry("album", "ASU")
@@ -28,8 +28,8 @@ public class shouldSaveSongMetadata implements Supplier<Contract> {
                 response.status(response.CREATED());
                 response.headers(headers -> headers.contentType(headers.applicationJson()));
                 response.body(map()
-                        .entry("id", 199L)
-                        .entry("resourceId", 1L));
+                        .entry("id", 5L)
+                        .entry("resourceId", 453L));
             });
         });
     }

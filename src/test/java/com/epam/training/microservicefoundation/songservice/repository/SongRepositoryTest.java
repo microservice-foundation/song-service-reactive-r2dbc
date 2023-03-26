@@ -1,195 +1,228 @@
 package com.epam.training.microservicefoundation.songservice.repository;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import com.epam.training.microservicefoundation.songservice.model.Song;
+import java.time.Duration;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.springframework.boot.test.autoconfigure.data.r2dbc.DataR2dbcTest;
 import org.springframework.dao.DataIntegrityViolationException;
-import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.test.annotation.DirtiesContext;
+import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.TestPropertySource;
-import org.springframework.test.context.jdbc.Sql;
+import reactor.core.publisher.Mono;
+import reactor.test.StepVerifier;
 
-import java.util.Optional;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-
-@DataJpaTest
+@DataR2dbcTest
 @ExtendWith(PostgresExtension.class)
 @DirtiesContext
-@Sql(value = "/sql/data.sql")
+@ContextConfiguration(classes = DatasourceConfiguration.class)
 @TestPropertySource(locations = "classpath:application.properties")
 class SongRepositoryTest {
-    @Autowired
-    private SongRepository repository;
+  @Autowired
+  private SongRepository repository;
 
 
-    @Test
-    void shouldSaveSong() {
-        Song song = new Song.Builder(6, "We are the champions", "2:59")
-                .album("News of the world")
-                .year(2001)
-                .artist("Queen")
-                .build();
-        Song result = repository.persistAndFlush(song);
-        assertNotNull(result);
-        assertTrue(song.getId() > 0L);
-        assertEquals(song.getResourceId(), result.getResourceId());
-        assertEquals(song.getName(), result.getName());
-        assertEquals(song.getLength(), result.getLength());
-        assertNotNull(song.getCreatedDate());
-        assertNotNull(song.getLastModifiedDate());
-    }
+  @Test
+  void shouldSaveSong() {
+    Song song = new Song.Builder(6, "We are the champions", "2:59")
+        .album("News of the world")
+        .year(2001)
+        .artist("Queen")
+        .build();
+    Mono<Song> resultMono = repository.save(song);
 
-    @Test
-    void shouldThrowDataIntegrityExceptionWhenSaveSongWithExistentId() {
-        Song song = new Song.Builder(1, "Testing well", "10:59")
-                .album("Testers")
-                .year(2009)
-                .artist("Mr.Test")
-                .build();
+    StepVerifier
+        .create(resultMono)
+        .assertNext(result -> {
+          assertEquals(song.getResourceId(), result.getResourceId());
+          assertEquals(song.getAlbum(), result.getAlbum());
+          assertEquals(song.getArtist(), result.getArtist());
+          assertEquals(song.getLength(), result.getLength());
+          assertNotNull(result.getCreatedDate());
+          assertTrue(result.getId() > 0L);
+          assertNotNull(result.getLastModifiedDate());
+        })
+        .verifyComplete();
+  }
 
-        assertThrows(DataIntegrityViolationException.class, () -> repository.persistAndFlush(song));
-    }
+  @Test
+  void shouldThrowDataIntegrityExceptionWhenSaveSongWithExistentId() {
+    Song song = new Song.Builder(1, "Testing well", "10:59")
+        .album("Testers")
+        .year(2009)
+        .artist("Mr.Test")
+        .build();
 
-    @Test
-    void shouldThrowDataIntegrityExceptionWhenSaveSongWithNullForNotNullNameProperty() {
-        Song song = new Song.Builder(1, null, "10:59")
-                .album("Testers")
-                .year(2009)
-                .artist("Mr.Test")
-                .build();
+    StepVerifier
+        .create(repository.save(song))
+        .expectError(DataIntegrityViolationException.class)
+        .verify();
+  }
+
+  @Test
+  void shouldThrowDataIntegrityExceptionWhenSaveSongWithNullForNotNullNameProperty() {
+    Song song = new Song.Builder(1, null, "10:59")
+        .album("Testers")
+        .year(2009)
+        .artist("Mr.Test")
+        .build();
+
+    StepVerifier
+        .create(repository.save(song))
+        .expectError(DataIntegrityViolationException.class)
+        .verify();
+  }
+
+  @Test
+  void shouldThrowDataIntegrityExceptionWhenSaveSongWithNullForNotNullLengthProperty() {
+    Song song = new Song.Builder(1, "Testing well", null)
+        .album("Testers")
+        .year(2009)
+        .artist("Mr.Test")
+        .build();
+
+    StepVerifier
+        .create(repository.save(song))
+        .expectError(DataIntegrityViolationException.class)
+        .verify();
+  }
+
+  @Test
+  void shouldFindSongById() {
+    // create a song
+    Song song = new Song.Builder(190L, "Pythoner", "12:34")
+        .album("Py snakes")
+        .year(2002)
+        .artist("Pyer")
+        .build();
+
+    StepVerifier
+        .create(repository.save(song).flatMap(result -> repository.findById(song.getId())))
+        .assertNext(result -> {
+          assertEquals(song.getResourceId(), result.getResourceId());
+          assertEquals(song.getAlbum(), result.getAlbum());
+          assertEquals(song.getArtist(), result.getArtist());
+          assertEquals(song.getLength(), result.getLength());
+          assertNotNull(result.getCreatedDate());
+          assertTrue(result.getId() > 0L);
+          assertNotNull(result.getLastModifiedDate());
+        })
+        .verifyComplete();
+  }
+
+  @Test
+  void shouldReturnEmptyWhenFindSongById() {
+    long id = 123_234_534_456L;
+
+    StepVerifier.create(repository.findById(id))
+        .expectSubscription()
+        .expectNoEvent(Duration.ofMillis(500))
+        .expectComplete();
+  }
+
+  @Test
+  void shouldDeleteSongById() {
+    Song song = new Song.Builder(90L, "Developer", "2:59")
+        .album("Hello Worlders")
+        .year(2022)
+        .artist("Javist")
+        .build();
+
+    Mono<Song> resultMono = repository.save(song).flatMap(result -> repository.deleteById(result.getId())
+        .flatMap(unused -> repository.findById(result.getId())));
+
+    StepVerifier.create(resultMono)
+        .expectSubscription()
+        .expectNoEvent(Duration.ofMillis(500))
+        .expectComplete();
+  }
+
+  @Test
+  void shouldThrowEmptyResultDataAccessExceptionWhenDeleteSongById() {
+    long id = 123_234_534_456L;
+    StepVerifier
+        .create(repository.deleteById(id))
+        .expectSubscription()
+        .expectNoEvent(Duration.ofMillis(500))
+        .expectComplete();
+  }
 
 
-        assertThrows(DataIntegrityViolationException.class, () -> repository.persistAndFlush(song));
-    }
+  @Test
+  void shouldUpdateSong() {
+    long id = 1L;
+    String name = "Test song for cool guys";
+    String album = "test album";
+    int year = 1993;
 
-    @Test
-    void shouldThrowDataIntegrityExceptionWhenSaveSongWithNullForNotNullLengthProperty() {
-        Song song = new Song.Builder(1, "Testing well", null)
-                .album("Testers")
-                .year(2009)
-                .artist("Mr.Test")
-                .build();
+    Mono<Song> songMono = repository.findById(id).flatMap(result -> {
+      result.setName(name);
+      result.setAlbum(album);
+      result.setYear(year);
+      return repository.save(result);
+    }).flatMap(result -> repository.findById(result.getId()));
 
-        assertThrows(DataIntegrityViolationException.class, () -> repository.persistAndFlush(song));
-    }
+    StepVerifier.create(songMono)
+        .assertNext(result -> {
+          assertEquals(id, result.getId());
+          assertEquals(album, result.getAlbum());
+          assertEquals(name, result.getName());
+          assertEquals(year, result.getYear());
+        })
+        .verifyComplete();
+  }
 
-    @Test
-    void shouldFindSongById() {
-        // create a song
-        Song song = new Song.Builder(190L, "Pythoner", "12:34")
-                .album("Py snakes")
-                .year(2002)
-                .artist("Pyer")
-                .build();
-        Song result = repository.persistAndFlush(song);
+  @Test
+  void shouldThrowExceptionWhenUpdateSongWithNullName() {
+    Song song = new Song.Builder(1982L, "Ruby puby", "4:13")
+        .album("Hello World in ruby")
+        .year(1988)
+        .artist("Rubist")
+        .build();
 
-        Optional<Song> songOptional = repository.findById(result.getId());
-        assertTrue(songOptional.isPresent());
-        assertEquals(result.getId(), songOptional.get().getId());
-    }
+    Mono<Song> songMono = repository.save(song).flatMap(result -> {
+      result.setName(null);
+      return repository.save(result);
+    });
 
-    @Test
-    void shouldReturnEmptyWhenFindSongById() {
-        long id = 123_234_534_456L;
-        Optional<Song> result = repository.findById(id);
-        assertTrue(result.isEmpty());
-    }
+    StepVerifier
+        .create(songMono)
+        .expectError(DataIntegrityViolationException.class)
+        .verify();
+  }
 
-    @Test
-    void shouldDeleteSongById() {
-        Song song = new Song.Builder(90L, "Developer", "2:59")
-                .album("Hello Worlders")
-                .year(2022)
-                .artist("Javist")
-                .build();
-        Song result = repository.persistAndFlush(song);
+  @Test
+  void shouldThrowExceptionWhenUpdateSongWithNullLength() {
+    // create a song
+    Song song = new Song.Builder(129L, "Java Developer", "3:59")
+        .album("Public world")
+        .year(2020)
+        .artist("Java man")
+        .build();
+    Mono<Song> songMono = repository.save(song).flatMap(result -> {
+      result.setLength(null);
+      return repository.save(result);
+    });
 
-        repository.deleteById(result.getId());
+    StepVerifier.create(songMono)
+        .expectError(DataIntegrityViolationException.class)
+        .verify();
+  }
 
-        boolean isExistent = repository.existsById(result.getId());
-        assertFalse(isExistent);
-    }
+  @Test
+  void shouldDeleteByResourceId() {
+    Song song = new Song.Builder(1818L, "DeleteByResourceId", "18:18").build();
+    Mono<Song> songMono = repository.save(song).flatMap(result -> repository.deleteByResourceId(result.getResourceId())
+        .flatMap(unused -> repository.findById(result.getId())));
 
-    @Test
-    void shouldThrowEmptyResultDataAccessExceptionWhenDeleteSongById() {
-        long id = 123_234_534_456L;
-        assertThrows(EmptyResultDataAccessException.class, ()-> repository.deleteById(id));
-    }
-
-    @Test
-    void shouldDeleteSong() {
-        Song song = new Song.Builder(11L, "Js is good", "3:14")
-                .album("Hello World in js")
-                .year(1998)
-                .artist("Jsist")
-                .build();
-        Song result = repository.persistAndFlush(song);
-
-        repository.delete(result);
-
-        boolean isExistent = repository.existsById(result.getId());
-        assertFalse(isExistent);
-    }
-
-    @Test
-    void shouldUpdateSong() {
-        Optional<Song> preUpdate = repository.findById(1L);
-        assertTrue(preUpdate.isPresent());
-        Song song = preUpdate.get();
-        song.setYear(1998);
-        repository.updateAndFlush(song);
-
-        Optional<Song> postUpdate = repository.findById(1L);
-        assertTrue(postUpdate.isPresent());
-
-        assertEquals(song.getResourceId(), postUpdate.get().getResourceId());
-        assertEquals(song.getName(), postUpdate.get().getName());
-        assertEquals(song.getLength(), postUpdate.get().getLength());
-        assertEquals(song.getYear(), postUpdate.get().getYear());
-    }
-
-    @Test
-    void shouldThrowExceptionWhenUpdateSongWithNullName() {
-        Song song = new Song.Builder(1982L, "Ruby puby", "4:13")
-                .album("Hello World in ruby")
-                .year(1988)
-                .artist("Rubist")
-                .build();
-        Song result = repository.persistAndFlush(song);
-
-        result.setName(null);
-        assertThrows(DataIntegrityViolationException.class, ()-> repository.updateAndFlush(result));
-    }
-
-    @Test
-    void shouldThrowExceptionWhenUpdateSongWithNullLength() {
-        // create a song
-        Song song = new Song.Builder(129L, "Java Developer", "3:59")
-                .album("Public world")
-                .year(2020)
-                .artist("Java man")
-                .build();
-        repository.persistAndFlush(song);
-
-        song.setLength(null);
-        assertThrows(DataIntegrityViolationException.class, ()-> repository.updateAndFlush(song));
-    }
-
-    @Test
-    void shouldDeleteByResourceId() {
-        Song song = new Song.Builder(1818L, "DeleteByResourceId", "18:18").build();
-        repository.persist(song);
-
-        repository.deleteByResourceId(song.getResourceId());
-
-        Optional<Song> songOptional1 = repository.findById(song.getId());
-        assertTrue(songOptional1.isEmpty());
-    }
+    StepVerifier.create(songMono)
+        .expectSubscription()
+        .expectNoEvent(Duration.ofMillis(500))
+        .expectComplete();
+  }
 }

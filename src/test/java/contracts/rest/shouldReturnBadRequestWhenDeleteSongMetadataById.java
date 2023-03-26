@@ -24,7 +24,7 @@ public class shouldReturnBadRequestWhenDeleteSongMetadataById implements Supplie
                 response.body(map()
                         .entry("status", "BAD_REQUEST")
                         .entry("message", "Invalid request")
-                        .entry("debugMessage", "Id param was not validated, check your ids")
+                        .entry("debugMessage", "For input string: \"\"")
                 );
             });
         });

@@ -1,12 +1,13 @@
 package com.epam.training.microservicefoundation.songservice.repository;
 
 import com.epam.training.microservicefoundation.songservice.model.Song;
+import org.springframework.data.repository.reactive.ReactiveCrudRepository;
 import org.springframework.stereotype.Repository;
-
-import java.util.Optional;
+import reactor.core.publisher.Mono;
 
 @Repository
-public interface SongRepository extends BaseJpaRepository<Song, Long>, BaseRepository<Song> {
-    void deleteByResourceId(long resourceId);
-    Optional<Song> findByResourceId(long resourceId);
+public interface SongRepository extends ReactiveCrudRepository<Song, Long> {
+  Mono<Void> deleteByResourceId(long resourceId);
+
+  Mono<Song> findByResourceId(long resourceId);
 }

@@ -9,29 +9,31 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class SongMapper implements Mapper<Song, SongMetadata> {
-    private static final Logger log = LoggerFactory.getLogger(SongMapper.class);
-    @Override
-    public SongMetadata mapToRecord(Song song) {
-        log.info("Mapping entity '{}' to record", song);
-        if(song == null) {
-            return null;
-        }
-        return new SongMetadata.Builder(song.getResourceId(), song.getName(), song.getLength())
-                .album(song.getAlbum())
-                .artist(song.getArtist())
-                .year(song.getYear()).build();
-    }
+  private static final Logger log = LoggerFactory.getLogger(SongMapper.class);
 
-    @Override
-    public Song mapToEntity(SongMetadata songMetadata) {
-        log.info("Mapping record '{}' to entity", songMetadata);
-        if(songMetadata == null) {
-            return null;
-        }
-        return new Song.Builder(songMetadata.getResourceId(), songMetadata.getName(), songMetadata.getLength())
-                .artist(songMetadata.getArtist())
-                .album(songMetadata.getAlbum())
-                .year(songMetadata.getYear())
-                .build();
+  @Override
+  public SongMetadata mapToRecord(Song song) {
+    log.info("Mapping entity '{}' to record", song);
+    if (song == null) {
+      return null;
     }
+    return new SongMetadata.Builder(song.getResourceId(), song.getName(), song.getLength())
+        .id(song.getId())
+        .album(song.getAlbum())
+        .artist(song.getArtist())
+        .year(song.getYear()).build();
+  }
+
+  @Override
+  public Song mapToEntity(SongMetadata songMetadata) {
+    log.info("Mapping record '{}' to entity", songMetadata);
+    if (songMetadata == null) {
+      return null;
+    }
+    return new Song.Builder(songMetadata.getResourceId(), songMetadata.getName(), songMetadata.getLength())
+        .artist(songMetadata.getArtist())
+        .album(songMetadata.getAlbum())
+        .year(songMetadata.getYear())
+        .build();
+  }
 }

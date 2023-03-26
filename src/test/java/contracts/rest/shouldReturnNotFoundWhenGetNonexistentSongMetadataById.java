@@ -19,8 +19,8 @@ public class shouldReturnNotFoundWhenGetNonexistentSongMetadataById implements S
                 response.status(response.NOT_FOUND());
                 response.body(map()
                         .entry("status", "NOT_FOUND")
-                        .entry("message", "Song metadata not found")
-                        .entry("debugMessage", "Song was not found with id '1999'")
+                        .entry("message", "Song metadata is not found")
+                        .entry("debugMessage", "Song is not found with id '1999'")
                 );
             });
         });

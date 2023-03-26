@@ -1,7 +1,7 @@
 package com.epam.training.microservicefoundation.songservice.service.validator;
 
 import com.epam.training.microservicefoundation.songservice.model.SongMetadata;
-import com.epam.training.microservicefoundation.songservice.service.implementation.SongRecordValidator;
+import com.epam.training.microservicefoundation.songservice.service.implementation.SongMetadataValidator;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -9,11 +9,11 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class SongMetadataValidatorTest {
-    private SongRecordValidator validation;
+    private SongMetadataValidator validation;
 
     @BeforeEach
     void setup() {
-        validation = new SongRecordValidator();
+        validation = new SongMetadataValidator();
     }
 
     @Test

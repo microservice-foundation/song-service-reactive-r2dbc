@@ -14,7 +14,7 @@ public class shouldReturnBadRequestWhenDeleteSongMetadataByResourceId implements
             contract.description("Represents a bad-request scenario of deleting song metadata by resource id(s)");
             contract.request(request -> {
                 request.method(request.DELETE());
-                request.url("/api/v1/songs/delete-by-resource-id", url -> {
+                request.url("/api/v1/songs/by-resource-id", url -> {
                     url.queryParameters(queryParameters -> {
                         queryParameters.parameter("id", "");
                     });
@@ -25,7 +25,7 @@ public class shouldReturnBadRequestWhenDeleteSongMetadataByResourceId implements
                 response.body(map()
                         .entry("status", "BAD_REQUEST")
                         .entry("message", "Invalid request")
-                        .entry("debugMessage", "Id param was not validated, check your ids")
+                        .entry("debugMessage", "For input string: \"\"")
                 );
             });
         });

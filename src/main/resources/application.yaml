@@ -3,20 +3,16 @@ logging:
   level:
     root: DEBUG
     org:
-      hibernate: INFO
-      hibernate.SQL: DEBUG
-      hibernate.cache: DEBUG
-      hibernate.stat: DEBUG
+      springframework.r2dbc: DEBUG
 
 # datasource configuration
 spring:
-  datasource:
-    url: jdbc:postgresql://${POSTGRES_HOST:localhost}:5432/${DATABASE_NAME:song_service}
+  r2dbc:
+    url: r2dbc:postgresql://${POSTGRES_HOST:localhost}:${POSTGRES_PORT:5432}/${DATABASE_NAME:song_service}
     username: ${POSTGRES_USERNAME:microservice_foundation}
     password: ${POSTGRES_PASSWORD:microservice_foundation}
-    driver-class-name: org.postgresql.Driver
-    maxIdle: 30
-    maxWait: 10000
-    maxActive: 100
-  jpa.hibernate.ddl-auto: create-drop
-  database-platform: org.hibernate.dialect.PostgreSQLDialect
+    initialization-mode: always
+    pool:
+      enabled: true
+      initial-size: 5
+      max-size: 10
