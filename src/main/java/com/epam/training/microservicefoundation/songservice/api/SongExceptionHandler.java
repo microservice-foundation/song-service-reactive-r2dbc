@@ -18,7 +18,6 @@ import org.springframework.web.reactive.function.server.RouterFunctions;
 import org.springframework.web.reactive.function.server.ServerResponse;
 import reactor.core.publisher.Mono;
 
-
 public class SongExceptionHandler extends AbstractErrorWebExceptionHandler {
   private final Map<Class<? extends Throwable>, Function<Throwable, Mono<ServerResponse>>> exceptionToHandlers;
 
@@ -43,7 +42,6 @@ public class SongExceptionHandler extends AbstractErrorWebExceptionHandler {
         .contentType(MediaType.APPLICATION_JSON)
         .body(BodyInserters.fromValue(new APIError(HttpStatus.INTERNAL_SERVER_ERROR, "Internal server error has happened",
             throwable))));
-
   }
 
   @Override

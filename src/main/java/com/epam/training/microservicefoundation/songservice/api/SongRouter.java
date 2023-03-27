@@ -15,7 +15,6 @@ import org.springframework.web.reactive.function.server.ServerResponse;
 @Configuration
 @EnableWebFlux
 public class SongRouter {
-
   @Bean
   RouterFunction<ServerResponse> songRoutes(SongHandler handler) {
     return RouterFunctions.nest(RequestPredicates.path("/api/v1/songs"),
@@ -23,7 +22,7 @@ public class SongRouter {
             .route(GET("/{id}"), handler::getById)
             .andRoute(POST(""), handler::save)
             .andRoute(DELETE("").and(RequestPredicates.queryParam("id", t -> true)), handler::deleteByIds)
-            .andRoute(DELETE("by-resource-id").and(RequestPredicates.queryParam("id", t-> true)),
+            .andRoute(DELETE("by-resource-id").and(RequestPredicates.queryParam("id", t -> true)),
                 handler::deleteByResourceIds));
   }
 }
