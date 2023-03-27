@@ -16,5 +16,5 @@ FROM base as build
 RUN ./gradlew jar
 
 FROM openjdk:11-jre-slim as production
-COPY --from=build /app/build/libs/song-service-*.jar /song-service.jar
-CMD ["java", "-Dspring.profiles.active=prod", "-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:8001", "-jar", "/song-service.jar"]
+COPY --from=build /app/build/libs/song-service-*.jar /song-service-reactive-r2dbc.jar
+CMD ["java", "-Dspring.profiles.active=prod", "-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:8001", "-jar", "/song-service-reactive-r2dbc.jar"]
