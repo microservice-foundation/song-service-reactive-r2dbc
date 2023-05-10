@@ -3,6 +3,7 @@ package com.epam.training.microservicefoundation.songservice.api;
 import static org.hamcrest.Matchers.containsInAnyOrder;
 import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.notNullValue;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import com.epam.training.microservicefoundation.songservice.model.SongMetadata;
 import com.epam.training.microservicefoundation.songservice.model.SongRecord;
@@ -12,10 +13,13 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.reactive.AutoConfigureWebTestClient;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.context.ApplicationContext;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.web.reactive.server.WebTestClient;
 import org.springframework.web.reactive.function.BodyInserters;
+import org.springframework.web.reactive.function.server.RouterFunction;
+import org.springframework.web.reactive.function.server.ServerResponse;
 
 @SpringBootTest
 @ExtendWith(value = {PostgresExtension.class})
@@ -27,7 +31,7 @@ class SongControllerTest {
   private WebTestClient webTestClient;
 
   @Test
-  void shouldSaveSong() throws Exception {
+  void shouldSaveSong(){
     SongMetadata songMetadata = new SongMetadata.Builder(123L, "Hello World", "54:21")
         .album("Tech").artist("Arnold Kim").year(2009).build();
     webTestClient
@@ -40,7 +44,7 @@ class SongControllerTest {
   }
 
   @Test
-  void shouldThrowValidationExceptionWhenSaveSongWithInvalidResourceId() throws Exception {
+  void shouldThrowValidationExceptionWhenSaveSongWithInvalidResourceId() {
     SongMetadata songMetadata = new SongMetadata.Builder(-1L, "Hello World", "54:21")
         .album("Tech").artist("Arnold Kim").year(2009).build();
 
@@ -56,7 +60,7 @@ class SongControllerTest {
   }
 
   @Test
-  void shouldThrowValidationExceptionWhenSaveSongWithInvalidName() throws Exception {
+  void shouldThrowValidationExceptionWhenSaveSongWithInvalidName() {
     SongMetadata songMetadata = new SongMetadata.Builder(1L, null, "54:21")
         .album("Tech").artist("Arnold Kim").year(2009).build();
 
@@ -72,7 +76,7 @@ class SongControllerTest {
   }
 
   @Test
-  void shouldThrowValidationExceptionWhenSaveSongWithInvalidLength() throws Exception {
+  void shouldThrowValidationExceptionWhenSaveSongWithInvalidLength() {
     SongMetadata songMetadata = new SongMetadata.Builder(1L, null, "-54:21")
         .album("Tech").artist("Arnold Kim").year(2009).build();
 
@@ -89,7 +93,7 @@ class SongControllerTest {
   }
 
   @Test
-  void shouldThrowValidationExceptionWhenSaveSongWithInvalidYearOne() throws Exception {
+  void shouldThrowValidationExceptionWhenSaveSongWithInvalidYearOne() {
     SongMetadata songMetadata = new SongMetadata.Builder(1L, "test", "5:21")
         .album("Tech").artist("Arnold Kim").year(2099).build();
 
@@ -106,7 +110,7 @@ class SongControllerTest {
   }
 
   @Test
-  void shouldThrowValidationExceptionWhenSaveSongWithInvalidYearTwo() throws Exception {
+  void shouldThrowValidationExceptionWhenSaveSongWithInvalidYearTwo() {
     SongMetadata songMetadata = new SongMetadata.Builder(1L, "test", "5:21")
         .album("Tech").artist("Arnold Kim").year(1899).build();
 
@@ -123,7 +127,7 @@ class SongControllerTest {
   }
 
   @Test
-  void shouldGetSongMetadata() throws Exception {
+  void shouldGetSongMetadata() {
     // save a song metadata
     SongMetadata songMetadata = new SongMetadata.Builder(129_888_999L, "test", "5:21")
         .album("Tech").artist("Arnold Kim").build();
@@ -163,7 +167,7 @@ class SongControllerTest {
   }
 
   @Test
-  void shouldDeleteSongMetadataById() throws Exception {
+  void shouldDeleteSongMetadataById() {
     SongMetadata songMetadata1 = new SongMetadata.Builder(130_888_999L, "test", "5:21")
         .album("Tech").artist("Arnold Kim").build();
 
@@ -207,7 +211,7 @@ class SongControllerTest {
   }
 
   @Test
-  void shouldReturnEmptyWhenDeleteSongMetadataByNegativeResourceIds() throws Exception {
+  void shouldReturnEmptyWhenDeleteSongMetadataByNegativeResourceIds() {
     webTestClient.delete().uri(uriBuilder -> uriBuilder.path("/api/v1/songs/by-resource-id").queryParam("id", "-1,-3").build())
         .exchange()
         .expectStatus()
@@ -215,7 +219,7 @@ class SongControllerTest {
   }
 
   @Test
-  void shouldReturnEmptyWhenDeleteSongMetadataByNegativeIds() throws Exception {
+  void shouldReturnEmptyWhenDeleteSongMetadataByNegativeIds() {
     webTestClient.delete().uri(uriBuilder -> uriBuilder.path("/api/v1/songs").queryParam("id", "-1,-3").build())
         .exchange()
         .expectStatus()

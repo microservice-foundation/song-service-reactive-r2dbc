@@ -8,6 +8,5 @@ import reactor.core.publisher.Mono;
 @Repository
 public interface SongRepository extends ReactiveCrudRepository<Song, Long> {
   Mono<Void> deleteByResourceId(long resourceId);
-
   Mono<Song> findByResourceId(long resourceId);
 }

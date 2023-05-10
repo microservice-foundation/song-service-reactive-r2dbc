@@ -6,17 +6,15 @@ import static org.springframework.web.reactive.function.server.RequestPredicates
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.web.reactive.config.EnableWebFlux;
 import org.springframework.web.reactive.function.server.RequestPredicates;
 import org.springframework.web.reactive.function.server.RouterFunction;
 import org.springframework.web.reactive.function.server.RouterFunctions;
 import org.springframework.web.reactive.function.server.ServerResponse;
 
 @Configuration
-@EnableWebFlux
 public class SongRouter {
   @Bean
-  RouterFunction<ServerResponse> songRoutes(SongHandler handler) {
+  RouterFunction<ServerResponse> routes(SongHandler handler) {
     return RouterFunctions.nest(RequestPredicates.path("/api/v1/songs"),
         RouterFunctions
             .route(GET("/{id}"), handler::getById)

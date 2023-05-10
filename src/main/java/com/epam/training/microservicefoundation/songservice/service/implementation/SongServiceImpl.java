@@ -38,7 +38,6 @@ public class SongServiceImpl implements SongService {
     return songMetadata
         .filter(songRecordValidator::validate)
         .switchIfEmpty(Mono.error(new IllegalArgumentException("Saving invalid song record")))
-        .log()
         .flatMap(metadata -> repository.save(songMapper.mapToEntity(metadata))
             .onErrorResume(error -> Mono.error(new IllegalArgumentException(String.format(
                 "Saving a song record with invalid parameters length or duplicate value '%s'", error.getLocalizedMessage()), error)))

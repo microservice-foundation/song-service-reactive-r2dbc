@@ -15,7 +15,6 @@ import org.springframework.test.context.TestPropertySource;
 @ExtendWith(PostgresExtension.class)
 @DirtiesContext
 @ContextConfiguration(classes = DatasourceConfiguration.class)
-//@MockitoSettings(strictness = Strictness.LENIENT) // https://stackoverflow.com/questions/42947613/how-to-resolve-unneccessary-stubbing-exception
 @TestPropertySource(locations = "classpath:application.properties")
 public abstract class RestBase {
 
