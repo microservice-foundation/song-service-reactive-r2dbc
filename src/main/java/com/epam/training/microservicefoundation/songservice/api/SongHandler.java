@@ -1,6 +1,7 @@
 package com.epam.training.microservicefoundation.songservice.api;
 
 import com.epam.training.microservicefoundation.songservice.model.SongMetadata;
+import com.epam.training.microservicefoundation.songservice.model.SongRecord;
 import com.epam.training.microservicefoundation.songservice.service.SongService;
 import java.net.URI;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,17 +22,14 @@ public class SongHandler {
   }
 
   public Mono<ServerResponse> save(ServerRequest request) {
-    return service.save(request.bodyToMono(SongMetadata.class))
-        .flatMap(songRecord -> ServerResponse.created(URI.create(request.path() + "/" + songRecord.getId()))
-            .contentType(MediaType.APPLICATION_JSON)
-            .bodyValue(songRecord));
+    return ServerResponse.created(URI.create(request.path()))
+        .body(service.save(request.bodyToMono(SongMetadata.class)), SongRecord.class);
   }
 
   public Mono<ServerResponse> update(ServerRequest request) {
-    return service.update(request.bodyToMono(SongMetadata.class))
-        .flatMap(songMetadata -> ServerResponse.ok()
-            .contentType(MediaType.APPLICATION_JSON)
-            .bodyValue(songMetadata));
+    return ServerResponse.ok()
+        .contentType(MediaType.APPLICATION_JSON)
+        .body(service.update(request.bodyToMono(SongMetadata.class)), SongMetadata.class);
   }
 
   public Mono<ServerResponse> deleteByIds(ServerRequest request) {
@@ -40,19 +38,16 @@ public class SongHandler {
         .map(string -> Flux.fromArray(string.split(",")).map(Long::parseLong))
         .orElse(Flux.empty());
 
-    return service.deleteByIds(idsFlux)
-        .collectList()
-        .flatMap(songRecords -> ServerResponse.ok()
-            .contentType(MediaType.APPLICATION_JSON)
-            .bodyValue(songRecords));
+    return ServerResponse.ok()
+        .contentType(MediaType.APPLICATION_JSON)
+        .body(service.deleteByIds(idsFlux), SongRecord.class);
   }
 
   public Mono<ServerResponse> getById(ServerRequest request) {
     long id = Long.parseLong(request.pathVariable("id"));
-    return service.getById(id)
-        .flatMap(songMetadata -> ServerResponse.ok()
-            .contentType(MediaType.APPLICATION_JSON)
-            .bodyValue(songMetadata));
+    return ServerResponse.ok()
+        .contentType(MediaType.APPLICATION_JSON)
+        .body(service.getById(id), SongMetadata.class);
   }
 
   public Mono<ServerResponse> deleteByResourceIds(ServerRequest request) {
@@ -61,10 +56,8 @@ public class SongHandler {
         .map(string -> Flux.fromArray(string.split(",")).map(Long::parseLong))
         .orElse(Flux.empty());
 
-    return service.deleteByResourceIds(idsMono)
-        .collectList()
-        .flatMap(songRecords -> ServerResponse.ok()
-            .contentType(MediaType.APPLICATION_JSON)
-            .bodyValue(songRecords));
+    return ServerResponse.ok()
+        .contentType(MediaType.APPLICATION_JSON)
+        .body(service.deleteByResourceIds(idsMono), SongRecord.class);
   }
 }
