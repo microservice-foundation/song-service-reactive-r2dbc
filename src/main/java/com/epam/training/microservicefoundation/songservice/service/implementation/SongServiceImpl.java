@@ -14,7 +14,7 @@ import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 import reactor.util.Logger;
 import reactor.util.Loggers;
-
+//TODO: Fix service flow and add mappers
 @Service
 @Transactional(readOnly = true)
 public class SongServiceImpl implements SongService {
@@ -65,9 +65,9 @@ public class SongServiceImpl implements SongService {
   public Flux<SongDTO> deleteByIds(Flux<Long> ids) {
     log.info("Deleting Song(s) with id {}", ids);
     return ids
+        .switchIfEmpty(Mono.error(new IllegalArgumentException("Id param is not validated, check your ids")))
         .flatMap(repository::findById)
-        .flatMap(song -> repository.delete(song).thenReturn(new SongDTO(song.getId(), song.getResourceId())))
-        .switchIfEmpty(Mono.error(new IllegalArgumentException("Id param is not validated, check your ids")));
+        .flatMap(song -> repository.delete(song).thenReturn(new SongDTO(song.getId(), song.getResourceId())));
   }
 
   @Override
