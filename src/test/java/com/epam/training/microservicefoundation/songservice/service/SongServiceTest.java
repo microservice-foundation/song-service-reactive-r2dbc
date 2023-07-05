@@ -11,7 +11,7 @@ import static org.mockito.Mockito.when;
 import com.epam.training.microservicefoundation.songservice.model.Song;
 import com.epam.training.microservicefoundation.songservice.model.SongMetadata;
 import com.epam.training.microservicefoundation.songservice.model.SongNotFoundException;
-import com.epam.training.microservicefoundation.songservice.model.SongRecord;
+import com.epam.training.microservicefoundation.songservice.model.SongDTO;
 import com.epam.training.microservicefoundation.songservice.repository.SongRepository;
 import com.epam.training.microservicefoundation.songservice.service.implementation.SongMapper;
 import com.epam.training.microservicefoundation.songservice.service.implementation.SongMetadataValidator;
@@ -50,7 +50,7 @@ class SongServiceTest {
     when(mapper.mapToEntity(any())).thenReturn(song);
     when(repository.save(any())).thenReturn(Mono.just(song));
 
-    Mono<SongRecord> resultMono =
+    Mono<SongDTO> resultMono =
         service.save(Mono.just(new SongMetadata.Builder(song.getResourceId(), song.getName(), song.getLength()).build()));
 
     StepVerifier.create(resultMono)
