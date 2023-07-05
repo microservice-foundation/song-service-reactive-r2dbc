@@ -5,21 +5,18 @@ import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.notNullValue;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
+import com.epam.training.microservicefoundation.songservice.model.SongDTO;
 import com.epam.training.microservicefoundation.songservice.model.SongMetadata;
-import com.epam.training.microservicefoundation.songservice.model.SongRecord;
 import com.epam.training.microservicefoundation.songservice.repository.PostgresExtension;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.reactive.AutoConfigureWebTestClient;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.context.ApplicationContext;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.web.reactive.server.WebTestClient;
 import org.springframework.web.reactive.function.BodyInserters;
-import org.springframework.web.reactive.function.server.RouterFunction;
-import org.springframework.web.reactive.function.server.ServerResponse;
 
 @SpringBootTest
 @ExtendWith(value = {PostgresExtension.class})
@@ -132,12 +129,12 @@ class SongControllerTest {
     SongMetadata songMetadata = new SongMetadata.Builder(129_888_999L, "test", "5:21")
         .album("Tech").artist("Arnold Kim").build();
 
-    SongRecord postResult = webTestClient.post().uri("/api/v1/songs")
+    SongDTO postResult = webTestClient.post().uri("/api/v1/songs")
         .contentType(MediaType.APPLICATION_JSON)
         .body(BodyInserters.fromValue(songMetadata))
         .exchange()
         .expectStatus()
-        .isCreated().expectBody(SongRecord.class).returnResult().getResponseBody();
+        .isCreated().expectBody(SongDTO.class).returnResult().getResponseBody();
 
     webTestClient.get().uri("/api/v1/songs/{id}", postResult.getId())
         .accept(MediaType.APPLICATION_JSON)
@@ -171,26 +168,26 @@ class SongControllerTest {
     SongMetadata songMetadata1 = new SongMetadata.Builder(130_888_999L, "test", "5:21")
         .album("Tech").artist("Arnold Kim").build();
 
-    SongRecord postResult1 = webTestClient.post().uri("/api/v1/songs")
+    SongDTO postResult1 = webTestClient.post().uri("/api/v1/songs")
         .contentType(MediaType.APPLICATION_JSON)
         .body(BodyInserters.fromValue(songMetadata1))
         .exchange()
         .expectStatus()
         .isCreated()
-        .expectBody(SongRecord.class)
+        .expectBody(SongDTO.class)
         .returnResult()
         .getResponseBody();
 
     SongMetadata songMetadata2 = new SongMetadata.Builder(131_888_999L, "test", "5:21")
         .album("Tech").artist("Arnold Kim").build();
 
-    SongRecord postResult2 = webTestClient.post().uri("/api/v1/songs")
+    SongDTO postResult2 = webTestClient.post().uri("/api/v1/songs")
         .contentType(MediaType.APPLICATION_JSON)
         .body(BodyInserters.fromValue(songMetadata2))
         .exchange()
         .expectStatus()
         .isCreated()
-        .expectBody(SongRecord.class)
+        .expectBody(SongDTO.class)
         .returnResult()
         .getResponseBody();
 
@@ -243,26 +240,26 @@ class SongControllerTest {
     SongMetadata songMetadata1 = new SongMetadata.Builder(130_888_999L, "test", "5:21")
         .album("Tech").artist("Arnold Kim").build();
 
-    SongRecord postResult1 = webTestClient.post().uri("/api/v1/songs")
+    SongDTO postResult1 = webTestClient.post().uri("/api/v1/songs")
         .contentType(MediaType.APPLICATION_JSON)
         .body(BodyInserters.fromValue(songMetadata1))
         .exchange()
         .expectStatus()
         .isCreated()
-        .expectBody(SongRecord.class)
+        .expectBody(SongDTO.class)
         .returnResult()
         .getResponseBody();
 
     SongMetadata songMetadata2 = new SongMetadata.Builder(131_888_999L, "test", "5:21")
         .album("Tech").artist("Arnold Kim").build();
 
-    SongRecord postResult2 = webTestClient.post().uri("/api/v1/songs")
+    SongDTO postResult2 = webTestClient.post().uri("/api/v1/songs")
         .contentType(MediaType.APPLICATION_JSON)
         .body(BodyInserters.fromValue(songMetadata2))
         .exchange()
         .expectStatus()
         .isCreated()
-        .expectBody(SongRecord.class)
+        .expectBody(SongDTO.class)
         .returnResult()
         .getResponseBody();
 

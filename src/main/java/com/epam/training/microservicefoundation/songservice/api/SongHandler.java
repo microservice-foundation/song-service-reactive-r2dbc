@@ -1,7 +1,7 @@
 package com.epam.training.microservicefoundation.songservice.api;
 
+import com.epam.training.microservicefoundation.songservice.model.SongDTO;
 import com.epam.training.microservicefoundation.songservice.model.SongMetadata;
-import com.epam.training.microservicefoundation.songservice.model.SongRecord;
 import com.epam.training.microservicefoundation.songservice.service.SongService;
 import java.net.URI;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +23,7 @@ public class SongHandler {
 
   public Mono<ServerResponse> save(ServerRequest request) {
     return ServerResponse.created(URI.create(request.path()))
-        .body(service.save(request.bodyToMono(SongMetadata.class)), SongRecord.class);
+        .body(service.save(request.bodyToMono(SongMetadata.class)), SongDTO.class);
   }
 
   public Mono<ServerResponse> update(ServerRequest request) {
@@ -40,7 +40,7 @@ public class SongHandler {
 
     return ServerResponse.ok()
         .contentType(MediaType.APPLICATION_JSON)
-        .body(service.deleteByIds(idsFlux), SongRecord.class);
+        .body(service.deleteByIds(idsFlux), SongDTO.class);
   }
 
   public Mono<ServerResponse> getById(ServerRequest request) {
@@ -58,6 +58,6 @@ public class SongHandler {
 
     return ServerResponse.ok()
         .contentType(MediaType.APPLICATION_JSON)
-        .body(service.deleteByResourceIds(idsMono), SongRecord.class);
+        .body(service.deleteByResourceIds(idsMono), SongDTO.class);
   }
 }
