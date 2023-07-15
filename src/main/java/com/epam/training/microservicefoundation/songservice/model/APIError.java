@@ -1,8 +1,10 @@
 package com.epam.training.microservicefoundation.songservice.model;
 
+import java.io.Serializable;
 import org.springframework.http.HttpStatus;
 
-public class APIError {
+public class APIError implements Serializable {
+  private static final long serialVersionUID = 2023_07_15_15_55L;
   private HttpStatus status;
   private final long timestamp;
   private String message;

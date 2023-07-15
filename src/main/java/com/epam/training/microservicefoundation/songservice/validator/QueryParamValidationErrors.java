@@ -1,12 +1,13 @@
 package com.epam.training.microservicefoundation.songservice.validator;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
-import org.springframework.lang.Nullable;
 
-public class QueryParamValidationErrors {
+public class QueryParamValidationErrors implements Serializable {
+  private static final long serialVersionUID = 2023_07_15_15_54L;
   private final List<QueryParamError> errors = new ArrayList<>();
   private final String queryParam;
 
@@ -14,11 +15,11 @@ public class QueryParamValidationErrors {
     this.queryParam = queryParam;
   }
 
-  public void rejectValue(String errorCode, @Nullable String defaultMessage) {
+  public void rejectValue(String errorCode, String defaultMessage) {
     addError(new QueryParamError(getQueryParam(), errorCode, null, defaultMessage));
   }
 
-  public void rejectValue(String errorCode, @Nullable Object[] errorArgs, @Nullable String defaultMessage) {
+  public void rejectValue(String errorCode, Object[] errorArgs, String defaultMessage) {
     addError(new QueryParamError(getQueryParam(), errorCode, errorArgs, defaultMessage));
   }
 

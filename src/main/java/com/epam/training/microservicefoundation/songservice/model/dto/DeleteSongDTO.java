@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class DeleteSongDTO {
+  private static final long serialVersionUID = 2023_07_15_15_53L;
   private long id;
   private long resourceId;
 }
