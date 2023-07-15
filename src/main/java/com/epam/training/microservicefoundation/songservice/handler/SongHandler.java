@@ -1,6 +1,5 @@
-package com.epam.training.microservicefoundation.songservice.handler.impl;
+package com.epam.training.microservicefoundation.songservice.handler;
 
-import com.epam.training.microservicefoundation.songservice.service.implementation.SongServiceImpl;
 import com.epam.training.microservicefoundation.songservice.validator.RequestBodyValidator;
 import com.epam.training.microservicefoundation.songservice.validator.RequestQueryParamValidator;
 import com.epam.training.microservicefoundation.songservice.model.dto.DeleteSongDTO;

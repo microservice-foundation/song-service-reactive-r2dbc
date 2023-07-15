@@ -8,7 +8,7 @@ import static org.springframework.web.reactive.function.server.RequestPredicates
 import static org.springframework.web.reactive.function.server.RequestPredicates.accept;
 import static org.springframework.web.reactive.function.server.RequestPredicates.contentType;
 
-import com.epam.training.microservicefoundation.songservice.handler.impl.SongHandler;
+import com.epam.training.microservicefoundation.songservice.handler.SongHandler;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.reactive.function.server.RequestPredicates;

@@ -1,7 +1,7 @@
 package com.epam.training.microservicefoundation.songservice.configuration;
 
-import com.epam.training.microservicefoundation.songservice.handler.impl.SongExceptionHandler;
-import com.epam.training.microservicefoundation.songservice.handler.impl.SongHandler;
+import com.epam.training.microservicefoundation.songservice.handler.SongExceptionHandler;
+import com.epam.training.microservicefoundation.songservice.handler.SongHandler;
 import com.epam.training.microservicefoundation.songservice.model.dto.SaveSongDTO;
 import com.epam.training.microservicefoundation.songservice.router.SongRouter;
 import com.epam.training.microservicefoundation.songservice.service.implementation.SongServiceImpl;

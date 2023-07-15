@@ -1,6 +1,6 @@
 package com.epam.training.microservicefoundation.songservice.configuration;
 
-import com.epam.training.microservicefoundation.songservice.handler.impl.SongExceptionHandler;
+import com.epam.training.microservicefoundation.songservice.handler.SongExceptionHandler;
 import com.epam.training.microservicefoundation.songservice.model.dto.SaveSongDTO;
 import com.epam.training.microservicefoundation.songservice.validator.IdQueryParamValidator;
 import com.epam.training.microservicefoundation.songservice.validator.RequestBodyValidator;

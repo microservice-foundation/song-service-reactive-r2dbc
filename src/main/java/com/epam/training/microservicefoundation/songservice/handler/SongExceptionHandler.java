@@ -1,4 +1,4 @@
-package com.epam.training.microservicefoundation.songservice.handler.impl;
+package com.epam.training.microservicefoundation.songservice.handler;
 
 import static org.springframework.http.HttpStatus.BAD_REQUEST;
 import static org.springframework.http.HttpStatus.INTERNAL_SERVER_ERROR;
