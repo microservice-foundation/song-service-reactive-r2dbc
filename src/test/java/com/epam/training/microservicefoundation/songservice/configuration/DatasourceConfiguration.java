@@ -1,4 +1,4 @@
-package com.epam.training.microservicefoundation.songservice.repository;
+package com.epam.training.microservicefoundation.songservice.configuration;
 
 import io.r2dbc.spi.ConnectionFactory;
 import org.springframework.boot.test.context.TestConfiguration;
@@ -21,7 +21,6 @@ public class DatasourceConfiguration {
 
     CompositeDatabasePopulator populator = new CompositeDatabasePopulator();
     populator.addPopulators(new ResourceDatabasePopulator(new ClassPathResource("db/schema.sql")));
-    populator.addPopulators(new ResourceDatabasePopulator(new ClassPathResource("db/data.sql")));
     initializer.setDatabasePopulator(populator);
 
     return initializer;
