@@ -1,13 +1,17 @@
 package com.epam.training.microservicefoundation.songservice.service.implementation;
 
-import com.epam.training.microservicefoundation.songservice.model.Song;
-import com.epam.training.microservicefoundation.songservice.model.SongMetadata;
-import com.epam.training.microservicefoundation.songservice.model.SongNotFoundException;
-import com.epam.training.microservicefoundation.songservice.model.SongRecord;
+import com.epam.training.microservicefoundation.songservice.mapper.DeleteSongMapper;
+import com.epam.training.microservicefoundation.songservice.mapper.GetSongMapper;
+import com.epam.training.microservicefoundation.songservice.mapper.SaveSongMapper;
+import com.epam.training.microservicefoundation.songservice.model.dto.DeleteSongDTO;
+import com.epam.training.microservicefoundation.songservice.model.dto.GetSongDTO;
+import com.epam.training.microservicefoundation.songservice.model.dto.SaveSongDTO;
+import com.epam.training.microservicefoundation.songservice.model.entity.Song;
+import com.epam.training.microservicefoundation.songservice.model.exception.ExceptionSupplier;
 import com.epam.training.microservicefoundation.songservice.repository.SongRepository;
-import com.epam.training.microservicefoundation.songservice.service.Mapper;
 import com.epam.training.microservicefoundation.songservice.service.SongService;
-import com.epam.training.microservicefoundation.songservice.service.Validator;
+import java.util.Arrays;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import reactor.core.publisher.Flux;
@@ -20,75 +24,66 @@ import reactor.util.Loggers;
 public class SongServiceImpl implements SongService {
   private static final Logger log = Loggers.getLogger(SongServiceImpl.class);
   private final SongRepository repository;
-  private final Mapper<Song, SongMetadata> songMapper;
-  private final Validator<SongMetadata> songRecordValidator;
+  private final SaveSongMapper saveSongMapper;
+  private final GetSongMapper getSongMapper;
+  private final DeleteSongMapper deleteSongMapper;
 
-  public SongServiceImpl(SongRepository repository, Mapper<Song, SongMetadata> songMapper, Validator<SongMetadata> songRecordValidator) {
+  public SongServiceImpl(SongRepository repository, SaveSongMapper saveSongMapper, GetSongMapper getSongMapper,
+      DeleteSongMapper deleteSongMapper) {
     this.repository = repository;
-    this.songMapper = songMapper;
-    this.songRecordValidator = songRecordValidator;
-  }
-
-
-  @Transactional
-  @Override
-  public Mono<SongRecord> save(Mono<SongMetadata> songMetadata) {
-    log.info("Saving a song record '{}'", songMetadata);
-
-    return songMetadata
-        .filter(songRecordValidator::validate)
-        .switchIfEmpty(Mono.error(new IllegalArgumentException("Saving invalid song record")))
-        .flatMap(metadata -> repository.save(songMapper.mapToEntity(metadata))
-            .onErrorResume(error -> Mono.error(new IllegalArgumentException(String.format(
-                "Saving a song record with invalid parameters length or duplicate value '%s'", error.getLocalizedMessage()), error)))
-            .map(song -> new SongRecord(song.getId(), song.getResourceId())));
-
+    this.saveSongMapper = saveSongMapper;
+    this.getSongMapper = getSongMapper;
+    this.deleteSongMapper = deleteSongMapper;
   }
 
   @Transactional
   @Override
-  public Mono<SongMetadata> update(Mono<SongMetadata> songMetadata) {
-    log.info("Updating a song record '{}'", songMetadata);
-
-    return songMetadata
-        .filter(songRecordValidator::validate)
-        .switchIfEmpty(Mono.error(new IllegalArgumentException(String.format("Updating an invalid song record '%s'", songMetadata))))
-        .log()
-        .flatMap(metadata -> repository.save(songMapper.mapToEntity(metadata))
-            .onErrorResume(error -> Mono.error(new IllegalArgumentException(String.format(
-                "Updating a song record with invalid parameters length or duplicate value '%s'", error.getLocalizedMessage()), error)))
-            .map(songMapper::mapToRecord));
-
+  public Mono<GetSongDTO> save(Mono<SaveSongDTO> songDTO) {
+    log.info("Saving a song.");
+    return songDTO
+        .map(saveSongMapper::toEntity)
+        .flatMap(repository::save)
+        .map(getSongMapper::toDto)
+        .onErrorMap(DataIntegrityViolationException.class, error -> ExceptionSupplier.entityAlreadyExists(Song.class, error).get());
   }
 
   @Transactional
   @Override
-  public Flux<SongRecord> deleteByIds(Flux<Long> ids) {
-    log.info("Deleting Song(s) with id {}", ids);
-    return ids
-        .switchIfEmpty(Mono.error(new IllegalArgumentException("Id param is not validated, check your ids")))
+  public Mono<GetSongDTO> update(final long id, Mono<SaveSongDTO> songDTO) {
+    log.info("Updating a song with id={}.", id);
+    return songDTO.map(saveSongMapper::toEntity)
+        .flatMap(song -> repository.save(song.toBuilder().id(id).build()))
+        .map(getSongMapper::toDto)
+        .onErrorMap(DataIntegrityViolationException.class, error -> ExceptionSupplier.entityAlreadyExists(Song.class, error).get());
+  }
+
+  @Transactional
+  @Override
+  public Flux<DeleteSongDTO> deleteByIds(final Long[] ids) {
+    log.info("Deleting Song(s) with ids '{}'.", Arrays.toString(ids));
+    return Flux.fromArray(ids)
         .flatMap(repository::findById)
-        .flatMap(song -> repository.delete(song).thenReturn(new SongRecord(song.getId(), song.getResourceId())))
-        .log();
+        .flatMap(this::deleteSong);
   }
 
   @Override
-  public Mono<SongMetadata> getById(long id) {
-    log.info("Getting a song with id '{}'", id);
-    return repository
-        .findById(id).map(songMapper::mapToRecord)
-        .log()
-        .switchIfEmpty(Mono.error(new SongNotFoundException(String.format("Song is not found with id '%d'", id))));
+  public Mono<GetSongDTO> getById(final long id) {
+    log.info("Getting a song by id='{}'.", id);
+    return repository.findById(id)
+        .map(getSongMapper::toDto)
+        .switchIfEmpty(Mono.error(ExceptionSupplier.entityNotFound(Song.class, id)));
   }
 
   @Transactional
   @Override
-  public Flux<SongRecord> deleteByResourceIds(Flux<Long> ids) {
-    log.info("Deleting Song(s) with resource id(s) '{}'", ids);
-    return ids
-        .switchIfEmpty(Mono.error(new IllegalArgumentException("Id param is not validated, check your ids")))
+  public Flux<DeleteSongDTO> deleteByResourceIds(final Long[] ids) {
+    log.info("Deleting Song(s) with resource ids '{}'.", Arrays.toString(ids));
+    return Flux.fromArray(ids)
         .flatMap(repository::findByResourceId)
-        .flatMap(song -> repository.delete(song).thenReturn(new SongRecord(song.getId(), song.getResourceId())))
-        .log();
+        .flatMap(this::deleteSong);
+  }
+
+  private Mono<DeleteSongDTO> deleteSong(Song song) {
+    return repository.delete(song).thenReturn(deleteSongMapper.toDto(song));
   }
 }

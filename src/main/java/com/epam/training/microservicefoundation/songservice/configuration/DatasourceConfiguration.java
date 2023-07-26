@@ -1,4 +1,4 @@
-package com.epam.training.microservicefoundation.songservice.config;
+package com.epam.training.microservicefoundation.songservice.configuration;
 
 import io.r2dbc.spi.ConnectionFactory;
 import org.springframework.context.annotation.Bean;

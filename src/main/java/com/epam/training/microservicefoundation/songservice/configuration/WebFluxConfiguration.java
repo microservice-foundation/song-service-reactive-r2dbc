@@ -1,6 +1,10 @@
-package com.epam.training.microservicefoundation.songservice.config;
+package com.epam.training.microservicefoundation.songservice.configuration;
 
-import com.epam.training.microservicefoundation.songservice.api.SongExceptionHandler;
+import com.epam.training.microservicefoundation.songservice.handler.SongExceptionHandler;
+import com.epam.training.microservicefoundation.songservice.model.dto.SaveSongDTO;
+import com.epam.training.microservicefoundation.songservice.validator.IdQueryParamValidator;
+import com.epam.training.microservicefoundation.songservice.validator.RequestBodyValidator;
+import com.epam.training.microservicefoundation.songservice.validator.RequestQueryParamValidator;
 import org.springframework.boot.autoconfigure.web.WebProperties;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.boot.web.reactive.error.DefaultErrorAttributes;
@@ -10,6 +14,8 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.core.Ordered;
 import org.springframework.core.annotation.Order;
 import org.springframework.http.codec.ServerCodecConfigurer;
+import org.springframework.validation.Validator;
+import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 import org.springframework.web.reactive.config.EnableWebFlux;
 
 @Configuration
@@ -31,5 +37,20 @@ public class WebFluxConfiguration {
     exceptionHandler.setMessageReaders(configurer.getReaders());
     exceptionHandler.setMessageWriters(configurer.getWriters());
     return exceptionHandler;
+  }
+
+  @Bean
+  public Validator springValidator() {
+    return new LocalValidatorFactoryBean();
+  }
+
+  @Bean
+  public RequestBodyValidator<SaveSongDTO> requestBodyValidator(Validator validator) {
+    return new RequestBodyValidator<>(validator, SaveSongDTO.class);
+  }
+
+  @Bean
+  public RequestQueryParamValidator requestQueryParamValidator(IdQueryParamValidator idQueryParamValidator) {
+    return new RequestQueryParamValidator(idQueryParamValidator);
   }
 }
