@@ -18,7 +18,8 @@ class DeleteSongMapperTest {
   @Autowired
   private DeleteSongMapper deleteSongMapper;
   private final DeleteSongDTO deleteSongDTO = new DeleteSongDTO(1L, 123L);
-  private final Song song = Song.builder().id(1L).resourceId(123L).name("test").album("mapper").artist("Map").length("12:22").createdDate(
+  private final Song song =
+      Song.builder().id(1L).resourceId(123L).name("test").album("mapper").artist("Map").lengthInSeconds(10).createdDate(
         LocalDateTime.now()).lastModifiedDate(LocalDateTime.now()).build();
   @Test
   void toDtoMapping() {

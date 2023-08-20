@@ -1,6 +1,5 @@
 package com.epam.training.microservicefoundation.songservice.model.dto;
 
-import com.epam.training.microservicefoundation.songservice.validator.ValidLength;
 import com.epam.training.microservicefoundation.songservice.validator.ValidName;
 import com.epam.training.microservicefoundation.songservice.validator.ValidYear;
 import java.io.Serializable;
@@ -25,10 +24,7 @@ public class SaveSongDTO implements Serializable {
   private String name;
   private String artist;
   private String album;
-
-  @NotEmpty
-  @ValidLength
-  private String length;
+  private long lengthInSeconds;
 
   @ValidYear
   private int year;

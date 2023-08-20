@@ -63,7 +63,7 @@ public class SongHandler {
   }
 
   public Mono<ServerResponse> deleteByResourceIds(ServerRequest request, final String queryParam) {
-    log.info("Handling delete-songs-by-request-ids requst.");
+    log.info("Handling delete-songs-by-resource-ids requst.");
     final String validQueryParamValue = queryParamValidator.validateQueryParam(request.queryParam(queryParam), queryParam);
     return ServerResponse.ok()
         .contentType(MediaType.APPLICATION_JSON)

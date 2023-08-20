@@ -30,6 +30,6 @@ public class SongRouter {
             .andRoute(DELETE("").and(RequestPredicates.queryParam(QUERY_PARAM_ID, t -> true)).and(accept(APPLICATION_JSON)),
                 request -> handler.deleteByIds(request, QUERY_PARAM_ID))
             .andRoute(DELETE("by-resource-id").and(RequestPredicates.queryParam(QUERY_PARAM_ID, t -> true))
-                    .and(accept(APPLICATION_JSON)), request -> handler.deleteByIds(request, QUERY_PARAM_ID)));
+                    .and(accept(APPLICATION_JSON)), request -> handler.deleteByResourceIds(request, QUERY_PARAM_ID)));
   }
 }

@@ -25,10 +25,8 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.dao.DataIntegrityViolationException;
-import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 import reactor.test.StepVerifier;
-import reactor.util.retry.Retry;
 
 @ExtendWith(MockitoExtension.class)
 class SongServiceTest {
@@ -43,13 +41,13 @@ class SongServiceTest {
   @InjectMocks
   private SongServiceImpl service;
   private final Song songEntity =
-      Song.builder().resourceId(123L).name("Alone").album("Solo").artist("Justin Timberland").length("4:58").year(1998).build();
+      Song.builder().resourceId(123L).name("Alone").album("Solo").artist("Justin Timberland").lengthInSeconds(24).year(1998).build();
   private final Song savedSongEntity1 =
-      Song.builder().id(1L).resourceId(123L).name("Alone").album("Solo").artist("Justin Timberland").length("4:58").year(1998).build();
+      Song.builder().id(1L).resourceId(123L).name("Alone").album("Solo").artist("Justin Timberland").lengthInSeconds(24).year(1998).build();
   private final Song savedSongEntity2 =
-      Song.builder().id(2L).resourceId(124L).name("Couple").album("Due").artist("Justin Timberland").length("3:58").year(1990).build();
-  private final SaveSongDTO saveSongDTO = new SaveSongDTO(123L, "Alone", "Justin Timberland", "Solo", "4:58", 1998);
-  private final GetSongDTO getSongDTO = new GetSongDTO(1L, 123L, "Alone", "Justin Timberland", "Solo", "4:58", 1998);
+      Song.builder().id(2L).resourceId(124L).name("Couple").album("Due").artist("Justin Timberland").lengthInSeconds(24).year(1990).build();
+  private final SaveSongDTO saveSongDTO = new SaveSongDTO(123L, "Alone", "Justin Timberland", "Solo", 24, 1998);
+  private final GetSongDTO getSongDTO = new GetSongDTO(1L, 123L, "Alone", "Justin Timberland", "Solo", 24, 1998);
   private final DeleteSongDTO deleteSongDTO1 = new DeleteSongDTO(1L, 123L);
   private final DeleteSongDTO deleteSongDTO2 = new DeleteSongDTO(2L, 124L);
 
@@ -93,7 +91,7 @@ class SongServiceTest {
           assertEquals(savedSongEntity1.getId(), result.getId());
           assertEquals(savedSongEntity1.getResourceId(), result.getResourceId());
           assertEquals(savedSongEntity1.getName(), result.getName());
-          assertEquals(savedSongEntity1.getLength(), result.getLength());
+          assertEquals(savedSongEntity1.getLengthInSeconds(), result.getLengthInSeconds());
         })
         .verifyComplete();
   }

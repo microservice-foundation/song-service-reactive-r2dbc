@@ -17,8 +17,9 @@ class SaveSongMapperTest {
 
   @Autowired
   private SaveSongMapper saveSongMapper;
-  private final Song song = Song.builder().resourceId(123L).name("test").album("mapper").artist("Map").length("12:22").year(2000).build();
-  private final SaveSongDTO saveSongDTO = new SaveSongDTO(123L, "test", "Map", "mapper", "12:22",
+  private final Song song =
+      Song.builder().resourceId(123L).name("test").album("mapper").artist("Map").lengthInSeconds(12).year(2000).build();
+  private final SaveSongDTO saveSongDTO = new SaveSongDTO(123L, "test", "Map", "mapper", 12,
       2000);
 
   @Test

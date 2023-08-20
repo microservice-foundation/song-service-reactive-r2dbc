@@ -18,8 +18,8 @@ class GetSongMapperTest {
   private GetSongMapper getSongMapper;
 
   private final Song song =
-      Song.builder().id(1L).resourceId(123L).name("test").album("mapper").artist("Map").length("12:22").year(2000).build();
-  private final GetSongDTO getSongDTO = new GetSongDTO(1L, 123L, "test", "Map", "mapper", "12:22",
+      Song.builder().id(1L).resourceId(123L).name("test").album("mapper").artist("Map").lengthInSeconds(10).year(2000).build();
+  private final GetSongDTO getSongDTO = new GetSongDTO(1L, 123L, "test", "Map", "mapper", 10,
       2000);
 
   @Test

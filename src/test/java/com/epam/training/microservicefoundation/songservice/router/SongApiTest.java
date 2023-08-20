@@ -46,13 +46,13 @@ class SongApiTest {
   private WebTestClient webTestClient;
 
   private final Song songEntity1 =
-      Song.builder().resourceId(123L).name("Apollo").artist("Schwars").album("Greek").length("2:00").year(2001).build();
+      Song.builder().resourceId(123L).name("Apollo").artist("Schwars").album("Greek").lengthInSeconds(20).year(2001).build();
   private final Song savedSongEntity1 =
-      Song.builder().id(1L).resourceId(123L).name("Apollo").artist("Schwars").album("Greek").length("2:00").year(2001).build();
+      Song.builder().id(1L).resourceId(123L).name("Apollo").artist("Schwars").album("Greek").lengthInSeconds(20).year(2001).build();
   private final Song savedSongEntity2 =
-      Song.builder().id(2L).resourceId(124L).name("Apollo2").artist("Schwars2").album("Greek2").length("3:00").year(2002).build();
-  private final GetSongDTO getSongDTO1 = new GetSongDTO(1L, 123L, "Apollo", "Schwars", "Greek", "2:00", 2001);
-  private final SaveSongDTO saveSongDTO1 = new SaveSongDTO(123L, "Apollo", "Schwars", "Greek", "2:00", 2001);
+      Song.builder().id(2L).resourceId(124L).name("Apollo2").artist("Schwars2").album("Greek2").lengthInSeconds(34).year(2002).build();
+  private final GetSongDTO getSongDTO1 = new GetSongDTO(1L, 123L, "Apollo", "Schwars", "Greek", 20, 2001);
+  private final SaveSongDTO saveSongDTO1 = new SaveSongDTO(123L, "Apollo", "Schwars", "Greek", 23, 2001);
   private final DeleteSongDTO deleteSongDTO1 = new DeleteSongDTO(1L, 123L);
   private final DeleteSongDTO deleteSongDTO2 = new DeleteSongDTO(2L, 124L);
 
@@ -91,7 +91,7 @@ class SongApiTest {
     webTestClient.post().uri("/api/v1/songs")
         .contentType(MediaType.APPLICATION_JSON)
         .accept(MediaType.APPLICATION_JSON)
-        .body(BodyInserters.fromValue(new SaveSongDTO(0L, "Apollo", "Schwars", "Greek", "2:00", 2001)))
+        .body(BodyInserters.fromValue(new SaveSongDTO(0L, "Apollo", "Schwars", "Greek", 12, 2001)))
         .exchange()
         .expectStatus().isBadRequest()
         .expectBody()
@@ -103,23 +103,9 @@ class SongApiTest {
   void shouldThrowValidationExceptionWhenSaveSongWithInvalidName() {
     webTestClient.post().uri("/api/v1/songs")
         .contentType(MediaType.APPLICATION_JSON)
-        .body(BodyInserters.fromValue(new SaveSongDTO(123L, "", "Schwars", "Greek", "2:00", 2001)))
+        .body(BodyInserters.fromValue(new SaveSongDTO(123L, "", "Schwars", "Greek", 14, 2001)))
         .exchange()
         .expectStatus().isBadRequest()
-        .expectBody()
-        .jsonPath("$.status").isEqualTo("BAD_REQUEST")
-        .jsonPath("$.message").isEqualTo("Invalid request");
-  }
-
-  @Test
-  void shouldThrowValidationExceptionWhenSaveSongWithInvalidLength() {
-
-    webTestClient.post().uri("/api/v1/songs")
-        .contentType(MediaType.APPLICATION_JSON)
-        .body(BodyInserters.fromValue(new SaveSongDTO(123L, "Apollo", "Schwars", "Greek", "-100", 2001)))
-        .exchange()
-        .expectStatus()
-        .isBadRequest()
         .expectBody()
         .jsonPath("$.status").isEqualTo("BAD_REQUEST")
         .jsonPath("$.message").isEqualTo("Invalid request");
@@ -129,7 +115,7 @@ class SongApiTest {
   void shouldThrowValidationExceptionWhenSaveSongWithInvalidYearOne() {
     webTestClient.post().uri("/api/v1/songs")
         .contentType(MediaType.APPLICATION_JSON)
-        .body(BodyInserters.fromValue(new SaveSongDTO(123L, "Apollo", "Schwars", "Greek", "2:00", 2030)))
+        .body(BodyInserters.fromValue(new SaveSongDTO(123L, "Apollo", "Schwars", "Greek", 10, 2030)))
         .exchange()
         .expectStatus()
         .isBadRequest()
@@ -142,7 +128,7 @@ class SongApiTest {
   void shouldThrowValidationExceptionWhenSaveSongWithInvalidYearTwo() {
     webTestClient.post().uri("/api/v1/songs")
         .contentType(MediaType.APPLICATION_JSON)
-        .body(BodyInserters.fromValue(new SaveSongDTO(123L, "Apollo", "Schwars", "Greek", "2:00", 1000)))
+        .body(BodyInserters.fromValue(new SaveSongDTO(123L, "Apollo", "Schwars", "Greek", 9, 1000)))
         .exchange()
         .expectStatus()
         .isBadRequest()
@@ -165,7 +151,7 @@ class SongApiTest {
         .jsonPath("$.id").isEqualTo(savedSongEntity1.getId())
         .jsonPath("$.resourceId").isEqualTo(savedSongEntity1.getResourceId())
         .jsonPath("$.name").isEqualTo(savedSongEntity1.getName())
-        .jsonPath("$.length").isEqualTo(savedSongEntity1.getLength())
+        .jsonPath("$.lengthInSeconds").isEqualTo(savedSongEntity1.getLengthInSeconds())
         .jsonPath("$.album").isEqualTo(savedSongEntity1.getAlbum())
         .jsonPath("$.artist").isEqualTo(savedSongEntity1.getArtist());
   }
@@ -379,7 +365,7 @@ class SongApiTest {
         .jsonPath("$.id").isEqualTo(savedSongEntity1.getId())
         .jsonPath("$.resourceId").isEqualTo(savedSongEntity1.getResourceId())
         .jsonPath("$.name").isEqualTo(savedSongEntity1.getName())
-        .jsonPath("$.length").isEqualTo(savedSongEntity1.getLength())
+        .jsonPath("$.lengthInSeconds").isEqualTo(savedSongEntity1.getLengthInSeconds())
         .jsonPath("$.album").isEqualTo(savedSongEntity1.getAlbum())
         .jsonPath("$.artist").isEqualTo(savedSongEntity1.getArtist());
   }
@@ -405,7 +391,7 @@ class SongApiTest {
         .put().uri("/api/v1/songs/{id}", 1L)
         .contentType(MediaType.APPLICATION_JSON)
         .accept(MediaType.APPLICATION_JSON)
-        .body(BodyInserters.fromValue(new SaveSongDTO(0L, "Apollo", "Schwars", "Greek", "2:00", 2001)))
+        .body(BodyInserters.fromValue(new SaveSongDTO(0L, "Apollo", "Schwars", "Greek", 9, 2001)))
         .exchange()
         .expectStatus().isBadRequest()
         .expectBody()
@@ -418,23 +404,9 @@ class SongApiTest {
     webTestClient
         .put().uri("/api/v1/songs/{id}", 1L)
         .contentType(MediaType.APPLICATION_JSON)
-        .body(BodyInserters.fromValue(new SaveSongDTO(123L, "", "Schwars", "Greek", "2:00", 2001)))
+        .body(BodyInserters.fromValue(new SaveSongDTO(123L, "", "Schwars", "Greek", 13, 2001)))
         .exchange()
         .expectStatus().isBadRequest()
-        .expectBody()
-        .jsonPath("$.status").isEqualTo("BAD_REQUEST")
-        .jsonPath("$.message").isEqualTo("Invalid request");
-  }
-
-  @Test
-  void shouldThrowValidationExceptionWhenUpdateSongWithInvalidLength() {
-    webTestClient
-        .put().uri("/api/v1/songs/{id}", 1L)
-        .contentType(MediaType.APPLICATION_JSON)
-        .body(BodyInserters.fromValue(new SaveSongDTO(123L, "Apollo", "Schwars", "Greek", "-100", 2001)))
-        .exchange()
-        .expectStatus()
-        .isBadRequest()
         .expectBody()
         .jsonPath("$.status").isEqualTo("BAD_REQUEST")
         .jsonPath("$.message").isEqualTo("Invalid request");
@@ -445,7 +417,7 @@ class SongApiTest {
     webTestClient
         .put().uri("/api/v1/songs/{id}", 1L)
         .contentType(MediaType.APPLICATION_JSON)
-        .body(BodyInserters.fromValue(new SaveSongDTO(123L, "Apollo", "Schwars", "Greek", "2:00", 2030)))
+        .body(BodyInserters.fromValue(new SaveSongDTO(123L, "Apollo", "Schwars", "Greek", 15, 2030)))
         .exchange()
         .expectStatus()
         .isBadRequest()
@@ -459,7 +431,7 @@ class SongApiTest {
     webTestClient
         .put().uri("/api/v1/songs/{id}", 1L)
         .contentType(MediaType.APPLICATION_JSON)
-        .body(BodyInserters.fromValue(new SaveSongDTO(123L, "Apollo", "Schwars", "Greek", "2:00", 1000)))
+        .body(BodyInserters.fromValue(new SaveSongDTO(123L, "Apollo", "Schwars", "Greek", 19, 1000)))
         .exchange()
         .expectStatus()
         .isBadRequest()
