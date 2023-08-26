@@ -6,7 +6,7 @@ plugins {
 
 group = 'com.epam.training'
 version = '1.0'
-sourceCompatibility = '11'
+sourceCompatibility = '17'
 
 repositories {
     mavenCentral()
@@ -18,7 +18,7 @@ repositories {
 
 dependencies {
     implementation 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-client'
-    implementation 'org.springframework.boot:spring-boot-actuator'
+    implementation 'org.springframework.boot:spring-boot-starter-actuator'
     implementation 'org.springframework.cloud:spring-cloud-starter-bootstrap'
     implementation 'org.springframework.cloud:spring-cloud-starter-config'
     implementation 'org.springframework.boot:spring-boot-starter-webflux'
@@ -27,7 +27,6 @@ dependencies {
     implementation "org.mapstruct:mapstruct:${mapstructVersion}"
     implementation "net.logstash.logback:logstash-logback-encoder:${logstashLogbackVersion}"
     implementation "io.micrometer:micrometer-tracing-bridge-brave:${micrometerVersion}"
-//    implementation 'org.springframework.cloud:spring-cloud-starter-sleuth'
     runtimeOnly 'org.postgresql:r2dbc-postgresql'
     compileOnly 'org.projectlombok:lombok'
     annotationProcessor 'org.projectlombok:lombok'

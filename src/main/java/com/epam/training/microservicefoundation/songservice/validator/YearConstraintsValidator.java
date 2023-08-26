@@ -1,8 +1,8 @@
 package com.epam.training.microservicefoundation.songservice.validator;
 
 import java.time.Year;
-import javax.validation.ConstraintValidator;
-import javax.validation.ConstraintValidatorContext;
+import jakarta.validation.ConstraintValidator;
+import jakarta.validation.ConstraintValidatorContext;
 
 public class YearConstraintsValidator implements ConstraintValidator<ValidYear, Integer> {
   private static final String REGEX_YEAR = "^(19|20)\\d{2}$";

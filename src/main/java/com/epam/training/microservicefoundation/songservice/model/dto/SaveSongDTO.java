@@ -2,10 +2,10 @@ package com.epam.training.microservicefoundation.songservice.model.dto;
 
 import com.epam.training.microservicefoundation.songservice.validator.ValidName;
 import com.epam.training.microservicefoundation.songservice.validator.ValidYear;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotEmpty;
 import java.io.Serializable;
-import javax.validation.constraints.Max;
-import javax.validation.constraints.Min;
-import javax.validation.constraints.NotEmpty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
