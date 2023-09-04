@@ -50,9 +50,9 @@
             </encoder>
         </appender>
 
-        <logger level="DEBUG" name="org.springframework.r2dbc" additivity="false">
-            <appender-ref ref="jsonConsoleAppender"/>
-        </logger>
+<!--        <logger level="DEBUG" name="org.springframework.r2dbc" additivity="false">-->
+<!--            <appender-ref ref="jsonConsoleAppender"/>-->
+<!--        </logger>-->
 
         <root level="INFO">
             <appender-ref ref="jsonConsoleAppender"/>
