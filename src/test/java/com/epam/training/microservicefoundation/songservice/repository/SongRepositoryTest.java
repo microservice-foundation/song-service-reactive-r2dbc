@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import com.epam.training.microservicefoundation.songservice.configuration.DatasourceConfiguration;
-import com.epam.training.microservicefoundation.songservice.model.entity.Song;
+import com.epam.training.microservicefoundation.songservice.domain.entity.Song;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;

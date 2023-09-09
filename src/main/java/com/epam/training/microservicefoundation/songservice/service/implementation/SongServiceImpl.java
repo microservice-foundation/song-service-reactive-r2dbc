@@ -1,13 +1,13 @@
 package com.epam.training.microservicefoundation.songservice.service.implementation;
 
-import com.epam.training.microservicefoundation.songservice.mapper.DeleteSongMapper;
-import com.epam.training.microservicefoundation.songservice.mapper.GetSongMapper;
-import com.epam.training.microservicefoundation.songservice.mapper.SaveSongMapper;
-import com.epam.training.microservicefoundation.songservice.model.dto.DeleteSongDTO;
-import com.epam.training.microservicefoundation.songservice.model.dto.GetSongDTO;
-import com.epam.training.microservicefoundation.songservice.model.dto.SaveSongDTO;
-import com.epam.training.microservicefoundation.songservice.model.entity.Song;
-import com.epam.training.microservicefoundation.songservice.model.exception.ExceptionSupplier;
+import com.epam.training.microservicefoundation.songservice.service.mapper.DeleteSongMapper;
+import com.epam.training.microservicefoundation.songservice.service.mapper.GetSongMapper;
+import com.epam.training.microservicefoundation.songservice.service.mapper.SaveSongMapper;
+import com.epam.training.microservicefoundation.songservice.domain.dto.DeleteSongDTO;
+import com.epam.training.microservicefoundation.songservice.domain.dto.GetSongDTO;
+import com.epam.training.microservicefoundation.songservice.domain.dto.SaveSongDTO;
+import com.epam.training.microservicefoundation.songservice.domain.entity.Song;
+import com.epam.training.microservicefoundation.songservice.domain.exception.ExceptionSupplier;
 import com.epam.training.microservicefoundation.songservice.repository.SongRepository;
 import com.epam.training.microservicefoundation.songservice.service.SongService;
 import java.util.Arrays;

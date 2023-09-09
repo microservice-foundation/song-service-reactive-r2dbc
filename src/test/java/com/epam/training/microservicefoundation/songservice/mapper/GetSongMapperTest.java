@@ -3,8 +3,9 @@ package com.epam.training.microservicefoundation.songservice.mapper;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import com.epam.training.microservicefoundation.songservice.configuration.TestsMappersConfig;
-import com.epam.training.microservicefoundation.songservice.model.dto.GetSongDTO;
-import com.epam.training.microservicefoundation.songservice.model.entity.Song;
+import com.epam.training.microservicefoundation.songservice.domain.dto.GetSongDTO;
+import com.epam.training.microservicefoundation.songservice.domain.entity.Song;
+import com.epam.training.microservicefoundation.songservice.service.mapper.GetSongMapper;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
