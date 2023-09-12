@@ -1,8 +1,8 @@
 package com.epam.training.microservicefoundation.songservice.service;
 
-import com.epam.training.microservicefoundation.songservice.model.dto.DeleteSongDTO;
-import com.epam.training.microservicefoundation.songservice.model.dto.GetSongDTO;
-import com.epam.training.microservicefoundation.songservice.model.dto.SaveSongDTO;
+import com.epam.training.microservicefoundation.songservice.domain.dto.DeleteSongDTO;
+import com.epam.training.microservicefoundation.songservice.domain.dto.GetSongDTO;
+import com.epam.training.microservicefoundation.songservice.domain.dto.SaveSongDTO;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 

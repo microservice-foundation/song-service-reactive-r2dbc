@@ -3,8 +3,9 @@ package com.epam.training.microservicefoundation.songservice.mapper;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import com.epam.training.microservicefoundation.songservice.configuration.TestsMappersConfig;
-import com.epam.training.microservicefoundation.songservice.model.dto.GetSongDTO;
-import com.epam.training.microservicefoundation.songservice.model.entity.Song;
+import com.epam.training.microservicefoundation.songservice.domain.dto.GetSongDTO;
+import com.epam.training.microservicefoundation.songservice.domain.entity.Song;
+import com.epam.training.microservicefoundation.songservice.service.mapper.GetSongMapper;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,8 +19,8 @@ class GetSongMapperTest {
   private GetSongMapper getSongMapper;
 
   private final Song song =
-      Song.builder().id(1L).resourceId(123L).name("test").album("mapper").artist("Map").length("12:22").year(2000).build();
-  private final GetSongDTO getSongDTO = new GetSongDTO(1L, 123L, "test", "Map", "mapper", "12:22",
+      Song.builder().id(1L).resourceId(123L).name("test").album("mapper").artist("Map").lengthInSeconds(10).year(2000).build();
+  private final GetSongDTO getSongDTO = new GetSongDTO(1L, 123L, "test", "Map", "mapper", 10,
       2000);
 
   @Test

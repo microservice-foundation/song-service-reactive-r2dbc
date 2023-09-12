@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import com.epam.training.microservicefoundation.songservice.configuration.DatasourceConfiguration;
-import com.epam.training.microservicefoundation.songservice.model.entity.Song;
+import com.epam.training.microservicefoundation.songservice.domain.entity.Song;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -24,7 +24,7 @@ import reactor.test.StepVerifier;
 @ContextConfiguration(classes = DatasourceConfiguration.class)
 @TestPropertySource(locations = "classpath:application.properties")
 class SongRepositoryTest {
-  private final Song SONG = Song.builder().resourceId(6).name("Champions").length("2:13").album("News of the world").year(2001)
+  private final Song SONG = Song.builder().resourceId(6).name("Champions").lengthInSeconds(10).album("News of the world").year(2001)
       .artist("Queen").build();
   @Autowired
   private SongRepository repository;
@@ -59,14 +59,6 @@ class SongRepositoryTest {
   }
 
   @Test
-  void shouldThrowDataIntegrityExceptionWhenSaveSongWithNullForNotNullLengthProperty() {
-    StepVerifier
-        .create(repository.save(SONG.toBuilder().length(null).build()))
-        .expectError(DataIntegrityViolationException.class)
-        .verify();
-  }
-
-  @Test
   void shouldFindSongById() {
     assertSongResult(SONG, repository.save(SONG));
     StepVerifier.create(repository.findById(SONG.getId()))
@@ -75,7 +67,7 @@ class SongRepositoryTest {
           assertEquals(SONG.getResourceId(), result.getResourceId());
           assertEquals(SONG.getAlbum(), result.getAlbum());
           assertEquals(SONG.getArtist(), result.getArtist());
-          assertEquals(SONG.getLength(), result.getLength());
+          assertEquals(SONG.getLengthInSeconds(), result.getLengthInSeconds());
           assertNotNull(result.getCreatedDate());
           assertNotNull(result.getLastModifiedDate());
         }).verifyComplete();
@@ -121,13 +113,13 @@ class SongRepositoryTest {
   void shouldUpdateSong() {
     assertSongResult(SONG, repository.save(SONG));
     Song updatedSong =
-        SONG.toBuilder().resourceId(998L).name("Cup of tea").album("Office").artist("Receptionist").length("21:33").year(2022).build();
+        SONG.toBuilder().resourceId(998L).name("Cup of tea").album("Office").artist("Receptionist").lengthInSeconds(10).year(2022).build();
 
     StepVerifier.create(repository.save(updatedSong))
         .assertNext(result -> {
           assertEquals(SONG.getId(), result.getId());
           assertEquals(updatedSong.getName(), result.getName());
-          assertEquals(updatedSong.getLength(), result.getLength());
+          assertEquals(updatedSong.getLengthInSeconds(), result.getLengthInSeconds());
         })
         .verifyComplete();
   }
@@ -138,16 +130,6 @@ class SongRepositoryTest {
 
     StepVerifier
         .create(repository.save(SONG.toBuilder().name(null).build()))
-        .expectError(DataIntegrityViolationException.class)
-        .verify();
-  }
-
-  @Test
-  void shouldThrowExceptionWhenUpdateSongWithNullLength() {
-    // create a song
-    assertSongResult(SONG, repository.save(SONG));
-
-    StepVerifier.create(repository.save(SONG.toBuilder().length(null).build()))
         .expectError(DataIntegrityViolationException.class)
         .verify();
   }
@@ -184,7 +166,7 @@ class SongRepositoryTest {
           assertEquals(expected.getResourceId(), result.getResourceId());
           assertEquals(expected.getAlbum(), result.getAlbum());
           assertEquals(expected.getArtist(), result.getArtist());
-          assertEquals(expected.getLength(), result.getLength());
+          assertEquals(expected.getLengthInSeconds(), result.getLengthInSeconds());
           assertNotNull(result.getCreatedDate());
           assertTrue(result.getId() > 0L);
           assertNotNull(result.getLastModifiedDate());
